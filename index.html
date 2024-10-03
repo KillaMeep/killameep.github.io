@@ -99,7 +99,7 @@
         <br><br>
         <a href="about.html" class="btn">Explore More</a> <!-- Button is placed after landing content to be below -->
     </header>
-
+    
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2024 KillaMeep | All rights reserved.</p>
@@ -107,14 +107,34 @@
 
     <!-- Particle.js Initialization -->
     <script>
-        particlesJS.load('particles-js', 'particlesjs-config.json', function() {
-        });
-    
+        function loadParticlesConfig() {
+            fetch('particlesjs-config.json')  // Fetch the configuration file
+                .then(response => response.json())
+                .then(config => {
+                    // Dynamically adjust particle number based on screen width
+                    const screenWidth = window.innerWidth;
+
+                    // Example logic: Adjust particle count based on screen size
+                    const particleCount = Math.max(100, Math.min(Math.floor(screenWidth / 5), 800)); // Adjust as needed
+                    config.particles.number.value = particleCount;  // Update the number of particles
+
+                    // Initialize particles.js with the modified config
+                    particlesJS('particles-js', config);
+                })
+                .catch(error => console.error('Error loading particles config:', error));
+        }
+
+        // Call the function to load config and initialize particles
+        loadParticlesConfig();
+
+        // Update particles on window resize
+        window.addEventListener('resize', loadParticlesConfig);
+
         // Typing animation for the name
         const text = "Hi, I'm KillaMeep.";
         const typingDelay = 80;
         let index = 0;
-    
+
         function type() {
             if (index < text.length) {
                 document.getElementById("typing-effect").innerHTML = text.substring(0, index + 1) + '<span aria-hidden="true">|</span>'; // Add a blinking cursor effect
@@ -126,19 +146,19 @@
                 setTimeout(roleTypingEffect, 500);
             }
         }
-    
+
         // Role typing effect with backspacing
         const roles = [
             "Software Developer",
             "Process Automation Engineer", 
             "AI Solutions Architect" 
         ];
-    
+
         let roleIndex = 0;
         let charIndex = 0;
         let currentRole = "";
         let isTyping = true; // Flag to control typing and backspacing
-    
+
         function roleTypingEffect() {
             if (isTyping) {
                 if (charIndex < roles[roleIndex].length) {

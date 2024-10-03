@@ -7,6 +7,38 @@
     <link rel="stylesheet" href="styles.css">
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        /* Styling for contact section */
+        .contact-section {
+            position: relative;
+            z-index: 1; /* Bring content above particles */
+            text-align: center; /* Center text */
+            color: white; /* White text */
+            padding: 20px; /* Add some padding */
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center; /* Center cards horizontally */
+            flex-wrap: wrap; /* Wrap cards on smaller screens */
+        }
+
+        .contact-card {
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px; /* Inner spacing */
+            margin: 10px; /* Spacing between cards */
+            width: 300px; /* Fixed width for cards */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow for cards */
+        }
+
+        /* Footer styling */
+        .footer {
+            text-align: center; /* Center text in footer */
+            color: white; /* White text */
+            margin-top: 20px; /* Space above footer */
+        }
+    </style>
 </head>
 <body>
     <!-- Particle Background -->
@@ -43,7 +75,6 @@
         </div>
     </section>
 
-
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -53,9 +84,28 @@
 
     <!-- Particle.js Initialization -->
     <script>
-        particlesJS.load('particles-js', 'particlesjs-config.json', function() {
-            console.log('particles.js loaded');
-        });
+        function loadParticlesConfig() {
+            fetch('particlesjs-config.json')  // Fetch the configuration file
+                .then(response => response.json())
+                .then(config => {
+                    // Dynamically adjust particle number based on screen width
+                    const screenWidth = window.innerWidth;
+
+                    // Example logic: Adjust particle count based on screen size
+                    const particleCount = Math.max(100, Math.min(Math.floor(screenWidth / 5), 800)); // Adjust as needed
+                    config.particles.number.value = particleCount;  // Update the number of particles
+
+                    // Initialize particles.js with the modified config
+                    particlesJS('particles-js', config);
+                })
+                .catch(error => console.error('Error loading particles config:', error));
+        }
+
+        // Call the function to load config and initialize particles
+        loadParticlesConfig();
+
+        // Update particles on window resize
+        window.addEventListener('resize', loadParticlesConfig);
     </script>
 </body>
 </html>
