@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KillaMeep | Projects</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2b2b2b;
+            color: #ffffff; /* White text for contrast */
+        }
+
+
+
+        /* Projects Section */
+        .section {
+            padding: 60px 20px; /* Increased padding */
+            background-color: #1f1f1f; /* Darker background for projects section */
+            border-radius: 10px; /* Rounded corners for the section */
+            margin: 20px; /* Margin to separate from other sections */
+        }
+
+        h2 {
+            margin-bottom: 20px; /* Adjusted margin */
+            font-size: 36px;
+            color: #ffda79;
+            text-align: center; /* Center the heading */
+            position: relative; /* For pseudo-element */
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #ffda79; /* Highlight color */
+            margin: 10px auto; /* Center the line */
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background: #2b2b2b; /* Card background */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            width: calc(33% - 20px);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative; /* Ensure stacking context for z-index */
+            z-index: 3; /* Higher than particles */
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #ffda79; /* Highlight color */
+        }
+
+        .card-text {
+            font-size: 16px;
+            color: #ccc; /* Light gray text for description */
+            margin-bottom: 20px;
+        }
+
+        .contributions {
+            text-align: center;
+            margin-top: 40px; /* Spacing above contributions section */
+            color: #fff; /* White text */
+        }
+
+        .contributions h3 {
+            font-size: 28px;
+            color: #ffda79; /* Highlight color */
+        }
+
+        .contribution-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px; /* Spacing below title */
+        }
+
+        .contribution-card {
+            background: #333; /* Background for contribution items */
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            width: 300px; /* Fixed width for consistency */
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative; /* Ensure stacking context for z-index */
+        }
+
+        .contribution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .contribution-date {
+            font-size: 14px;
+            color: #ffda79; /* Highlight color */
+            margin-top: 5px;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: rgba(43, 43, 43, 0.5); /* More transparent background */
+        }
+
+        /* Remove underline for links in cards */
+        a {
+            color: inherit; /* Inherit color from parent */
+            text-decoration: none; /* No underline */
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #ffda79; /* Button color */
+            color: #2b2b2b; /* Dark text for button */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            pointer-events: auto; /* Ensure button can be clicked */
+            z-index: 3; /* Ensure button is clickable above particles */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">KillaMeep</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Projects Section -->
+    <section class="section">
+        <h2>My Projects</h2>
+        <div class="row" id="project-list">
+            <!-- Project 1 -->
+            <div class="card">
+                <h5 class="card-title">ASCII-gen</h5>
+                <p class="card-text">ASCII-gen is an open-source image-to-ASCII converter that allows users to transform images into text art, making it an essential tool for creatives and developers alike. The project's core functionality includes extracting frames from videos or loading images, converting them to ASCII art, and optimizing the output GIF for both quality and size. The project is written in Python and is compatible with Linux and Windows systems.</p>
+                <a href="https://github.com/KillaMeep/ASCII-gen" target="_blank" class="btn">View Project</a>
+            </div>
+            <!-- Project 2 -->
+            <div class="card">
+                <h5 class="card-title">StarNodeAnimator</h5>
+                <p class="card-text">StarNodeAnimator is an open-source software project that uses OpenGL through Pygame to generate visually engaging star animations. Its core functionalities include creating random stars with adjustable size and node generation chances, rendering them into frames, merging the frames into an MP4 video, and offering both GUI and command-line interfaces for users' convenience. By providing features like user-defined screen dimensions, colors, and a Star class for generating and connecting star nodes, this project offers an immersive and versatile solution for creating captivating star animation videos.</p>
+                <a href="https://github.com/KillaMeep/StarNodeAnimator" target="_blank" class="btn">View Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contributions Section -->
+    <section class="contributions">
+        <h3>Recent Contributions</h3>
+        <div class="contribution-list" id="contribution-list"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 KillaMeep | All rights reserved.</p>
+    </footer>
+
+    <script>
+        const username = 'KillaMeep';
+        const contributionList = document.getElementById('contribution-list');
+        const contributionsSection = document.querySelector('.contributions');
+    
+        async function fetchContributions() {
+            try {
+                const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
+                const repos = await reposResponse.json();
+    
+                const contributions = [];
+    
+                for (const repo of repos) {
+                    const commitsResponse = await fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits?per_page=3`);
+                    const commits = await commitsResponse.json();
+    
+                    commits.forEach(commit => {
+                        contributions.push({
+                            message: commit.commit.message,
+                            date: commit.commit.author.date,
+                            repoName: repo.name,
+                            commitUrl: commit.html_url // Add commit URL
+                        });
+                    });
+                }
+    
+                // Limit to the 6 most recent contributions
+                contributions.slice(0, 6).forEach(contribution => {
+                    const contributionCard = document.createElement('div');
+                    contributionCard.className = 'contribution-card';
+                    contributionCard.innerHTML = `
+                        <p><strong>${contribution.message}</strong></p>
+                        <p class="contribution-date">${new Date(contribution.date).toLocaleDateString()}</p>
+                        <p><em>in ${contribution.repoName}</em></p>
+                        <a href="${contribution.commitUrl}" target="_blank" class="btn">View Commit</a>
+                    `;
+                    contributionList.appendChild(contributionCard);
+                });
+            } catch (error) {
+                console.error('Error fetching contributions:', error);
+                contributionsSection.innerHTML = '<p>Error loading contributions.</p>';
+            }
+        }
+    
+        fetchContributions();
+    </script>
+</body>
+</html>

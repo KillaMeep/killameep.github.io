@@ -1,0 +1,267 @@
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background-color: #2b2b2b; /* Background color */
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: none; /* Darker background */
+    padding: 15px 20px; /* Adjusted padding */
+    margin-right: -20px; /* Negative margin to counteract padding */
+    z-index: 10;
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space out logo and links */
+    align-items: center; /* Center items vertically */
+    transition: background 0.3s ease; /* Smooth background transition */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    position: sticky; /* Fixed at the top */
+}
+
+.logo {
+    text-decoration: none;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffda79; /* Logo color */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.navbar .nav-links {
+    display: flex;
+    list-style: none;
+    margin-left: auto; /* Push links to the right */
+    padding: 0; /* Remove padding to avoid overflow */
+}
+
+.navbar .nav-links li {
+    margin-left: 20px; /* Space between links */
+    position: relative; /* For pseudo-element positioning */
+}
+
+/* Link Styles */
+.nav-links li a {
+    color: #fff; /* Default link color */
+    text-decoration: none; /* Remove underline from links */
+    padding: 5px 0; /* Add vertical padding */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Change link color on hover */
+.nav-links li a:hover {
+    color: #ffda79; /* Change color on hover */
+}
+
+/* Adding a pseudo-element for a nice underline effect */
+.nav-links li a::after {
+    content: '';
+    display: block;
+    height: 2px; /* Height of the underline */
+    background: #ffda79; /* Underline color */
+    width: 0%; /* Start with no width */
+    transition: width 0.3s ease; /* Smooth transition */
+    position: absolute;
+    left: 50%; /* Position the underline */
+    bottom: -5px; /* Position it below the text */
+    transform: translateX(-50%); /* Center it below the text */
+}
+
+/* Expand the underline on hover */
+.nav-links li a:hover::after {
+    width: 100%; /* Expand underline to full width on hover */
+}
+
+
+/* Particle Background */
+#particles-js {
+    position: fixed; /* Position fixed to cover the entire view */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Occupy full height of the viewport */
+    z-index: 1; /* Ensure particles are behind the content */
+}
+
+/* Section Styles */
+.section {
+    padding-top: 100px; /* Add space to ensure content is not covered by the fixed navbar */
+}
+
+
+
+/* Landing Section Styles */
+.landing-section {
+    position: relative; /* Position relative for stacking context */
+    height: calc(100vh - 60px); /* Full viewport height minus navbar height */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    overflow: hidden; /* Hide overflow for the particles */
+    z-index: 2; /* Ensure it appears above particles */
+}
+
+.landing-content {
+    position: relative; /* Keep content above the particles */
+    z-index: 2; /* Ensure content is above the particles */
+}
+
+.landing-section h1 {
+    font-size: 4rem;
+}
+
+.landing-section p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.landing-section .btn {
+    padding: 10px 20px;
+    background-color: #ffda79; /* Button color */
+    color: #2b2b2b; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 20px; /* Add some space above the button */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.landing-section .btn:hover {
+    background-color: #ffd95c; /* Darker button on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Contact Section Styles */
+.contact-section {
+    padding: 100px 20px; /* Spacing for contact section */
+    text-align: center; /* Center text */
+    position: relative; /* For stacking context */
+    z-index: 2; /* Ensure above particles */
+}
+
+.contact-section h2 {
+    font-size: 36px;
+    color: #ffda79; /* Highlight color */
+    margin-bottom: 20px; /* Spacing below heading */
+}
+
+.contact-section p {
+    font-size: 18px; /* Font size for paragraph */
+    margin-bottom: 40px; /* Spacing below paragraph */
+    color: #ddd; /* Light gray text */
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column; /* Stack vertically */
+    align-items: center; /* Center items */
+    gap: 20px; /* Space between cards */
+}
+
+.contact-card {
+    background: rgba(31, 31, 31, 0.8); /* Dark background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+    padding: 20px; /* Padding for card */
+    width: 300px; /* Fixed width for cards */
+    transition: transform 0.3s; /* Animation on hover */
+}
+
+.contact-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Deeper shadow on hover */
+}
+
+.contact-card h3 {
+    font-size: 24px; /* Heading size for card */
+    color: #ffda79; /* Highlight color */
+    margin-bottom: 10px; /* Spacing below heading */
+}
+
+.contact-card p {
+    font-size: 16px; /* Font size for paragraph */
+    color: #ccc; /* Light gray text */
+}
+
+.contact-card a {
+    color: #ffda79; /* Link color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s; /* Transition for color change */
+}
+
+.contact-card a:hover {
+    color: #ffd95c; /* Darker on hover */
+}
+
+/* About Section Styles */
+.about-section {
+    padding-top: 100px; /* Space for the fixed navbar */
+    padding-bottom: 50px; /* Space at the bottom */
+    background: linear-gradient(to bottom right, rgba(43, 43, 43, 0.8), rgba(31, 31, 31, 0.8)); /* Gradient background */
+    min-height: calc(100vh - 60px); /* Full height minus navbar */
+}
+
+.container {
+    max-width: 800px; /* Limit width for better readability */
+    margin: 0 auto; /* Center align */
+    padding: 20px; /* Add padding */
+    background: rgba(31, 31, 31, 0.9); /* Slightly transparent background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
+    animation: fadeIn 1s ease; /* Fade-in animation */
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Individual Fade-In Effect */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards; /* Fade-in animation */
+}
+
+/* Delay each fade-in effect */
+.fade-in:nth-child(1) { animation-delay: 0.2s; }
+.fade-in:nth-child(2) { animation-delay: 0.4s; }
+.fade-in:nth-child(3) { animation-delay: 0.6s; }
+.fade-in:nth-child(4) { animation-delay: 0.8s; }
+.fade-in:nth-child(5) { animation-delay: 1s; }
+.fade-in:nth-child(6) { animation-delay: 1.2s; }
+.fade-in:nth-child(7) { animation-delay: 1.4s; }
+.fade-in:nth-child(8) { animation-delay: 1.6s; }
+.fade-in:nth-child(9) { animation-delay: 1.8s; }
+.fade-in:nth-child(10) { animation-delay: 2s; }
+.fade-in:nth-child(11) { animation-delay: 2.2s; }
+
+/* Footer Styles */
+.footer {
+    text-align: center; /* Center footer content */
+    padding: 20px; /* Add padding for footer content */
+    background-color: rgba(43, 43, 43, 0.5); /* More transparent background */
+    position: relative; /* Keep footer above particles */
+    z-index: 2; /* Ensure footer content is above particles */
+}
+
+.footer-content {
+    position: relative; /* Keep footer content above the particles */
+}
