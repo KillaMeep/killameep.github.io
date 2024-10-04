@@ -10,16 +10,20 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #2b2b2b;
+            background-color: #2b2b2b; /* Dark background */
             color: #ffffff; /* White text for contrast */
+            position: relative; /* Position relative to overlay wave animation */
+            overflow-x: hidden; /* Only hide horizontal overflow */
+            overflow-y: auto; /* Allow vertical scrolling */
         }
 
         /* Projects Section */
         .section {
             padding: 60px 20px; /* Increased padding */
-            background-color: #1f1f1f; /* Darker background for projects section */
             border-radius: 10px; /* Rounded corners for the section */
             margin: 20px; /* Margin to separate from other sections */
+            position: relative; /* Ensure section is above animation */
+            z-index: 2; /* Set section above the dot wave animation */
         }
 
         h2 {
@@ -48,6 +52,10 @@
 
         .card {
             background: #2b2b2b; /* Card background */
+            text-align: center; /* Center text in the card */
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: space-between; /* Space out elements */
+            display: flex;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             padding: 20px;
@@ -57,7 +65,9 @@
             z-index: 3; /* Higher than particles */
             text-decoration: none; /* Remove underline from links */
         }
-
+        .card-title {
+            margin-bottom: 20px; /* Space between title and text */
+        }
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
@@ -73,6 +83,10 @@
             font-size: 16px;
             color: #ccc; /* Light gray text for description */
             margin-bottom: 20px;
+            flex-grow: 1; /* Allows the text to take up remaining space */
+        }
+        .btn {
+            margin-top: 10px; /* Space above the button */
         }
 
         /* Footer Styles */
@@ -100,23 +114,35 @@
             z-index: 3; /* Ensure button is clickable above particles */
         }
 
-        /* Media Queries for Responsiveness */
-        @media (max-width: 768px) {
-            .card {
-                width: calc(50% - 20px); /* Two cards per row on medium screens */
-            }
+        /* Dot Matrix Wave Background */
+        #dot-matrix {
+            position: fixed; /* Fixed so it doesn't move with scroll */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Use viewport width */
+            height: 100vh; /* Use viewport height */
+            display: grid;
+            grid-template-columns: repeat(60, 1fr); /* Responsive columns */
+            grid-template-rows: repeat(40, 1fr); /* Responsive rows */
+            z-index: 1; /* Under the content */
+            pointer-events: none; /* Make sure grid doesn't interfere with interaction */
+            gap: 2vw; /* Space between dots */
+        }
 
-            h2 {
-                font-size: 28px; /* Smaller heading size */
-            }
-
-            .card-title {
-                font-size: 20px; /* Smaller title size */
-            }
-
-            .card-text {
-                font-size: 14px; /* Smaller text size */
-            }
+        .dot {
+            width: .2vw; /* Set reasonable width for dots */
+            height: .2vw; /* Set reasonable height for dots */
+            max-width: 20px; /* Prevent them from being too large */
+            max-height: 20px; /* Prevent them from being too large */
+            background-color: #666666; /* Subtle dot color slightly brighter than background */
+            border-radius: 50%;
+            opacity: 0.4; /* Lower opacity to make dots less noticeable */
+            transform-origin: center center;
+            transition: transform 0.2s; /* Smooth transition for animation */
+        }
+        .gamelink {
+            text-decoration: none;
+            color: #ffda79;
         }
 
         @media (max-width: 480px) {
@@ -139,6 +165,18 @@
             .section {
                 padding: 30px 10px; /* Reduced padding for smaller screens */
             }
+
+            .dot {
+                width: 2vw; /* Further increase dot size for very small screens */
+                height: 2vw; /* Further increase dot size for very small screens */
+                max-width: 5px; /* Cap size on small screens */
+                max-height: 5px; /* Cap size on small screens */
+            }
+
+            /* Adjust spacing for small screens */
+            #dot-matrix {
+                gap: 4vw; /* Increase gap between dots on smaller screens */
+            }
         }
     </style>
 </head>
@@ -153,38 +191,70 @@
         </ul>
     </nav>
 
-    <!-- Projects Section -->
-    <section class="section">
-        <h2>My Projects</h2>
-        <div class="row" id="project-list">
-            <!-- Project 1 -->
-            <div class="card">
-                <h5 class="card-title">ASCII-gen</h5>
-                <p class="card-text">ASCII-gen is an open-source tool that transforms images and video frames into ASCII art, offering users an engaging way to convert visual content into text-based representations. The system processes image data efficiently, generating detailed ASCII art by analyzing pixel patterns and mapping them to characters. It supports both static images and videos, converting frames into sequences of ASCII art and exporting optimized GIFs. Written in Python, this project is fully compatible with both Linux and Windows environments, providing developers and creatives with a versatile tool for artistic and practical applications.</p>
-                <a href="https://github.com/KillaMeep/ASCII-gen" target="_blank" class="btn">View Project</a>
-            </div>
-            
-            <!-- Project 2 -->
-            <div class="card">
-                <h5 class="card-title">StarNodeAnimator</h5>
-                <p class="card-text">StarNodeAnimator is an open-source software that generates stunning star animations using OpenGL within Pygame. The program creates randomly placed stars with customizable sizes and connects them based on user-defined parameters. These animations are rendered into frames and compiled into MP4 videos, with options for configuring colors, node generation, and screen dimensions. Offering both a graphical user interface and a command-line interface, StarNodeAnimator allows for flexible interaction, making it ideal for generating captivating visual content with ease.</p>
-                <a href="https://github.com/KillaMeep/StarNodeAnimator" target="_blank" class="btn">View Project</a>
-            </div>
-            
-            <!-- Project 3 -->
-            <div class="card">
-                <h5 class="card-title">BeatBlock AI</h5>
-                <p class="card-text">BeatBlock AI is an advanced real-time object detection system designed for gaming environments. At its core is the predict script, which utilizes the YOLOv5 framework to identify and classify in-game elements like Blocks, Inverse, Pipes, Sliders, Players, and Bombs directly from the game screen. The system captures screen content using mss and processes it with torch for model inference and OpenCV (cv2) for image handling, ensuring high performance with minimal latency. A well-defined data.yaml file sets precise training and validation parameters, making BeatBlock AI a powerful tool for enhancing gameplay and enabling game analysis.</p>
-                <a href="https://github.com/KillaMeep/beatblock-AI" target="_blank" class="btn">View Project</a>
-            </div>
+    <!-- Dot Matrix Wave Background -->
+    <div id="dot-matrix"></div>
 
-
+<!-- Projects Section -->
+<section class="section">
+    <h2>My Projects</h2>
+    <div class="row" id="project-list">
+        <!-- Project 1 -->
+        <div class="card">
+            <h5 class="card-title">ASCII-gen</h5>
+            <p class="card-text">An open-source tool that converts images and video frames into ASCII art. It supports static images and animated GIFs and is compatible with both Linux and Windows.</p>
+            <a href="https://github.com/KillaMeep/ASCII-gen" target="_blank" class="btn">View Project</a>
         </div>
-    </section>
+        
+        <!-- Project 2 -->
+        <div class="card">
+            <h5 class="card-title">StarNodeAnimator</h5>
+            <p class="card-text">Software that creates customizable star animations using OpenGL in Pygame. It features a GUI and exports animations as MP4 videos.</p>
+            <a href="https://github.com/KillaMeep/StarNodeAnimator" target="_blank" class="btn">View Project</a>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="card">
+            <h5 class="card-title">BeatBlock AI</h5>
+            <p class="card-text">
+                A real-time object detection system for <a href="https://store.steampowered.com/app/3045200/Beatblock/" class="gamelink"><strong>BeatBlock</strong></a>, a rhythm game published by <a href="https://x.com/SKYHOURWORKS" class="gamelink"><strong>BubbleTabby</strong></a> that uses the YOLOv5 framework to identify in-game elements with low latency, enhancing gameplay analysis.
+            </p>
+            <a href="https://github.com/KillaMeep/beatblock-AI" target="_blank" class="btn">View Project</a>
+        </div>
+    </div>
+</section>
+
+
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 KillaMeep | All rights reserved.</p>
     </footer>
+
+    <!-- JavaScript for Dot Wave Animation -->
+    <script>
+        // Get the dot matrix container
+        const dotMatrix = document.getElementById('dot-matrix');
+        
+        // Set the wave parameters
+        const rows = 40; // Adjust rows to fill the viewport
+        const cols = 60; // Match the CSS column count
+        const speed = 0.05; // Speed of the wave
+        const amplitude = 2; // Amplitude of the wave
+
+        // Create dots and append to the dot matrix
+        function createDots() {
+            for (let i = 0; i < rows * cols; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                dotMatrix.appendChild(dot);
+            }
+        }
+
+
+
+
+        // Initialize dots and start animation
+        createDots();
+    </script>
 </body>
 </html>
