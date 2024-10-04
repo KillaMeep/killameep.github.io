@@ -10,12 +10,11 @@ body, html {
 
 /* Navbar Styles */
 .navbar {
-    position: fixed;
+    position: static;
     top: 0;
     width: 100%;
     background: none; /* Darker background */
     padding: 15px 20px; /* Adjusted padding */
-    margin-right: -20px; /* Negative margin to counteract padding */
     z-index: 10;
     display: flex; /* Use flexbox for alignment */
     justify-content: space-between; /* Space out logo and links */
@@ -25,9 +24,6 @@ body, html {
     position: sticky; /* Fixed at the top */
 }
 
-.logo {
-    text-decoration: none;
-}
 
 .navbar .logo {
     font-size: 24px;
@@ -36,10 +32,11 @@ body, html {
     transition: color 0.3s ease; /* Smooth color transition */
 }
 
+/* Navbar Links */
 .navbar .nav-links {
     display: flex;
     list-style: none;
-    margin-left: auto; /* Push links to the right */
+    margin-left: 0; /* Push links to the right */
     padding: 0; /* Remove padding to avoid overflow */
 }
 
@@ -80,7 +77,6 @@ body, html {
     width: 100%; /* Expand underline to full width on hover */
 }
 
-
 /* Particle Background */
 #particles-js {
     position: fixed; /* Position fixed to cover the entire view */
@@ -95,8 +91,6 @@ body, html {
 .section {
     padding-top: 100px; /* Add space to ensure content is not covered by the fixed navbar */
 }
-
-
 
 /* Landing Section Styles */
 .landing-section {
@@ -264,4 +258,39 @@ body, html {
 
 .footer-content {
     position: relative; /* Keep footer content above the particles */
+}
+
+/* Media Queries for Mobile */
+@media (max-width: 500px) {
+    .navbar {
+        padding: 10px 15px; /* Adjust padding for smaller screens */
+    }
+
+    .navbar .nav-links li {
+        margin-left: 10px; /* Reduce space between links */
+    }
+
+    .landing-section h1 {
+        font-size: 2.5rem; /* Reduce heading size */
+    }
+
+    .landing-section p {
+        font-size: 1rem; /* Reduce paragraph size */
+    }
+
+    .landing-section .btn {
+        padding: 8px 15px; /* Adjust button size */
+    }
+
+    .contact-section h2 {
+        font-size: 24px; /* Reduce heading size */
+    }
+
+    .contact-section p {
+        font-size: 16px; /* Reduce paragraph size */
+    }
+
+    .contact-card {
+        width: 90%; /* Make cards responsive */
+    }
 }

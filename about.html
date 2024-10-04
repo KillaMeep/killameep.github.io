@@ -20,7 +20,8 @@
         body {
             background-color: #2b2b2b; /* Set background to dark grey */
             margin: 0; /* Remove default margin */
-            overflow: hidden; /* Prevent scrolling */
+            overflow: auto; /* Allow scrolling */
+            height: 100vh; /* Ensure body takes full height */
         }
 
         #sky {
@@ -40,7 +41,7 @@
             height: 100vw;
             position: fixed;
             overflow: hidden;
-            transform: translatex(calc(50vw - 50%)) translatey(calc(50vh - 50%)) rotate(120deg);
+            transform: translatex(calc(50vw - 50%)) translatey(calc(50vh - 50%)) rotate(40deg);
             z-index: 1; /* Ensure shooting stars are above the sky */
         }
 
@@ -78,7 +79,6 @@
     
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="index.html" class="logo">KillaMeep</a>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -198,7 +198,7 @@
                             ))}
                         </svg>
                         <div id="shootingstars">
-                            {[...Array(60)].map((x, y) => (
+                            {[...Array(100)].map((x, y) => (
                                 <div
                                     key={y}
                                     className="wish"
@@ -215,6 +215,14 @@
         }
 
         ReactDOM.render(<StarrySky />, document.getElementById("root"));
+
+        // Adjust body height for mobile
+        window.addEventListener('resize', () => {
+            document.body.style.height = `${window.innerHeight}px`;
+        });
+
+        // Initial call to set height on load
+        document.body.style.height = `${window.innerHeight}px`;
     </script>
 </body>
 </html>
