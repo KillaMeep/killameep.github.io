@@ -19,9 +19,13 @@ body, html {
     display: flex; /* Use flexbox for alignment */
     justify-content: space-between; /* Space out logo and links */
     align-items: center; /* Center items vertically */
-    transition: background 0.3s ease; /* Smooth background transition */
+    transition: transform 0.3s ease; /* Smooth background transition */
     box-sizing: border-box; /* Include padding and border in element's total width and height */
     position: sticky; /* Fixed at the top */
+}
+/* Add this class to hide the navbar */
+.navbar.hidden {
+    transform: translateY(-100%); /* Move the navbar up */
 }
 
 
@@ -234,18 +238,47 @@ body, html {
     animation: fadeIn 1s forwards; /* Fade-in animation */
 }
 
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px); /* Optional: add a small upward movement */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Individual Fade-In Effect */
+.fade-in-item {
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 1s forwards; /* Apply the fade-in animation */
+}
+
+
+
 /* Delay each fade-in effect */
-.fade-in:nth-child(1) { animation-delay: 0.2s; }
-.fade-in:nth-child(2) { animation-delay: 0.4s; }
-.fade-in:nth-child(3) { animation-delay: 0.6s; }
-.fade-in:nth-child(4) { animation-delay: 0.8s; }
-.fade-in:nth-child(5) { animation-delay: 1s; }
-.fade-in:nth-child(6) { animation-delay: 1.2s; }
-.fade-in:nth-child(7) { animation-delay: 1.4s; }
-.fade-in:nth-child(8) { animation-delay: 1.6s; }
-.fade-in:nth-child(9) { animation-delay: 1.8s; }
-.fade-in:nth-child(10) { animation-delay: 2s; }
-.fade-in:nth-child(11) { animation-delay: 2.2s; }
+.fade-in:nth-child(1) { animation-delay: 0.3s; }
+.fade-in:nth-child(2) { animation-delay: 0.6s; }
+.fade-in:nth-child(3) { animation-delay: 0.9s; }
+.fade-in:nth-child(4) { animation-delay: 1.2s; }
+.fade-in:nth-child(5) { animation-delay: 1.5s; }
+/* Delay each fade-in effect */
+.fade-in-item:nth-child(1) { animation-delay: 1.6s; }
+.fade-in-item:nth-child(2) { animation-delay: 1.8s; }
+.fade-in-item:nth-child(3) { animation-delay: 2.0s; }
+.fade-in-item:nth-child(4) { animation-delay: 2.2s; }
+.fade-in-item:nth-child(5) { animation-delay: 2.4s; }
+.fade-in-item:nth-child(6) { animation-delay: 2.6s; }
+.fade-in-item:nth-child(7) { animation-delay: 2.8s; }
+/* Back to the other elements */
+.fade-in:nth-child(6) { animation-delay: 3.0s; }
+.fade-in:nth-child(7) { animation-delay: 3.3s; }
+.fade-in:nth-child(8) { animation-delay: 3.6s; }
+.fade-in:nth-child(9) { animation-delay: 3.9s; }
+.fade-in:nth-child(10) { animation-delay: 4.0s; }
+.fade-in:nth-child(11) { animation-delay: 4.3s; }
 
 /* Footer Styles */
 .footer {
