@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rickroll | KillaMeep</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- React and ReactDOM via CDN -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Anime.js via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            background-color: #2b2b2b; /* Set background to dark grey */
+            margin: 0; /* Remove default margin */
+            overflow: hidden; /* Hide scrolling */
+            height: 100vh; /* Ensure body takes full height */
+            display: flex; /* Use flex to center content */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+
+        #video-container {
+            width: 80%; /* Set the width of the video */
+            max-width: 800px; /* Max width for larger screens */
+            border-radius: 16px; /* Rounded corners */
+            overflow: hidden; /* Hide overflow */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+        }
+
+        iframe {
+            width: 100%; /* Make iframe full width */
+            height: 450px; /* Set a fixed height */
+            border: none; /* Remove border */
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1" 
+                title="Rickroll Video" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- Starry Sky Animation (optional) -->
+    <script type="text/babel">
+        class StarrySky extends React.Component {
+            state = {
+                num: 60,
+                vw: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+                vh: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+            };
+
+            starryNight = () => {
+                anime({
+                    targets: ["#sky .star"],
+                    opacity: [
+                        { duration: 700, value: "0" },
+                        { duration: 700, value: "1" }
+                    ],
+                    easing: "linear",
+                    loop: true,
+                    delay: (el, i) => 50 * i
+                });
+            };
+
+            randomRadius = () => {
+                return Math.random() * 0.7 + 0.6;
+            };
+
+            getRandomX = () => {
+                return Math.floor(Math.random() * Math.floor(this.state.vw)).toString();
+            };
+
+            getRandomY = () => {
+                return Math.floor(Math.random() * Math.floor(this.state.vh)).toString();
+            };
+
+            componentDidMount() {
+                this.starryNight();
+            }
+
+            render() {
+                const { num } = this.state;
+                return (
+                    <div id="App">
+                        <svg id="sky">
+                            {[...Array(num)].map((x, y) => (
+                                <circle
+                                    cx={this.getRandomX()}
+                                    cy={this.getRandomY()}
+                                    r={this.randomRadius()}
+                                    stroke="none"
+                                    strokeWidth="0"
+                                    fill="white"
+                                    key={y}
+                                    className="star" // Ensure this class is used for the animation
+                                />
+                            ))}
+                        </svg>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<StarrySky />, document.getElementById("root"));
+    </script>
+</body>
+</html>

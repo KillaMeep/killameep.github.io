@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Pages | KillaMeep</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- React and ReactDOM via CDN -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Anime.js via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            background-color: #2b2b2b; /* Set background to dark grey */
+            margin: 0; /* Remove default margin */
+            overflow: hidden; /* Hide scrolling */
+            height: 100vh; /* Ensure body takes full height */
+        }
+
+        #sky {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            z-index: 0; /* Make sure it's behind other content */
+        }
+
+        .container {
+            position: relative; /* Ensures the container is above the sky */
+            z-index: 2; /* Raise the container above other elements */
+            max-width: 800px; /* Limit width for better readability */
+            margin: 0 auto; /* Center the container */
+            padding: 20px; /* Add some padding */
+            background: rgba(34, 34, 34, 0.9); /* Darker semi-transparent background for readability */
+            border-radius: 16px; /* More pronounced rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+            text-align: center; /* Center align text */
+        }
+
+        h2 {
+            color: #ffda79; /* Heading color */
+        }
+
+        .hidden-links {
+            color: #8e9aaf; /* Links color */
+            list-style-type: none; /* Remove bullet points */
+            padding: 0; /* Remove default padding */
+        }
+
+        .hidden-links li {
+            margin: 15px 0; /* Space between links */
+        }
+
+        .hidden-links a {
+            color: #ffda79; /* Link color */
+            text-decoration: none; /* Remove underline */
+            transition: color 0.3s; /* Smooth transition */
+        }
+
+        .hidden-links a:hover {
+            color: #ffd95c; /* Darker link color on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Starry Sky Animation -->
+    <div id="root"></div>
+
+    <!-- Hidden Pages Container -->
+    <div class="container">
+        <h2 class="fade-in">Hidden Pages</h2>
+        <p class="fade-in text-block">You found the secret page directory (: </p>
+        <ul class="hidden-links fade-in">
+            <li><a href="cats.html">Cute Cats</a></li>
+            <li><a href="rick.html">Forbidden Song</a></li>
+            <li><a href="nyan.html">Ancient Tribute</a></li>
+
+            <li><a href="index.html">Go Back Home</a></li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 KillaMeep | All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="text/babel">
+        class StarrySky extends React.Component {
+            state = {
+                num: 60,
+                vw: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+                vh: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+            };
+
+            starryNight = () => {
+                anime({
+                    targets: ["#sky .star"],
+                    opacity: [
+                        { duration: 700, value: "0" },
+                        { duration: 700, value: "1" }
+                    ],
+                    easing: "linear",
+                    loop: true,
+                    delay: (el, i) => 50 * i
+                });
+            };
+
+            randomRadius = () => {
+                return Math.random() * 0.7 + 0.6;
+            };
+
+            getRandomX = () => {
+                return Math.floor(Math.random() * Math.floor(this.state.vw)).toString();
+            };
+
+            getRandomY = () => {
+                return Math.floor(Math.random() * Math.floor(this.state.vh)).toString();
+            };
+
+            componentDidMount() {
+                this.starryNight();
+            }
+
+            render() {
+                const { num } = this.state;
+                return (
+                    <div id="App">
+                        <svg id="sky">
+                            {[...Array(num)].map((x, y) => (
+                                <circle
+                                    cx={this.getRandomX()}
+                                    cy={this.getRandomY()}
+                                    r={this.randomRadius()}
+                                    stroke="none"
+                                    strokeWidth="0"
+                                    fill="white"
+                                    key={y}
+                                    className="star" // Ensure this class is used for the animation
+                                />
+                            ))}
+                        </svg>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<StarrySky />, document.getElementById("root"));
+    </script>
+</body>
+</html>
