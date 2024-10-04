@@ -73,7 +73,7 @@
 
         /* Footer Styles */
         .footer {
-            margin-top: 30px; /* Add margin to position footer lower */
+            margin-top: 300px; /* Add margin to position footer lower */
             text-align: center; /* Center footer text */
             color: #ffffff; /* Footer text color */
         }
@@ -82,14 +82,66 @@
             color: #fff; /* Hidden link color */
             text-decoration: none; /* No underline */
         }
+
+        /* Age verification modal styles */
+        .age-verification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(43, 43, 43, 0.9); /* Same dark grey background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            color: #ffda79;
+            text-align: center;
+            padding: 20px; /* Add padding to prevent overlap */
+            box-sizing: border-box; /* Include padding in width/height */
+        }
+
+        .age-verification h2 {
+            margin-bottom: 20px;
+        }
+
+        .age-verification button {
+            padding: 10px 20px;
+            background-color: #ffda79;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin: 0 5px; /* Add horizontal margin for spacing */
+        }
+
+        .age-verification button:hover {
+            background-color: #ffd95c;
+        }
+
+        /* Hide facts container initially */
+        #facts-container {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <!-- Starry Sky Animation -->
     <div id="root"></div>
 
+    <!-- Age Verification Modal -->
+    <div id="age-verification" class="age-verification" style="display: none;">
+        <h2>Are you over 18? These facts can be crude.</h2>
+        <div>
+            <button onclick="confirmAge(true)">Yes</button>
+            <button onclick="confirmAge(false)">No</button>
+        </div>
+    </div>
+
     <!-- Useless Facts Container -->
-    <div class="container">
+    <div class="container" id="facts-container">
         <h2 class="fade-in">Useless Facts</h2>
         <p class="fact fade-in" id="fact">Loading...</p>
         <button class="btn-refresh fade-in" onclick="fetchRandomFact()">Get New Fact</button>
@@ -101,6 +153,32 @@
     </footer>
 
     <script type="text/babel">
+        // Check age in local storage
+        const checkAge = () => {
+            const isOver18 = localStorage.getItem('isOver18');
+            if (isOver18 === 'true') {
+                showFacts();
+            } else {
+                document.getElementById('age-verification').style.display = 'flex';
+            }
+        };
+
+        // Confirm age and store the result in local storage
+        const confirmAge = (isAdult) => {
+            localStorage.setItem('isOver18', isAdult);
+            if (isAdult) {
+                showFacts();
+            } else {
+                window.location.href = 'hidden.html'; // Redirect to hidden.html if under 18
+            }
+        };
+
+        const showFacts = () => {
+            document.getElementById('age-verification').style.display = 'none';
+            document.getElementById('facts-container').style.display = 'block';
+            fetchRandomFact();
+        };
+
         const fetchRandomFact = () => {
             fetch('https://uselessfacts.jsph.pl/random.json?language=en')
                 .then(response => response.json())
@@ -111,8 +189,8 @@
                 .catch(error => console.error('Error fetching fact:', error));
         };
 
-        // Fetch a random fact on page load
-        window.onload = fetchRandomFact;
+        // Check age when the page loads
+        window.onload = checkAge;
     </script>
 </body>
 </html>
