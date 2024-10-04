@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Favorite | KillaMeep</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        body {
+            background-color: #2b2b2b; /* Set background to dark grey */
+            margin: 0; /* Remove default margin */
+            overflow: hidden; /* Hide overflow for a cleaner look */
+            height: 100vh; /* Ensure body takes full height */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            flex-direction: column; /* Stack elements vertically */
+            color: #ffda79; /* Text color */
+            font-family: Arial, sans-serif; /* Font family */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem; /* Increase font size */
+        }
+
+        .choice {
+            display: flex; /* Use flexbox for buttons */
+            justify-content: center; /* Center buttons */
+            gap: 20px; /* Space between buttons */
+        }
+
+        .btn {
+            padding: 15px 30px; /* Button padding */
+            background-color: #ffda79; /* Button color */
+            color: #2b2b2b; /* Button text color */
+            border: none;
+            border-radius: 10px; /* Rounded corners */
+            font-size: 1.5rem; /* Larger font size */
+            cursor: pointer; /* Pointer cursor */
+            transition: transform 0.3s; /* Smooth scaling effect */
+        }
+
+        .btn:hover {
+            transform: scale(1.1); /* Slightly scale up on hover */
+        }
+
+        .animation {
+            position: absolute;
+            opacity: 0; /* Start invisible */
+            transition: opacity 0.5s ease; /* Smooth fade-in effect */
+        }
+    </style>
+</head>
+<body>
+    <h1>Do you prefer Cats or Dogs?</h1>
+    <div class="choice">
+        <button class="btn" onclick="selectPreference('cats')">🐱 Cats</button>
+        <button class="btn" onclick="selectPreference('dogs')">🐶 Dogs</button>
+    </div>
+
+    <div id="animation" class="animation"></div>
+
+    <script>
+        const selectPreference = (preference) => {
+            const animation = document.getElementById('animation');
+            animation.style.opacity = '1'; // Make the animation visible
+            animation.innerHTML = ''; // Clear previous content
+            animation.style.transition = 'opacity 0.5s ease'; // Ensure smooth transition
+            animation.style.opacity = '0'; // Fade out immediately
+
+            // Redirect based on preference after a short delay for UX
+            setTimeout(() => {
+                window.location.href = preference === 'cats' ? 'cats.html' : 'dogs.html';
+            }, 300); // Redirect after a short delay
+        };
+    </script>
+</body>
+</html>

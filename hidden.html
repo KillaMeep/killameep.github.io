@@ -17,6 +17,14 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
+        .hidden-link {
+            color: #fff; /* Footer link color */
+            text-decoration: none; /* No underline */
+        }
+        .footer-link {
+            color: #ffda79;
+            text-decoration: none;
+        }
         body {
             background-color: #2b2b2b; /* Set background to dark grey */
             margin: 0; /* Remove default margin */
@@ -50,24 +58,45 @@
             color: #ffda79; /* Heading color */
         }
 
+        .card-container {
+            display: flex; /* Use flexbox for card layout */
+            flex-wrap: wrap; /* Allow cards to wrap */
+            justify-content: center; /* Center the cards */
+            margin-top: 20px; /* Space above the cards */
+        }
+
+        .card {
+            background: rgba(255, 218, 121, 0.2); /* Light background for cards */
+            border: 2px solid #ffda79; /* Border color */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px; /* Padding inside the card */
+            margin: 10px; /* Margin around each card */
+            width: 150px; /* Fixed width for cards */
+            text-align: center; /* Center text in cards */
+            transition: transform 0.3s, background 0.3s; /* Smooth transitions */
+            cursor: pointer; /* Pointer cursor for cards */
+        }
+
+        .card:hover {
+            transform: scale(1.05); /* Slight scale effect on hover */
+            background: rgba(255, 218, 121, 0.3); /* Darker background on hover */
+        }
+
+        .icon {
+            width: 60px; /* Icon size */
+            height: 60px; /* Icon size */
+            margin-bottom: 10px; /* Space below the icon */
+        }
+
         .hidden-links {
-            color: #8e9aaf; /* Links color */
-            list-style-type: none; /* Remove bullet points */
             padding: 0; /* Remove default padding */
         }
 
-        .hidden-links li {
-            margin: 15px 0; /* Space between links */
-        }
-
-        .hidden-links a {
-            color: #ffda79; /* Link color */
-            text-decoration: none; /* Remove underline */
-            transition: color 0.3s; /* Smooth transition */
-        }
-
-        .hidden-links a:hover {
-            color: #ffd95c; /* Darker link color on hover */
+        /* Footer Styles */
+        .footer {
+            margin-top: 30px; /* Add margin to position footer lower */
+            text-align: center; /* Center footer text */
+            color: #ffffff; /* Footer text color */
         }
     </style>
 </head>
@@ -79,20 +108,35 @@
     <div class="container">
         <h2 class="fade-in">Hidden Pages</h2>
         <p class="fade-in text-block">You found the secret page directory (: </p>
-        <ul class="hidden-links fade-in">
-            <li><a href="cats.html">Cute Cats</a></li>
-            <li><a href="rick.html">Forbidden Song</a></li>
-            <li><a href="nyan.html">Ancient Tribute</a></li>
-
-            <li><a href="index.html">Go Back Home</a></li>
-        </ul>
+        
+        <div class="card-container fade-in">
+            <div class="card" onclick="window.location.href='choose.html'">
+                <img class="icon" src="https://img.icons8.com/ios-filled/50/ffda79/quiz.png" alt="Quiz Icon"/>
+                <div>A Very Important Quiz</div>
+            </div>
+            <div class="card" onclick="window.location.href='rick.html'">
+                <img class="icon" src="https://img.icons8.com/ios-filled/50/ffda79/music.png" alt="Music Icon"/>
+                <div>A Forbidden Song</div>
+            </div>
+            <div class="card" onclick="window.location.href='nyan.html'">
+                <img class="icon" src="https://img.icons8.com/ios-filled/50/ffda79/cat.png" alt="Cat Icon"/>
+                <div>An Ancient Tribute</div>
+            </div>
+            <div class="card" onclick="window.location.href='facts.html'">
+                <img class="icon" src="https://img.icons8.com/ios-filled/50/ffda79/brain.png" alt="Brain Icon"/>
+                <div>A Useless Fact</div>
+            </div>
+            <div class="card" onclick="window.location.href='index.html'">
+                <img class="icon" src="https://img.icons8.com/ios-filled/50/ffda79/home.png" alt="Home Icon"/>
+                <div>Go Back Home</div>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2024 KillaMeep | All rights reserved.</p>
-        </div>
+        <p>&copy; 2024 <a href="hidden.html" class="hidden-link">KillaMeep</a> | All rights reserved.</p>
+        <p>Icons by <a href="https://icons8.com" class="footer-link">Icons8</a></p>
     </footer>
 
     <script type="text/babel">

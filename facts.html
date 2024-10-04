@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cute Cats | KillaMeep</title>
+    <title>Useless Facts | KillaMeep</title>
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- React and ReactDOM via CDN -->
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
@@ -17,15 +17,15 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
-        .hidden-link {
-            color: #fff;
-            text-decoration: none;
-        }
         body {
-            background-color: #2b2b2b; /* Set background to dark grey */
+            background-color: #2b2b2b; /* Dark grey background */
             margin: 0; /* Remove default margin */
-            overflow: auto; /* Allow scrolling */
+            overflow: hidden; /* Hide scrolling */
             height: 100vh; /* Ensure body takes full height */
+            display: flex; /* Flexbox for centering */
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: center; /* Center elements vertically */
+            align-items: center; /* Center elements horizontally */
         }
 
         .container {
@@ -40,15 +40,19 @@
             text-align: center; /* Center align text */
         }
 
-        h2, h3 {
+        h2 {
             color: #ffda79; /* Heading color */
         }
 
-        .cat-image {
-            max-width: 100%; /* Responsive image size */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
-            margin: 20px 0; /* Spacing around images */
+        .fact {
+            color: #ffffff; /* Text color for facts */
+            font-size: 1.2rem; /* Font size for readability */
+            margin: 20px 0; /* Space above and below the fact */
+            transition: transform 0.3s; /* Smooth transitions */
+        }
+
+        .fact:hover {
+            transform: scale(1.05); /* Scale effect on hover */
         }
 
         .btn-refresh {
@@ -66,47 +70,49 @@
             background-color: #ffd95c; /* Darker button on hover */
             transform: scale(1.05); /* Slight scale effect on hover */
         }
+
+        /* Footer Styles */
+        .footer {
+            margin-top: 30px; /* Add margin to position footer lower */
+            text-align: center; /* Center footer text */
+            color: #ffffff; /* Footer text color */
+        }
+
+        .hidden-link {
+            color: #fff; /* Hidden link color */
+            text-decoration: none; /* No underline */
+        }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <!-- Starry Sky Animation -->
+    <div id="root"></div>
 
-    <!-- Cats Container -->
+    <!-- Useless Facts Container -->
     <div class="container">
-        <h2 class="fade-in">Cute Cats</h2>
-        <p class="fade-in text-block">Click the button below to fetch a random cat image!</p>
-        <img id="catImage" class="cat-image fade-in" src="" alt="Random Cat" />
-        <br />
-        <button class="btn-refresh fade-in" onclick="fetchCatImage()">Get New Cat</button>
+        <h2 class="fade-in">Useless Facts</h2>
+        <p class="fact fade-in" id="fact">Loading...</p>
+        <button class="btn-refresh fade-in" onclick="fetchRandomFact()">Get New Fact</button>
     </div>
 
     <!-- Footer -->
-
     <footer class="footer">
         <p>&copy; 2024 <a href="hidden.html" class="hidden-link">KillaMeep</a> | All rights reserved.</p>
     </footer>
 
     <script type="text/babel">
-        const fetchCatImage = () => {
-            fetch('https://api.thecatapi.com/v1/images/search')
+        const fetchRandomFact = () => {
+            fetch('https://uselessfacts.jsph.pl/random.json?language=en')
                 .then(response => response.json())
                 .then(data => {
-                    const catImage = document.getElementById('catImage');
-                    catImage.src = data[0].url; // Set the cat image source
+                    const factElement = document.getElementById('fact');
+                    factElement.innerText = data.text; // Set the fact text
                 })
-                .catch(error => console.error('Error fetching cat image:', error));
+                .catch(error => console.error('Error fetching fact:', error));
         };
 
-        // Fetch a cat image on page load
-        window.onload = fetchCatImage;
+        // Fetch a random fact on page load
+        window.onload = fetchRandomFact;
     </script>
 </body>
 </html>
