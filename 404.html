@@ -58,12 +58,12 @@
         }
 
         .not-found {
-            position: absolute; /* Change to absolute positioning */
-            top: 50%; /* Center vertically */
-            left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%); /* Adjust position to truly center */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
-            z-index: 1; /* Ensure the text is above the background */
+            z-index: 1;
         }
 
         .title {
@@ -74,26 +74,26 @@
         .message {
             font-size: 1.5rem;
             margin-top: 20px;
-            opacity: 0; /* Start invisible for animation */
+            opacity: 0;
         }
 
         .button {
-            background-color: #ffffff; /* Button color */
-            color: #ff47a1; /* Text color */
+            background-color: #ffffff;
+            color: #ff47a1;
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
             font-size: 1.2rem;
             cursor: pointer;
             margin-top: 30px;
-            transition: background-color 0.3s, transform 0.2s; /* Add transitions for effects */
-            opacity: 0; /* Start invisible for animation */
+            transition: background-color 0.3s, transform 0.2s;
+            opacity: 0;
         }
 
         .button:hover {
-            background-color: #ff47a1; /* Change background on hover */
-            color: #ffffff; /* Change text color on hover */
-            transform: scale(1.05); /* Slightly scale up the button */
+            background-color: #ff47a1;
+            color: #ffffff;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -153,37 +153,34 @@
             componentDidMount() {
                 this.starryNight();
                 this.shootingStars();
-                this.animateText(); // Call the text animation function
+                this.animateText();
             }
 
             animateText = () => {
-                // Animate the title
                 anime({
                     targets: '.title',
-                    translateY: [-50, 0], // Move in from the top
-                    opacity: [0, 1], // Fade in
+                    translateY: [-50, 0],
+                    opacity: [0, 1],
                     duration: 1000,
                     easing: 'easeOutExpo',
                 });
 
-                // Animate the message
                 anime({
                     targets: '.message',
-                    translateY: [50, 0], // Move in from the bottom
-                    opacity: [0, 1], // Fade in
+                    translateY: [50, 0],
+                    opacity: [0, 1],
                     duration: 1000,
                     easing: 'easeOutExpo',
-                    delay: 500, // Delay the message animation
+                    delay: 500,
                 });
 
-                // Animate the button
                 anime({
                     targets: '.button',
-                    translateY: [50, 0], // Move in from the bottom
-                    opacity: [0, 1], // Fade in
+                    translateY: [50, 0],
+                    opacity: [0, 1],
                     duration: 1000,
                     easing: 'easeOutExpo',
-                    delay: 1000, // Delay the button animation
+                    delay: 1000,
                 });
             };
 
@@ -220,7 +217,7 @@
                         <div className="not-found">
                             <h1 className="title">404</h1>
                             <p className="message">Oops! Page Not Found.</p>
-                            <button className="button" onClick={() => window.location.href = '/'}>Return Home</button>
+                            <button className="button" onClick={() => window.history.back()}>Go Back</button>
                         </div>
                     </div>
                 );
