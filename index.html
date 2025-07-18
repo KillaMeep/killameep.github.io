@@ -7,72 +7,6 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Link to particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
-
-    <style>
-        .hidden-link {
-            color: #fff;
-            text-decoration: none;
-        }
-        /* Styling for typing effect */
-        #typing-effect span {
-            display: inline;
-            animation: blink 0.7s step-end infinite;
-        }
-
-        /* Cursor blink animation */
-        @keyframes blink {
-            50% {
-                opacity: 0; /* Make the cursor disappear halfway through the cycle */
-            }
-        }
-
-        /* Role effect cursor */
-        #role-effect {
-            display: inline; /* Ensure the role text is inline */
-            font-weight: bold; /* Make it bold for terminal effect */
-        }
-
-        /* Styling for landing section */
-        .landing-section {
-            position: relative;
-            height: 100vh; /* Full height for landing section */
-            display: flex;
-            flex-direction: column; /* Stack children vertically */
-            justify-content: center; /* Center children vertically */
-            align-items: center; /* Center children horizontally */
-            text-align: center;
-            color: white; /* White text */
-            overflow: hidden; /* Hide overflow */
-        }
-
-
-
-        /* Content of landing section */
-        .landing-content {
-            position: relative;
-            z-index: 1; /* Bring content above particles */
-        }
-
-        /* Button styling */
-        .btn {
-            margin-top: 20px; /* Add some space above the button */
-            padding: 10px 20px;
-            background-color: #ffda79; /* Button color */
-            color: #2b2b2b; /* Dark text for button */
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s, transform 0.3s;
-            display: inline-block; /* Ensure the button is an inline-block element */
-            z-index: 1; /* Bring button above particles */
-            position: relative; /* Ensure it follows stacking context */
-        }
-
-        .btn:hover {
-            background-color: #ffd95c; /* Darker button on hover */
-            transform: scale(1.05);
-        }
-    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -101,92 +35,9 @@
         <p>&copy; 2025 <a href="hidden.html" class="hidden-link">KillaMeep</a> | All rights reserved.</p>
     </footer>
 
-    <!-- Particle.js Initialization -->
-    <script>
-        function loadParticlesConfig() {
-            fetch('particlesjs-config.json')  // Fetch the configuration file
-                .then(response => response.json())
-                .then(config => {
-                    // Dynamically adjust particle number based on screen width
-                    const screenWidth = window.innerWidth;
-
-                    // Example logic: Adjust particle count based on screen size
-                    const particleCount = Math.max(100, Math.min(Math.floor(screenWidth / 5), 800)); // Adjust as needed
-                    config.particles.number.value = particleCount;  // Update the number of particles
-
-                    // Initialize particles.js with the modified config
-                    particlesJS('particles-js', config);
-                })
-                .catch(error => console.error('Error loading particles config:', error));
-        }
-
-        // Call the function to load config and initialize particles
-        loadParticlesConfig();
-
-        // Update particles on window resize
-        window.addEventListener('resize', loadParticlesConfig);
-
-        // Typing animation for the name
-        const text = "Hi, I'm KillaMeep.";
-        const typingDelay = 80;
-        let index = 0;
-
-        function type() {
-            if (index < text.length) {
-                document.getElementById("typing-effect").innerHTML = text.substring(0, index + 1) + '<span aria-hidden="true">|</span>'; // Add a blinking cursor effect
-                index++;
-                setTimeout(type, typingDelay); // Call the function again after the delay
-            } else {
-                document.getElementById("typing-effect").innerHTML = text; // Remove the blinking cursor
-                // Wait for 500 milliseconds before starting the role typing effect
-                setTimeout(roleTypingEffect, 500);
-            }
-        }
-
-        // Role typing effect with backspacing
-        const roles = [
-            "Software Developer",
-            "Process Automation Engineer", 
-            "AI Solutions Designer" 
-        ];
-
-        let roleIndex = 0;
-        let charIndex = 0;
-        let currentRole = "";
-        let isTyping = true; // Flag to control typing and backspacing
-
-        function roleTypingEffect() {
-            if (isTyping) {
-                if (charIndex < roles[roleIndex].length) {
-                    currentRole += roles[roleIndex].charAt(charIndex);
-                    charIndex++;
-                } else {
-                    // Only wait for 1 second before starting to backspace if we were typing
-                    // Delay to switch to backspacing mode
-                    setTimeout(() => {
-                        isTyping = false;
-                        roleTypingEffect();
-                    }, 1000);
-                    return;
-                }
-            } else {
-                if (charIndex > 0) {
-                    currentRole = currentRole.substring(0, charIndex - 1);
-                    charIndex--;
-                } else {
-                    // Only move to the next role after fully backspacing
-                    isTyping = true;
-                    roleIndex = (roleIndex + 1) % roles.length; // Loop through roles
-                }
-            }
-            
-            document.getElementById("role-effect").innerHTML = "> " + currentRole + '<span aria-hidden="true">|</span>'; // Update the displayed role with a prefix
-            setTimeout(roleTypingEffect, isTyping ? typingDelay : typingDelay / 2);
-        }
-
-        window.onload = type;
-    </script>
-    <!-- Navbar Scrolling -->
-    <script src="navbarScroll.js"></script>    
+    <!-- Scripts -->
+    <script src="assets/js/particles-manager.js"></script>
+    <script src="assets/js/typing-animation.js"></script>
+    <script src="assets/js/navbar-scroll.js"></script>
 </body>
 </html>
