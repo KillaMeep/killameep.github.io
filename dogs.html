@@ -17,37 +17,140 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
+        /* Global box-sizing fix */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
+        html {
+            overflow-x: hidden;
+        }
+        
         .hidden-link {
             color: #fff;
             text-decoration: none;
         }
+        
         body {
-            background-color: #2b2b2b; /* Set background to dark grey */
-            margin: 0; /* Remove default margin */
-            overflow: auto; /* Allow scrolling */
-            height: 100vh; /* Ensure body takes full height */
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: 
+                radial-gradient(ellipse at center, #1e1e3f 0%, #000000 100%),
+                radial-gradient(ellipse at 25% 25%, rgba(255, 99, 71, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 75%, rgba(255, 215, 0, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(30, 144, 255, 0.08) 0%, transparent 50%);
+            color: #ffffff;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* Planetary System Background */
+        .planetary-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            animation: planetOrbit 30s linear infinite;
+        }
+
+        .planet1 {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 30% 30%, #ff6347, #ff4500);
+            top: 20%;
+            left: 80%;
+            animation-duration: 25s;
+        }
+
+        .planet2 {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #ffd700, #ff8c00);
+            top: 70%;
+            left: 10%;
+            animation-duration: 40s;
+            animation-direction: reverse;
+        }
+
+        .planet3 {
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle at 30% 30%, #1e90ff, #4169e1);
+            top: 50%;
+            left: 85%;
+            animation-duration: 20s;
+        }
+
+        .orbit-ring {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: ringRotate 50s linear infinite;
+        }
+
+        .orbit1 {
+            width: 200px;
+            height: 200px;
+            top: calc(20% - 100px);
+            left: calc(80% - 100px);
+        }
+
+        .orbit2 {
+            width: 300px;
+            height: 300px;
+            top: calc(70% - 150px);
+            left: calc(10% - 150px);
+        }
+
+        @keyframes planetOrbit {
+            0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+        }
+
+        @keyframes ringRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .container {
-            position: relative; /* Ensures the container is above the sky */
-            z-index: 2; /* Raise the container above other elements */
-            max-width: 800px; /* Limit width for better readability */
-            margin: 0 auto; /* Center the container */
-            padding: 20px; /* Add some padding */
-            background: rgba(34, 34, 34, 0.9); /* Darker semi-transparent background for readability */
-            border-radius: 16px; /* More pronounced rounded corners */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
-            text-align: center; /* Center align text */
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 99, 71, 0.1), rgba(255, 215, 0, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(255, 99, 71, 0.15);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            margin-top: 100px;
+            margin-bottom: 50px;
         }
 
         h2, h3 {
-            color: #ffda79; /* Heading color */
+            color: #ffeb99;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
 
         .dog-image {
-            max-width: 100%; /* Responsive image size */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(255, 99, 71, 0.3);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
             margin: 20px 0; /* Spacing around images */
         }
 
@@ -69,6 +172,15 @@
     </style>
 </head>
 <body>
+    <!-- Planetary Background -->
+    <div class="planetary-background">
+        <div class="orbit-ring orbit1"></div>
+        <div class="orbit-ring orbit2"></div>
+        <div class="planet planet1"></div>
+        <div class="planet planet2"></div>
+        <div class="planet planet3"></div>
+    </div>
+    
     <!-- Navbar -->
     <nav class="navbar">
         <ul class="nav-links">
