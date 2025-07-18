@@ -15,93 +15,273 @@ body, html {
     background-color: #2b2b2b; /* Background color */
 }
 
-/* Refined Navbar Styles with Subtle Animations */
+/* Space-Themed Liquid Metal Navbar */
 .navbar {
     position: sticky;
     top: 0;
     width: 100%;
-    background: linear-gradient(135deg, 
-        rgba(43, 43, 43, 0.95) 0%, 
-        rgba(31, 31, 31, 0.98) 50%, 
-        rgba(43, 43, 43, 0.95) 100%);
-    backdrop-filter: blur(10px) saturate(180%);
+    background: 
+        linear-gradient(135deg, 
+            rgba(15, 15, 35, 0.3) 0%, 
+            rgba(25, 25, 60, 0.4) 25%,
+            rgba(35, 35, 80, 0.3) 50%,
+            rgba(25, 25, 60, 0.4) 75%,
+            rgba(15, 15, 35, 0.3) 100%);
+    backdrop-filter: blur(20px) saturate(150%);
     padding: 15px 20px;
     z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
     box-sizing: border-box;
-    border-bottom: 1px solid rgba(255, 218, 121, 0.2);
-    /* Removed problematic clip-path and liquid morphing */
+    border-bottom: 1px solid transparent;
+    border-image: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(138, 43, 226, 0.3) 20%, 
+        rgba(0, 191, 255, 0.4) 40%, 
+        rgba(255, 20, 147, 0.3) 60%, 
+        rgba(138, 43, 226, 0.3) 80%, 
+        transparent 100%) 1;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
 }
 
-/* Subtle navbar hover state */
+/* Liquid metal flowing animation - more subtle */
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(138, 43, 226, 0.05) 25%, 
+        rgba(0, 191, 255, 0.08) 50%, 
+        rgba(255, 20, 147, 0.05) 75%, 
+        transparent 100%);
+    animation: liquidFlow 8s ease-in-out infinite;
+    z-index: -1;
+}
+
+/* Cosmic particles in navbar - more subtle */
+.navbar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.1), transparent),
+        radial-gradient(1px 1px at 30% 80%, rgba(138, 43, 226, 0.15), transparent),
+        radial-gradient(1px 1px at 70% 40%, rgba(0, 191, 255, 0.1), transparent),
+        radial-gradient(1px 1px at 90% 70%, rgba(255, 20, 147, 0.15), transparent);
+    animation: cosmicDrift 15s linear infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes liquidFlow {
+    0%, 100% { 
+        transform: translateX(-100%) skewX(0deg); 
+        opacity: 0; 
+    }
+    25% { 
+        transform: translateX(-50%) skewX(2deg); 
+        opacity: 0.8; 
+    }
+    50% { 
+        transform: translateX(0%) skewX(0deg); 
+        opacity: 1; 
+    }
+    75% { 
+        transform: translateX(50%) skewX(-2deg); 
+        opacity: 0.8; 
+    }
+}
+
+@keyframes cosmicDrift {
+    0% { transform: translateX(0px) translateY(0px); }
+    25% { transform: translateX(-5px) translateY(-2px); }
+    50% { transform: translateX(5px) translateY(2px); }
+    75% { transform: translateX(-3px) translateY(-1px); }
+    100% { transform: translateX(0px) translateY(0px); }
+}
+
+/* Enhanced navbar hover state with liquid metal effect - transparent */
 .navbar:hover {
-    background: linear-gradient(135deg, 
-        rgba(43, 43, 43, 0.98) 0%, 
-        rgba(31, 31, 31, 1) 50%, 
-        rgba(43, 43, 43, 0.98) 100%);
-    border-bottom: 1px solid rgba(255, 218, 121, 0.4);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background: 
+        linear-gradient(135deg, 
+            rgba(20, 20, 45, 0.4) 0%, 
+            rgba(35, 35, 75, 0.5) 25%,
+            rgba(45, 45, 95, 0.4) 50%,
+            rgba(35, 35, 75, 0.5) 75%,
+            rgba(20, 20, 45, 0.4) 100%);
+    border-image: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(138, 43, 226, 0.4) 20%, 
+        rgba(0, 191, 255, 0.6) 40%, 
+        rgba(255, 20, 147, 0.4) 60%, 
+        rgba(138, 43, 226, 0.4) 80%, 
+        transparent 100%) 1;
+    box-shadow: 
+        0 8px 32px rgba(138, 43, 226, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: scaleY(1.01);
 }
 
-/* Smooth navbar hide animation */
+/* Smooth navbar hide animation with liquid effect */
 .navbar.hidden {
-    transform: translateY(-100%);
-    opacity: 0.8;
+    transform: translateY(-100%) scaleY(0.8);
+    opacity: 0.6;
+    filter: blur(2px);
 }
 
-/* Refined logo with subtle glow */
+/* Space-themed logo with liquid metal glow */
 .navbar .logo {
     font-size: 28px;
     font-weight: 900;
-    color: #ffda79;
-    text-shadow: 0 0 10px rgba(255, 218, 121, 0.3);
-    transition: all 0.3s ease;
+    background: linear-gradient(45deg, 
+        #ffffff 0%, 
+        #8a2be2 25%, 
+        #00bfff 50%, 
+        #ff1493 75%, 
+        #ffffff 100%);
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
     position: relative;
-    /* Removed complex animations that were causing issues */
+    animation: logoShimmer 4s ease-in-out infinite alternate;
+}
+
+@keyframes logoShimmer {
+    0% { 
+        background-position: 0% 50%; 
+        text-shadow: 0 0 20px rgba(138, 43, 226, 0.5); 
+    }
+    50% { 
+        background-position: 50% 50%; 
+        text-shadow: 0 0 25px rgba(0, 191, 255, 0.6); 
+    }
+    100% { 
+        background-position: 100% 50%; 
+        text-shadow: 0 0 20px rgba(255, 20, 147, 0.5); 
+    }
 }
 
 .navbar .logo:hover {
-    text-shadow: 0 0 15px rgba(255, 218, 121, 0.5);
-    transform: scale(1.05);
+    text-shadow: 0 0 30px rgba(138, 43, 226, 0.8);
+    transform: scale(1.08) translateY(-2px);
+    filter: drop-shadow(0 4px 8px rgba(138, 43, 226, 0.3));
 }
 
-/* Stable Navbar Links */
+/* Space-themed Navigation Links */
 .navbar .nav-links {
     display: flex;
     list-style: none;
     margin-left: 0;
     padding: 0;
-    gap: 30px;
+    gap: 25px;
 }
 
 .navbar .nav-links li {
     position: relative;
 }
 
-/* Refined link styles with stable animations */
+/* Liquid metal space-themed link styles - transparent */
 .nav-links li a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
+    padding: 10px 18px;
+    border-radius: 25px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
     position: relative;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    /* Removed problematic shimmer animations */
+    letter-spacing: 1.2px;
+    font-size: 14px;
+    background: linear-gradient(135deg, 
+        rgba(15, 15, 35, 0.2) 0%, 
+        rgba(25, 25, 60, 0.15) 50%, 
+        rgba(15, 15, 35, 0.2) 100%);
+    border: 1px solid rgba(138, 43, 226, 0.15);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
 }
 
-/* Clean hover effects */
+/* Liquid metal flow effect for links */
+.nav-links li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(138, 43, 226, 0.2) 25%, 
+        rgba(0, 191, 255, 0.3) 50%, 
+        rgba(255, 20, 147, 0.2) 75%, 
+        transparent 100%);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    z-index: -1;
+}
+
+/* Cosmic glow effect */
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, 
+        rgba(138, 43, 226, 0.4) 0%, 
+        rgba(0, 191, 255, 0.3) 40%, 
+        transparent 70%);
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+/* Enhanced hover effects with liquid metal animation - transparent */
 .nav-links li a:hover {
-    color: #ffda79;
-    background: rgba(255, 218, 121, 0.1);
-    box-shadow: 0 0 15px rgba(255, 218, 121, 0.2);
-    transform: translateY(-2px);
-    text-shadow: 0 0 8px rgba(255, 218, 121, 0.6);
+    color: #ffffff;
+    background: linear-gradient(135deg, 
+        rgba(138, 43, 226, 0.15) 0%, 
+        rgba(0, 191, 255, 0.1) 50%, 
+        rgba(255, 20, 147, 0.15) 100%);
+    border: 1px solid rgba(138, 43, 226, 0.3);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 8px 25px rgba(138, 43, 226, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.nav-links li a:hover::before {
+    left: 0;
+    animation: liquidPulse 1.5s ease-in-out infinite;
+}
+
+.nav-links li a:hover::after {
+    width: 120%;
+    height: 120%;
+    opacity: 1;
+}
+
+@keyframes liquidPulse {
+    0%, 100% { opacity: 0.6; transform: scaleX(1); }
+    50% { opacity: 1; transform: scaleX(1.1); }
 }
 
 /* Simple underline effect */
@@ -174,21 +354,56 @@ body, html {
 
 /* Responsive Design for Enhanced Animations */
 @media (max-width: 768px) {
+    /* Optimize liquid metal navbar for mobile */
     .navbar {
         padding: 10px 15px;
-        animation: none; /* Disable liquid morph on mobile for performance */
+        animation: none !important;
         clip-path: none;
+        transform: none !important;
+    }
+    
+    .navbar::before,
+    .navbar::after {
+        animation: none !important;
+        opacity: 0.3 !important;
+    }
+    
+    .navbar:hover {
+        transform: none !important;
     }
     
     .navbar .logo {
         font-size: 24px;
-        animation: neonPulse 3s ease-in-out infinite; /* Simpler animation on mobile */
+        animation: none !important;
+        background: #ffffff !important;
+        background-clip: unset !important;
+        -webkit-background-clip: unset !important;
+        color: #ffffff !important;
+        text-shadow: 0 0 10px rgba(138, 43, 226, 0.3) !important;
+    }
+    
+    .navbar .logo:hover {
+        transform: none !important;
+        filter: none !important;
     }
     
     .nav-links li a {
         padding: 6px 12px;
         font-size: 14px;
-        animation: none; /* Disable holographic shimmer on mobile */
+        animation: none !important;
+        background: rgba(15, 15, 35, 0.3) !important;
+        border: 1px solid rgba(138, 43, 226, 0.1) !important;
+        backdrop-filter: blur(8px) !important;
+    }
+    
+    .nav-links li a::before,
+    .nav-links li a::after {
+        display: none !important;
+    }
+    
+    .nav-links li a:hover {
+        transform: none !important;
+        animation: none !important;
     }
     
     .landing-section h1 {
@@ -248,6 +463,17 @@ body, html {
     .prismatic-text, .nav-links li a, .btn {
         animation: none !important;
     }
+    
+    /* Further optimize navbar for very small screens */
+    .navbar::before,
+    .navbar::after {
+        display: none !important;
+    }
+    
+    .nav-links li a::before,
+    .nav-links li a::after {
+        display: none !important;
+    }
 }
 
 /* High-performance mode for users who prefer reduced motion */
@@ -256,6 +482,25 @@ body, html {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+    
+    /* Disable all navbar animations */
+    .navbar,
+    .navbar::before,
+    .navbar::after,
+    .navbar .logo,
+    .nav-links li a,
+    .nav-links li a::before,
+    .nav-links li a::after {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .navbar .logo {
+        background: #ffffff !important;
+        background-clip: unset !important;
+        -webkit-background-clip: unset !important;
+        color: #ffffff !important;
     }
     
     .cyber-scan-line, .ambient-orb {
