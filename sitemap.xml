@@ -36,7 +36,5 @@
     <priority>0.6</priority>
   </url>
   
-  <!-- Note: Hidden pages (404, rick, facts, dogs, hidden, nyan, choose) are excluded -->
-  <!-- These pages are disallowed in robots.txt to keep them private -->
 </urlset>
 </urlset>
