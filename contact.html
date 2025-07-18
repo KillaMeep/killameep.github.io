@@ -157,44 +157,61 @@
             50% { transform: translateY(-30px) rotate(360deg); }
         }
 
-        /* Performance optimizations for mobile */
+        /* Mobile-optimized animations */
         @media (max-width: 768px) {
             .comet-background {
-                animation: none !important;
-                transform: none !important;
-                opacity: 0.3 !important;
-            }
-            
-            .comet-background::before,
-            .comet-background::after {
-                animation: none !important;
+                animation: none !important; /* Keep this disabled for performance */
                 transform: none !important;
                 opacity: 0.2 !important;
             }
             
-            .asteroid {
-                animation: none !important;
-                transform: none !important;
-                opacity: 0.1 !important;
+            .comet-background::before,
+            .comet-background::after {
+                animation: cometTrail 20s linear infinite !important; /* Slower comet trails */
+                transform: rotate(15deg) !important;
+                opacity: 0.3 !important;
             }
             
-            .asteroid:nth-child(n+2) {
-                display: none !important;
+            .asteroid {
+                animation: asteroidFloat 15s ease-in-out infinite !important; /* Slower asteroid animation */
+                transform: rotate(0deg) !important;
+                opacity: 0.3 !important;
+            }
+            
+            .asteroid:nth-child(2) {
+                animation-delay: 5s !important;
+                opacity: 0.2 !important;
+            }
+            
+            .asteroid:nth-child(3) {
+                animation-delay: 10s !important;
+                opacity: 0.15 !important;
             }
             
             .css-particles {
-                display: none !important;
+                opacity: 0.1 !important; /* Keep particles but very subtle */
             }
         }
 
-        /* Additional mobile optimizations for smaller screens */
+        /* Mobile optimizations for smaller screens */
         @media (max-width: 480px) {
             .comet-background {
-                display: none !important;
+                opacity: 0.1 !important; /* Keep visible but very subtle */
+            }
+            
+            .comet-background::before,
+            .comet-background::after {
+                animation: cometTrail 30s linear infinite !important; /* Very slow animation */
+                opacity: 0.2 !important;
             }
             
             .asteroid {
-                display: none !important;
+                animation: asteroidFloat 20s ease-in-out infinite !important; /* Very slow animation */
+                opacity: 0.2 !important;
+            }
+            
+            .asteroid:nth-child(n+3) {
+                opacity: 0.1 !important; /* Keep all asteroids but make them subtle */
             }
         }
 

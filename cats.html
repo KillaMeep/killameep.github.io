@@ -146,39 +146,49 @@
             transform: scale(1.05); /* Slight scale effect on hover */
         }
 
-        /* Performance optimizations for mobile */
+        /* Mobile-optimized animations */
         @media (max-width: 768px) {
             .star {
-                animation: none !important;
-                opacity: 0.3 !important;
-            }
-            
-            .star:nth-child(n+5) {
-                display: none !important;
-            }
-            
-            .constellation-line {
-                animation: none !important;
+                animation: twinkle 4s ease-in-out infinite alternate !important; /* Slower animation */
                 opacity: 0.2 !important;
             }
             
-            .constellation-line:nth-child(n+12) {
-                display: none !important;
-            }
-            
-            .btn-refresh:hover {
-                transform: none !important;
-            }
-        }
-
-        /* Additional mobile optimizations for smaller screens */
-        @media (max-width: 480px) {
-            .star {
-                display: none !important;
+            .star:nth-child(n+8) {
+                opacity: 0.1 !important; /* Keep more stars but very subtle */
             }
             
             .constellation-line {
-                display: none !important;
+                animation: lineGlow 6s ease-in-out infinite alternate !important; /* Slower animation */
+                opacity: 0.15 !important;
+            }
+            
+            .constellation-line:nth-child(n+15) {
+                opacity: 0.08 !important; /* Keep more lines but subtle */
+            }
+            
+            .btn-refresh:hover {
+                transform: scale(1.02) !important; /* Subtle hover effect */
+            }
+        }
+
+        /* Mobile optimizations for smaller screens */
+        @media (max-width: 480px) {
+            .star {
+                animation: twinkle 6s ease-in-out infinite alternate !important; /* Very slow animation */
+                opacity: 0.15 !important;
+            }
+            
+            .star:nth-child(n+6) {
+                opacity: 0.08 !important; /* Keep fewer stars but visible */
+            }
+            
+            .constellation-line {
+                animation: lineGlow 8s ease-in-out infinite alternate !important; /* Very slow animation */
+                opacity: 0.1 !important;
+            }
+            
+            .constellation-line:nth-child(n+10) {
+                opacity: 0.05 !important; /* Keep fewer lines but visible */
             }
         }
 
@@ -256,5 +266,6 @@
     <!-- Scripts -->
     <script src="assets/js/api-utils.js"></script>
     <script src="assets/js/starry-sky.js"></script>
+    <script src="assets/js/active-nav.js"></script>
 </body>
 </html>

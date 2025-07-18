@@ -170,39 +170,49 @@
             transform: scale(1.05); /* Slight scale effect on hover */
         }
 
-        /* Performance optimizations for mobile */
+        /* Mobile-optimized animations */
         @media (max-width: 768px) {
             .planet {
-                animation: none !important;
-                opacity: 0.3 !important;
-            }
-            
-            .planet:nth-child(n+4) {
-                display: none !important;
-            }
-            
-            .orbit-ring {
-                animation: none !important;
+                animation: planetOrbit 40s linear infinite !important; /* Slower animation */
                 opacity: 0.2 !important;
             }
             
-            .orbit-ring:nth-child(n+2) {
-                display: none !important;
-            }
-            
-            .btn-refresh:hover {
-                transform: none !important;
-            }
-        }
-
-        /* Additional mobile optimizations for smaller screens */
-        @media (max-width: 480px) {
-            .planet {
-                display: none !important;
+            .planet:nth-child(n+6) {
+                opacity: 0.1 !important; /* Keep more planets but subtle */
             }
             
             .orbit-ring {
-                display: none !important;
+                animation: orbitGlow 30s ease-in-out infinite alternate !important; /* Slower animation */
+                opacity: 0.15 !important;
+            }
+            
+            .orbit-ring:nth-child(n+3) {
+                opacity: 0.08 !important; /* Keep more rings but subtle */
+            }
+            
+            .btn-refresh:hover {
+                transform: scale(1.02) !important; /* Subtle hover effect */
+            }
+        }
+
+        /* Mobile optimizations for smaller screens */
+        @media (max-width: 480px) {
+            .planet {
+                animation: planetOrbit 60s linear infinite !important; /* Very slow animation */
+                opacity: 0.15 !important;
+            }
+            
+            .planet:nth-child(n+4) {
+                opacity: 0.08 !important; /* Keep fewer planets but visible */
+            }
+            
+            .orbit-ring {
+                animation: orbitGlow 45s ease-in-out infinite alternate !important; /* Very slow animation */
+                opacity: 0.1 !important;
+            }
+            
+            .orbit-ring:nth-child(n+2) {
+                opacity: 0.05 !important; /* Keep fewer rings but visible */
             }
         }
 
@@ -270,5 +280,6 @@
     <!-- Scripts -->
     <script src="assets/js/api-utils.js"></script>
     <script src="assets/js/starry-sky.js"></script>
+    <script src="assets/js/active-nav.js"></script>
 </body>
 </html>

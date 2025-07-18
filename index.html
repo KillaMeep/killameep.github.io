@@ -343,74 +343,107 @@
             }
         }
 
-        /* Performance optimizations for mobile */
+        /* Mobile-optimized animations */
         @media (max-width: 768px) {
-            /* Disable complex animations that cause flickering */
+            /* Optimize aurora animations for mobile */
             .aurora-wave {
-                animation: none !important;
-                filter: blur(8px) !important;
-                opacity: 0.3 !important;
-                transform: none !important;
+                animation: auroraFlow1 40s ease-in-out infinite !important; /* Slower animation */
+                filter: blur(6px) !important;
+                opacity: 0.2 !important;
+                transform: scale(0.8) !important;
             }
             
-            .aurora-wave:nth-child(n+2) {
-                display: none;
+            .aurora-wave:nth-child(2) {
+                animation: auroraFlow2 50s ease-in-out infinite !important;
+                animation-delay: 16s !important;
+                opacity: 0.15 !important;
+            }
+            
+            .aurora-wave:nth-child(3) {
+                animation: auroraFlow3 60s ease-in-out infinite !important;
+                animation-delay: 30s !important;
+                opacity: 0.1 !important;
             }
             
             .nebula-background {
-                animation: none !important;
-                transform: none !important;
+                animation: nebulaDrift 120s linear infinite !important; /* Slower animation */
+                transform: scale(0.9) !important;
             }
             
             .nebula-background::before,
             .nebula-background::after {
-                animation: none !important;
-                transform: none !important;
-                opacity: 0.2 !important;
+                animation: nebulaGlow 50s ease-in-out infinite alternate !important; /* Slower animation */
+                transform: scale(0.8) !important;
+                opacity: 0.15 !important;
             }
             
             .dust-particle {
-                animation: none !important;
-                opacity: 0.1 !important;
+                animation: dustFloat 20s ease-in-out infinite !important; /* Slower animation */
+                opacity: 0.08 !important;
             }
             
-            .dust-particle:nth-child(n+4) {
-                display: none;
+            .dust-particle:nth-child(n+6) {
+                opacity: 0.04 !important; /* Keep more particles but very subtle */
             }
             
             .floating-element {
-                animation: none !important;
-                transform: none !important;
+                animation: float 16s ease-in-out infinite !important; /* Slower animation */
+                transform: scale(0.8) !important;
                 opacity: 0.1 !important;
             }
             
-            .floating-element:nth-child(n+3) {
-                display: none;
+            .floating-element:nth-child(n+5) {
+                opacity: 0.05 !important; /* Keep more elements but subtle */
             }
             
-            /* Disable CSS particles on mobile completely */
+            /* Keep CSS particles on mobile but optimize */
             .css-particles {
-                display: none !important;
+                opacity: 0.05 !important;
             }
         }
 
-        /* Additional mobile optimizations for smaller screens */
+        /* Mobile optimizations for smaller screens */
         @media (max-width: 480px) {
             .aurora-wave {
-                display: none !important;
+                animation: auroraFlow1 60s ease-in-out infinite !important; /* Very slow animation */
+                opacity: 0.1 !important;
+                transform: scale(0.6) !important;
+            }
+            
+            .aurora-wave:nth-child(2) {
+                animation: auroraFlow2 80s ease-in-out infinite !important;
+                opacity: 0.08 !important;
+            }
+            
+            .aurora-wave:nth-child(3) {
+                animation: auroraFlow3 100s ease-in-out infinite !important;
+                opacity: 0.05 !important;
             }
             
             .dust-particle {
-                display: none !important;
+                animation: dustFloat 30s ease-in-out infinite !important; /* Very slow animation */
+                opacity: 0.05 !important;
+            }
+            
+            .dust-particle:nth-child(n+4) {
+                opacity: 0.02 !important; /* Keep but very subtle */
             }
             
             .floating-element {
-                display: none !important;
+                animation: float 25s ease-in-out infinite !important; /* Very slow animation */
+                opacity: 0.06 !important;
+                transform: scale(0.6) !important;
+            }
+            
+            .floating-element:nth-child(n+3) {
+                opacity: 0.03 !important; /* Keep but very subtle */
             }
             
             .nebula-background::before,
             .nebula-background::after {
-                display: none !important;
+                animation: nebulaGlow 80s ease-in-out infinite alternate !important; /* Very slow animation */
+                opacity: 0.08 !important;
+                transform: scale(0.6) !important;
             }
         }
 
@@ -499,5 +532,6 @@
     <!-- Scripts -->
     <script src="assets/js/typing-animation.js"></script>
     <script src="assets/js/navbar-scroll.js"></script>
+    <script src="assets/js/active-nav.js"></script>
 </body>
 </html>

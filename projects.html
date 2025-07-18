@@ -358,31 +358,32 @@
         }
 
         @media (max-width: 768px) {
-            /* Fix h2 title flickering on mobile */
+            /* Optimize h2 title for mobile while keeping animation */
             h2 {
                 font-size: 36px;
-                animation: none !important;
-                background: none !important;
-                background-clip: unset !important;
-                -webkit-background-clip: unset !important;
-                color: #ffffff !important;
+                animation: cosmicGlow 6s ease-in-out infinite alternate !important; /* Slower animation */
+                background: linear-gradient(45deg, #ffffff, #8a2be2, #ff1493, #ffffff) !important;
+                background-size: 300% 300% !important; /* Smaller background size for performance */
+                background-clip: text !important;
+                -webkit-background-clip: text !important;
+                color: transparent !important;
                 text-shadow: 0 0 10px rgba(138, 43, 226, 0.3) !important;
             }
             
-            /* Disable problematic background animations */
+            /* Optimize background animations for mobile */
             .cosmic-background {
-                animation: none !important;
-                opacity: 0.3 !important;
+                animation: starfield 400s linear infinite !important; /* Slower animation */
+                opacity: 0.2 !important; /* Reduced opacity for subtlety */
             }
             
             .nebula {
-                animation: none !important;
-                transform: none !important;
-                opacity: 0.2 !important;
+                animation: nebulaFlow 60s ease-in-out infinite alternate !important; /* Slower animation */
+                transform: scale(0.8) !important; /* Smaller scale */
+                opacity: 0.15 !important;
             }
             
             .black-hole {
-                display: none; /* Hide on mobile for performance */
+                display: none; /* Still hide for performance on mobile */
             }
             
             .card {
@@ -390,12 +391,12 @@
                 max-width: 400px;
                 margin: 0 auto;
                 min-width: auto;
-                transform: none !important;
-                transition: none !important;
+                transition: transform 0.2s ease, box-shadow 0.2s ease !important; /* Faster transitions */
             }
             
             .card:hover {
-                transform: none !important;
+                transform: translateY(-5px) !important; /* Reduced transform for mobile */
+                transition: transform 0.2s ease !important;
             }
 
             .section {
@@ -410,24 +411,28 @@
         }
 
         @media (max-width: 480px) {
-            /* Further optimize h2 for small screens */
+            /* Further optimize h2 for small screens while keeping animation */
             h2 {
                 font-size: 28px;
-                animation: none !important;
-                background: none !important;
-                background-clip: unset !important;
-                -webkit-background-clip: unset !important;
-                color: #ffffff !important;
+                animation: cosmicGlow 8s ease-in-out infinite alternate !important; /* Even slower for small screens */
+                background: linear-gradient(45deg, #ffffff, #8a2be2, #ff1493, #ffffff) !important;
+                background-size: 200% 200% !important; /* Even smaller background size */
+                background-clip: text !important;
+                -webkit-background-clip: text !important;
+                color: transparent !important;
                 text-shadow: 0 0 8px rgba(138, 43, 226, 0.2) !important;
             }
             
-            /* Disable all background effects on small screens */
+            /* Keep minimal background effects on small screens */
             .cosmic-background {
-                display: none !important;
+                animation: starfield 600s linear infinite !important; /* Very slow animation */
+                opacity: 0.1 !important;
             }
             
             .nebula {
-                display: none !important;
+                animation: nebulaFlow 120s ease-in-out infinite alternate !important; /* Very slow animation */
+                transform: scale(0.6) !important; /* Even smaller scale */
+                opacity: 0.08 !important;
             }
             
             .black-hole {
@@ -438,12 +443,11 @@
                 width: 100%;
                 padding: 20px;
                 max-width: none;
-                transform: none !important;
-                transition: none !important;
+                transition: transform 0.15s ease !important; /* Even faster transitions */
             }
             
             .card:hover {
-                transform: none !important;
+                transform: translateY(-3px) !important; /* Minimal transform for small screens */
             }
 
             .card-title {
@@ -648,5 +652,6 @@
     
     <!-- Scripts -->
     <script src="assets/js/navbar-scroll.js"></script>
+    <script src="assets/js/active-nav.js"></script>
 </body>
 </html>
