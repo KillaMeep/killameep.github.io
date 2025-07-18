@@ -345,17 +345,72 @@
 
         /* Performance optimizations for mobile */
         @media (max-width: 768px) {
+            /* Disable complex animations that cause flickering */
+            .aurora-wave {
+                animation: none !important;
+                filter: blur(8px) !important;
+                opacity: 0.3 !important;
+                transform: none !important;
+            }
+            
             .aurora-wave:nth-child(n+2) {
                 display: none;
             }
-            .dust-particle:nth-child(n+6) {
-                display: none;
+            
+            .nebula-background {
+                animation: none !important;
+                transform: none !important;
             }
-            .floating-element:nth-child(n+4) {
-                display: none;
-            }
+            
+            .nebula-background::before,
             .nebula-background::after {
+                animation: none !important;
+                transform: none !important;
+                opacity: 0.2 !important;
+            }
+            
+            .dust-particle {
+                animation: none !important;
+                opacity: 0.1 !important;
+            }
+            
+            .dust-particle:nth-child(n+4) {
                 display: none;
+            }
+            
+            .floating-element {
+                animation: none !important;
+                transform: none !important;
+                opacity: 0.1 !important;
+            }
+            
+            .floating-element:nth-child(n+3) {
+                display: none;
+            }
+            
+            /* Disable CSS particles on mobile completely */
+            .css-particles {
+                display: none !important;
+            }
+        }
+
+        /* Additional mobile optimizations for smaller screens */
+        @media (max-width: 480px) {
+            .aurora-wave {
+                display: none !important;
+            }
+            
+            .dust-particle {
+                display: none !important;
+            }
+            
+            .floating-element {
+                display: none !important;
+            }
+            
+            .nebula-background::before,
+            .nebula-background::after {
+                display: none !important;
             }
         }
 

@@ -149,6 +149,59 @@
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-30px) rotate(360deg); }
         }
+
+        /* Performance optimizations for mobile */
+        @media (max-width: 768px) {
+            .comet-background {
+                animation: none !important;
+                transform: none !important;
+                opacity: 0.3 !important;
+            }
+            
+            .comet-background::before,
+            .comet-background::after {
+                animation: none !important;
+                transform: none !important;
+                opacity: 0.2 !important;
+            }
+            
+            .asteroid {
+                animation: none !important;
+                transform: none !important;
+                opacity: 0.1 !important;
+            }
+            
+            .asteroid:nth-child(n+2) {
+                display: none !important;
+            }
+            
+            .css-particles {
+                display: none !important;
+            }
+        }
+
+        /* Additional mobile optimizations for smaller screens */
+        @media (max-width: 480px) {
+            .comet-background {
+                display: none !important;
+            }
+            
+            .asteroid {
+                display: none !important;
+            }
+        }
+
+        /* Accessibility - respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .comet-background, .comet-background::before, .comet-background::after {
+                animation: none !important;
+            }
+            
+            .asteroid {
+                animation: none !important;
+                opacity: 0.1 !important;
+            }
+        }
     </style>
 </head>
 <body>

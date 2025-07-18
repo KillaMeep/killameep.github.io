@@ -218,6 +218,46 @@
         #facts-container {
             display: none;
         }
+
+        /* Performance optimizations for mobile */
+        @media (max-width: 768px) {
+            .aurora-wave {
+                animation: none !important;
+                opacity: 0.3 !important;
+                transform: none !important;
+            }
+            
+            .aurora-wave:nth-child(n+2) {
+                display: none !important;
+            }
+            
+            .fact:hover {
+                transform: none !important;
+            }
+            
+            .btn-refresh:hover {
+                transform: none !important;
+            }
+        }
+
+        /* Additional mobile optimizations for smaller screens */
+        @media (max-width: 480px) {
+            .aurora-wave {
+                display: none !important;
+            }
+        }
+
+        /* Accessibility - respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .aurora-wave {
+                animation: none !important;
+                opacity: 0.1 !important;
+            }
+            
+            .fact, .btn-refresh {
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 <body>

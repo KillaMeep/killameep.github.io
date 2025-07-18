@@ -169,6 +169,54 @@
             background-color: #ffd95c; /* Darker button on hover */
             transform: scale(1.05); /* Slight scale effect on hover */
         }
+
+        /* Performance optimizations for mobile */
+        @media (max-width: 768px) {
+            .planet {
+                animation: none !important;
+                opacity: 0.3 !important;
+            }
+            
+            .planet:nth-child(n+4) {
+                display: none !important;
+            }
+            
+            .orbit-ring {
+                animation: none !important;
+                opacity: 0.2 !important;
+            }
+            
+            .orbit-ring:nth-child(n+2) {
+                display: none !important;
+            }
+            
+            .btn-refresh:hover {
+                transform: none !important;
+            }
+        }
+
+        /* Additional mobile optimizations for smaller screens */
+        @media (max-width: 480px) {
+            .planet {
+                display: none !important;
+            }
+            
+            .orbit-ring {
+                display: none !important;
+            }
+        }
+
+        /* Accessibility - respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .planet, .orbit-ring {
+                animation: none !important;
+                opacity: 0.1 !important;
+            }
+            
+            .btn-refresh {
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 <body>

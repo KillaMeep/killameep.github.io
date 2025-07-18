@@ -142,6 +142,52 @@
             border-radius: 16px; /* More pronounced rounded corners */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
         }
+
+        /* Performance optimizations for mobile */
+        @media (max-width: 768px) {
+            .galaxy-background {
+                animation: none !important;
+                transform: none !important;
+                opacity: 0.3 !important;
+            }
+            
+            .galaxy-background::before {
+                animation: none !important;
+                transform: translate(-50%, -50%) !important;
+                opacity: 0.2 !important;
+            }
+            
+            #shootingstars {
+                display: none !important;
+            }
+            
+            .wish {
+                animation: none !important;
+            }
+        }
+
+        /* Additional mobile optimizations for smaller screens */
+        @media (max-width: 480px) {
+            .galaxy-background {
+                display: none !important;
+            }
+            
+            #shootingstars {
+                display: none !important;
+            }
+        }
+
+        /* Accessibility - respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .galaxy-background, .galaxy-background::before {
+                animation: none !important;
+            }
+            
+            #shootingstars, .wish {
+                animation: none !important;
+                opacity: 0.1 !important;
+            }
+        }
     </style>
 </head>
 <body>

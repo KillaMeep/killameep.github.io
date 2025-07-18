@@ -48,13 +48,9 @@
 }
 
 /* Ultra-performance mode - only for very low-end devices */
-@media (max-width: 768px) and (max-height: 1024px) {
-    .css-particle:nth-child(n+6) {
-        display: none; /* Hide extra particles on mobile */
-    }
-    
-    .css-particle {
-        animation-duration: 30s; /* Slower animations for less CPU usage */
+@media (max-width: 768px) {
+    .css-particles {
+        display: none; /* Completely disable on mobile to prevent flickering */
     }
 }
 
@@ -62,6 +58,6 @@
 @media (prefers-reduced-motion: reduce) {
     .css-particle {
         animation: none;
-        opacity: 0.2;
+        opacity: 0.1;
     }
 }

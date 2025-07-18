@@ -145,6 +145,54 @@
             background-color: #ffd95c; /* Darker button on hover */
             transform: scale(1.05); /* Slight scale effect on hover */
         }
+
+        /* Performance optimizations for mobile */
+        @media (max-width: 768px) {
+            .star {
+                animation: none !important;
+                opacity: 0.3 !important;
+            }
+            
+            .star:nth-child(n+5) {
+                display: none !important;
+            }
+            
+            .constellation-line {
+                animation: none !important;
+                opacity: 0.2 !important;
+            }
+            
+            .constellation-line:nth-child(n+12) {
+                display: none !important;
+            }
+            
+            .btn-refresh:hover {
+                transform: none !important;
+            }
+        }
+
+        /* Additional mobile optimizations for smaller screens */
+        @media (max-width: 480px) {
+            .star {
+                display: none !important;
+            }
+            
+            .constellation-line {
+                display: none !important;
+            }
+        }
+
+        /* Accessibility - respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .star, .constellation-line {
+                animation: none !important;
+                opacity: 0.1 !important;
+            }
+            
+            .btn-refresh {
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 <body>
