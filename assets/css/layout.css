@@ -21,18 +21,18 @@
 
 .landing-section h1 {
     font-size: 4rem;
-    background: linear-gradient(45deg, #ffda79, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+    background: linear-gradient(45deg, rgba(138, 43, 226, 0.9), rgba(0, 191, 255, 0.9), rgba(255, 20, 147, 0.9), rgba(106, 90, 205, 0.9), rgba(72, 61, 139, 0.9), rgba(123, 104, 238, 0.9));
     background-size: 600% 600%;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     animation: prismaticShift 4s ease-in-out infinite;
-    text-shadow: 0 0 30px rgba(255, 218, 121, 0.5);
+    text-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
     margin-bottom: 20px;
 }
 
 .landing-section h1 .highlight {
-    background: linear-gradient(45deg, #ffda79, #ffd95c);
+    background: linear-gradient(45deg, rgba(138, 43, 226, 0.9), rgba(0, 191, 255, 0.9));
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -42,7 +42,7 @@
 .landing-section p {
     font-size: 1.5rem;
     margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(255, 218, 121, 0.3);
+    text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
 }
 
 /* Section Styles */
@@ -83,11 +83,11 @@
     gap: 20px;
 }
 
-/* Enhanced Typography with Cyberpunk Effects */
+/* Enhanced Typography with Space-themed Effects */
 h2 {
     margin-bottom: 20px;
     font-size: 36px;
-    background: linear-gradient(45deg, #ffda79, #ffd95c, #ffda79);
+    background: linear-gradient(45deg, rgba(138, 43, 226, 0.9), rgba(0, 191, 255, 0.9), rgba(255, 20, 147, 0.9));
     background-size: 200% 200%;
     background-clip: text;
     -webkit-background-clip: text;
@@ -95,7 +95,7 @@ h2 {
     text-align: center;
     position: relative;
     animation: prismaticShift 4s ease-in-out infinite;
-    text-shadow: 0 0 20px rgba(255, 218, 121, 0.4);
+    text-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
