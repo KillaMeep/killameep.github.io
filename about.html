@@ -143,37 +143,50 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
         }
 
-        /* Performance optimizations for mobile */
+        /* Mobile-optimized animations */
         @media (max-width: 768px) {
             .galaxy-background {
-                animation: none !important;
-                transform: none !important;
-                opacity: 0.3 !important;
-            }
-            
-            .galaxy-background::before {
-                animation: none !important;
-                transform: translate(-50%, -50%) !important;
+                animation: galaxyRotation 200s linear infinite !important; /* Slower rotation */
+                transform: scale(0.8) !important; /* Smaller scale for performance */
                 opacity: 0.2 !important;
             }
             
+            .galaxy-background::before {
+                animation: galaxyCore 40s ease-in-out infinite alternate !important; /* Slower core animation */
+                transform: translate(-50%, -50%) scale(0.8) !important;
+                opacity: 0.15 !important;
+            }
+            
             #shootingstars {
-                display: none !important;
+                opacity: 0.3 !important; /* Keep shooting stars but subtle */
             }
             
             .wish {
-                animation: none !important;
+                animation: wish 4s linear infinite !important; /* Slower shooting star animation */
+                opacity: 0.4 !important;
             }
         }
 
-        /* Additional mobile optimizations for smaller screens */
+        /* Mobile optimizations for smaller screens */
         @media (max-width: 480px) {
             .galaxy-background {
-                display: none !important;
+                animation: galaxyRotation 300s linear infinite !important; /* Very slow rotation */
+                transform: scale(0.6) !important; /* Even smaller scale */
+                opacity: 0.15 !important;
+            }
+            
+            .galaxy-background::before {
+                animation: galaxyCore 60s ease-in-out infinite alternate !important; /* Very slow core animation */
+                opacity: 0.1 !important;
             }
             
             #shootingstars {
-                display: none !important;
+                opacity: 0.2 !important; /* Keep but very subtle */
+            }
+            
+            .wish {
+                animation: wish 6s linear infinite !important; /* Very slow shooting stars */
+                opacity: 0.3 !important;
             }
         }
 
@@ -235,7 +248,7 @@
         
         <h3 class="fade-in about-block">Get in Touch</h3>
         <div class="fade-in text-block">
-            <p>Interested in working together or just want to chat about a project? Drop me a line through the <a href="contact.html" class="contact-link">Contact</a> page.</p>
+            <p>Interested in working together or just want to chat about a project? Feel free to reach out through the <a href="contact.html" class="contact-link">Contact</a> page.</p>
         </div>
     </div>
 
