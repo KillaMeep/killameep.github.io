@@ -17,27 +17,83 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js" defer></script>
 
     <style>
+        /* Global box-sizing fix */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
+        html {
+            overflow-x: hidden;
+        }
+        
         .hidden-link {
             color: #fff;
             text-decoration: none;
         }
+        
         body {
-            background-color: #2b2b2b; /* Set background to dark grey */
-            margin: 0; /* Remove default margin */
-            overflow: auto; /* Allow scrolling */
-            height: 100vh; /* Ensure body takes full height */
-        }
-
-        #sky {
-            width: 100vw;
-            height: 100vh;
-            position: fixed;
-            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            z-index: 0; /* Make sure it's behind other content */
+            background: 
+                radial-gradient(ellipse at center, #0a0a2e 0%, #16213e 50%, #000000 100%),
+                radial-gradient(ellipse at 25% 75%, rgba(72, 61, 139, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 25%, rgba(106, 90, 205, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(123, 104, 238, 0.1) 0%, transparent 50%);
+            color: #ffffff;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
+            width: 100%;
         }
 
+        /* Galaxy Background with Spiral Arms */
+        .galaxy-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            background: 
+                radial-gradient(1px 1px at 10px 20px, #ffffff, transparent),
+                radial-gradient(2px 2px at 30px 60px, #ffffff, transparent),
+                radial-gradient(1px 1px at 70px 10px, #ffffff, transparent),
+                radial-gradient(2px 2px at 110px 80px, #ffffff, transparent),
+                radial-gradient(1px 1px at 150px 40px, #ffffff, transparent),
+                radial-gradient(2px 2px at 190px 70px, #ffffff, transparent),
+                radial-gradient(1px 1px at 230px 20px, #ffffff, transparent),
+                radial-gradient(2px 2px at 270px 90px, #ffffff, transparent);
+            animation: galaxyRotation 100s linear infinite;
+        }
+
+        .galaxy-background::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: 
+                radial-gradient(ellipse at center, rgba(138, 43, 226, 0.4) 0%, rgba(72, 61, 139, 0.2) 30%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: galaxyCore 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes galaxyRotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes galaxyCore {
+            0% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        /* Shooting stars effect */
         #shootingstars {
             margin: 0;
             padding: 0;
@@ -46,7 +102,7 @@
             position: fixed;
             overflow: hidden;
             transform: translatex(calc(50vw - 50%)) translatey(calc(50vh - 50%)) rotate(40deg);
-            z-index: 1; /* Ensure shooting stars are above the sky */
+            z-index: 2;
         }
 
         .wish {
@@ -91,6 +147,12 @@
 <body>
     <!-- Starry Sky Animation -->
     <div id="root"></div>
+    
+    <!-- Galaxy Background -->
+    <div class="galaxy-background"></div>
+    
+    <!-- Shooting Stars Container -->
+    <div id="shootingstars"></div>
     
     <!-- Navbar -->
     <nav class="navbar">
