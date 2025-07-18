@@ -3,188 +3,440 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | KillaMeep</title>
+    <title>Projects | KillaMeep - Cosmic Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         .hidden-link {
             color: #fff;
             text-decoration: none;
         }
+        
+        /* Global box-sizing fix */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
+        html {
+            overflow-x: hidden;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #2b2b2b; /* Dark background */
-            color: #ffffff; /* White text for contrast */
-            position: relative; /* Position relative to overlay wave animation */
-            overflow-x: hidden; /* Only hide horizontal overflow */
-            overflow-y: auto; /* Allow vertical scrolling */
+            background: 
+                radial-gradient(ellipse at center, #0f0f23 0%, #000000 100%),
+                radial-gradient(ellipse at 20% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 20, 147, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 40%, rgba(0, 191, 255, 0.06) 0%, transparent 50%);
+            color: #ffffff;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
+            width: 100%;
         }
 
-        /* Projects Section */
+        /* Cosmic Background with Stars - Fixed positioning covering full viewport */
+        .cosmic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            background: 
+                radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.6), transparent),
+                radial-gradient(2px 2px at 160px 30px, #ffffff, transparent),
+                linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent);
+            background-size: 200px 200px;
+            animation: starfield 200s linear infinite;
+        }
+
+        @keyframes starfield {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-200px); }
+        }
+
+        /* Black Hole Effect */
+        .black-hole {
+            position: fixed;
+            top: 20%;
+            right: 15%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at 40% 40%, transparent 20%, rgba(138, 43, 226, 0.1) 30%, rgba(75, 0, 130, 0.2) 50%, rgba(25, 25, 112, 0.3) 70%, #000000 90%);
+            box-shadow: 
+                0 0 100px rgba(138, 43, 226, 0.3),
+                inset 0 0 100px rgba(0, 0, 0, 0.8);
+            animation: blackHoleRotation 20s linear infinite, blackHolePulse 4s ease-in-out infinite alternate;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .black-hole::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            right: -50px;
+            bottom: -50px;
+            border-radius: 50%;
+            background: 
+                conic-gradient(from 0deg, transparent, rgba(138, 43, 226, 0.1), rgba(255, 20, 147, 0.15), rgba(255, 165, 0, 0.1), transparent);
+            animation: accretionDisk 15s linear infinite reverse;
+        }
+
+        @keyframes blackHoleRotation {
+            from { transform: rotate(0deg) scale(1); }
+            to { transform: rotate(360deg) scale(1); }
+        }
+
+        @keyframes blackHolePulse {
+            0% { box-shadow: 0 0 100px rgba(138, 43, 226, 0.3), inset 0 0 100px rgba(0, 0, 0, 0.8); }
+            100% { box-shadow: 0 0 150px rgba(138, 43, 226, 0.5), inset 0 0 100px rgba(0, 0, 0, 0.9); }
+        }
+
+        @keyframes accretionDisk {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Nebula Effects - Fixed positioning covering full viewport */
+        .nebula {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: 
+                radial-gradient(ellipse at 10% 70%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 20, 147, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 90%, rgba(0, 191, 255, 0.06) 0%, transparent 50%);
+            z-index: 1;
+            pointer-events: none;
+            animation: nebulaFlow 30s ease-in-out infinite alternate;
+        }
+
+        @keyframes nebulaFlow {
+            0% { opacity: 0.3; transform: scale(1) rotate(0deg); }
+            100% { opacity: 0.6; transform: scale(1.1) rotate(2deg); }
+        }
+
+        /* Main Content Styles */
         .section {
-            padding: 60px 20px; /* Increased padding */
-            border-radius: 10px; /* Rounded corners for the section */
-            margin: 20px; /* Margin to separate from other sections */
-            position: relative; /* Ensure section is above animation */
-            z-index: 2; /* Set section above the dot wave animation */
+            padding: 80px 40px;
+            margin: 20px auto;
+            max-width: calc(100vw - 40px);
+            position: relative;
+            z-index: 3;
+            background: rgba(15, 15, 35, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
         h2 {
-            margin-bottom: 20px; /* Adjusted margin */
-            font-size: 36px;
-            color: #ffda79;
-            text-align: center; /* Center the heading */
-            position: relative; /* For pseudo-element */
+            margin-bottom: 30px;
+            font-size: 48px;
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+            text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            background: linear-gradient(45deg, #ffffff, #8a2be2, #ff1493, #ffffff);
+            background-size: 400% 400%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: cosmicGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes cosmicGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
 
         h2::after {
             content: '';
             display: block;
-            width: 50px;
+            width: 100px;
             height: 3px;
-            background: #ffda79; /* Highlight color */
-            margin: 10px auto; /* Center the line */
+            background: linear-gradient(90deg, transparent, #8a2be2, #ff1493, #8a2be2, transparent);
+            margin: 20px auto;
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
         }
 
         .row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
 
+        /* Cosmic Project Cards */
         .card {
-            background: #2b2b2b; /* Card background */
-            text-align: center; /* Center text in the card */
-            flex-direction: column; /* Stack elements vertically */
-            justify-content: space-between; /* Space out elements */
+            background: 
+                linear-gradient(135deg, rgba(15, 15, 35, 0.9) 0%, rgba(25, 25, 50, 0.8) 100%);
+            text-align: center;
+            flex-direction: column;
+            justify-content: space-between;
             display: flex;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            width: calc(33% - 20px);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative; /* Ensure stacking context for z-index */
-            z-index: 3; /* Higher than particles */
-            text-decoration: none; /* Remove underline from links */
+            border-radius: 20px;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(138, 43, 226, 0.1);
+            padding: 30px;
+            width: calc(33% - 30px);
+            min-width: 300px;
+            max-width: 350px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 3;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            box-sizing: border-box;
+            /* Prevent text blur on transforms */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            backface-visibility: hidden;
+            perspective: 1000px;
         }
-        .card-title {
-            margin-bottom: 20px; /* Space between title and text */
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            transform: translateY(-10px);
+            border-color: rgba(138, 43, 226, 0.6);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                0 0 40px rgba(138, 43, 226, 0.3),
+                inset 0 0 20px rgba(138, 43, 226, 0.1);
         }
 
         .card-title {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #ffda79; /* Highlight color */
+            font-size: 28px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #8a2be2, #ff1493);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+            position: relative;
+            /* Prevent text blur */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transform: translateZ(0);
         }
 
         .card-text {
             font-size: 16px;
-            color: #ccc; /* Light gray text for description */
-            margin-bottom: 20px;
-            flex-grow: 1; /* Allows the text to take up remaining space */
-        }
-        .btn {
-            margin-top: 10px; /* Space above the button */
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 25px;
+            flex-grow: 1;
+            line-height: 1.6;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            /* Prevent text blur */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transform: translateZ(0);
         }
 
-        /* Footer Styles */
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            background-color: rgba(43, 43, 43, 0.5); /* More transparent background */
+        .gamelink {
+            color: #ff1493;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px rgba(255, 20, 147, 0.3);
+        }
+
+        .gamelink:hover {
+            color: #8a2be2;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.6);
+        }
+
+        /* Cosmic Button Styles */
+        .btn {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #8a2be2, #ff1493, #8a2be2);
+            background-size: 200% 200%;
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 4px 15px rgba(138, 43, 226, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover {
+            background-position: 200% 200%;
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 25px rgba(138, 43, 226, 0.5),
+                0 0 20px rgba(255, 20, 147, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         /* Remove underline for links in cards */
         a {
-            color: inherit; /* Inherit color from parent */
-            text-decoration: none; /* No underline */
-        }
-
-        .btn {
-            padding: 10px 20px;
-            background-color: #ffda79; /* Button color */
-            color: #2b2b2b; /* Dark text for button */
-            border: none;
-            border-radius: 5px;
+            color: inherit;
             text-decoration: none;
-            transition: background-color 0.3s, transform 0.3s;
-            pointer-events: auto; /* Ensure button can be clicked */
-            z-index: 3; /* Ensure button is clickable above particles */
         }
 
-        /* Dot Matrix Wave Background */
-        #dot-matrix {
-            position: fixed; /* Fixed so it doesn't move with scroll */
-            top: 0;
-            left: 0;
-            width: 100vw; /* Use viewport width */
-            height: 100vh; /* Use viewport height */
-            display: grid;
-            grid-template-columns: repeat(60, 1fr); /* Responsive columns */
-            grid-template-rows: repeat(40, 1fr); /* Responsive rows */
-            z-index: 1; /* Under the content */
-            pointer-events: none; /* Make sure grid doesn't interfere with interaction */
-            gap: 2vw; /* Space between dots */
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .card {
+                width: calc(50% - 30px);
+                min-width: 280px;
+                max-width: none;
+            }
+            
+            .section {
+                padding: 60px 30px;
+                margin: 15px auto;
+                max-width: calc(100vw - 30px);
+            }
+            
+            .black-hole {
+                width: 200px;
+                height: 200px;
+                top: 10%;
+                right: 5%;
+            }
         }
 
-        .dot {
-            width: .2vw; /* Set reasonable width for dots */
-            height: .2vw; /* Set reasonable height for dots */
-            max-width: 20px; /* Prevent them from being too large */
-            max-height: 20px; /* Prevent them from being too large */
-            background-color: #666666; /* Subtle dot color slightly brighter than background */
-            border-radius: 50%;
-            opacity: 0.4; /* Lower opacity to make dots less noticeable */
-            transform-origin: center center;
-            transition: transform 0.2s; /* Smooth transition for animation */
-        }
-        .gamelink {
-            text-decoration: none;
-            color: #ffda79;
+        @media (max-width: 768px) {
+            .card {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+                min-width: auto;
+            }
+
+            h2 {
+                font-size: 36px;
+            }
+
+            .section {
+                padding: 40px 20px;
+                margin: 10px auto;
+                max-width: calc(100vw - 20px);
+            }
+            
+            .row {
+                gap: 20px;
+            }
+            
+            .black-hole {
+                display: none; /* Hide on mobile for performance */
+            }
         }
 
         @media (max-width: 480px) {
             .card {
-                width: 100%; /* Full width for cards on small screens */
+                width: 100%;
+                padding: 20px;
+                max-width: none;
             }
 
             h2 {
-                font-size: 24px; /* Smaller heading size */
+                font-size: 28px;
             }
 
             .card-title {
-                font-size: 18px; /* Smaller title size */
+                font-size: 22px;
             }
 
             .card-text {
-                font-size: 13px; /* Smaller text size */
+                font-size: 14px;
             }
 
             .section {
-                padding: 30px 10px; /* Reduced padding for smaller screens */
+                padding: 30px 15px;
+                margin: 5px auto;
+                max-width: calc(100vw - 10px);
             }
-
-            .dot {
-                width: 2vw; /* Further increase dot size for very small screens */
-                height: 2vw; /* Further increase dot size for very small screens */
-                max-width: 5px; /* Cap size on small screens */
-                max-height: 5px; /* Cap size on small screens */
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
             }
+        }
 
-            /* Adjust spacing for small screens */
-            #dot-matrix {
-                gap: 4vw; /* Increase gap between dots on smaller screens */
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .black-hole,
+            .cosmic-background,
+            .nebula {
+                display: none !important;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Cosmic Background Effects -->
+    <div class="cosmic-background"></div>
+    <div class="nebula"></div>
+    <div class="black-hole"></div>
+
     <!-- Navbar -->
     <nav class="navbar">
         <ul class="nav-links">
@@ -195,69 +447,136 @@
         </ul>
     </nav>
 
-    <!-- Dot Matrix Wave Background -->
-    <div id="dot-matrix"></div>
-
-<!-- Projects Section -->
-<section class="section">
-    <h2>My Projects</h2>
-    <div class="row" id="project-list">
-        <!-- Project 1 -->
-        <div class="card">
-            <h5 class="card-title">ASCII-gen</h5>
-            <p class="card-text">An open-source tool that converts images and video frames into ASCII art. It supports static images and animated GIFs and is compatible with both Linux and Windows.</p>
-            <a href="https://github.com/KillaMeep/ASCII-gen" target="_blank" class="btn">View Project</a>
+    <!-- Projects Section -->
+    <section class="section">
+        <h2>My Projects</h2>
+        <div class="row" id="project-list">
+            <!-- Project 1 -->
+            <div class="card" data-project="ascii">
+                <h5 class="card-title">ASCII-gen</h5>
+                <p class="card-text">An open-source tool that converts images and video frames into ASCII art. It supports static images and animated GIFs and is compatible with both Linux and Windows.</p>
+                <a href="https://github.com/KillaMeep/ASCII-gen" target="_blank" class="btn">View Project</a>
+            </div>
+            
+            <!-- Project 2 -->
+            <div class="card" data-project="star">
+                <h5 class="card-title">StarNodeAnimator</h5>
+                <p class="card-text">Software that creates customizable star animations using OpenGL in Pygame. It features a GUI and exports animations as MP4 videos.</p>
+                <a href="https://github.com/KillaMeep/StarNodeAnimator" target="_blank" class="btn">View Project</a>
+            </div>
+            
+            <!-- Project 3 -->
+            <div class="card" data-project="ai">
+                <h5 class="card-title">BeatBlock AI</h5>
+                <p class="card-text">
+                    A real-time object detection system for <a href="https://store.steampowered.com/app/3045200/Beatblock/" class="gamelink" target="_blank"><strong>BeatBlock</strong></a>, a rhythm game by <a href="https://itch.io/profile/bubbletabby" class="gamelink" target="_blank"><strong>BubbleTabby</strong></a>. Uses the YOLOv5 framework to identify in-game elements with low latency, enhancing gameplay analysis.
+                </p>
+                <a href="https://github.com/KillaMeep/beatblock-AI" target="_blank" class="btn">View Project</a>
+            </div>
         </div>
-        
-        <!-- Project 2 -->
-        <div class="card">
-            <h5 class="card-title">StarNodeAnimator</h5>
-            <p class="card-text">Software that creates customizable star animations using OpenGL in Pygame. It features a GUI and exports animations as MP4 videos.</p>
-            <a href="https://github.com/KillaMeep/StarNodeAnimator" target="_blank" class="btn">View Project</a>
-        </div>
-        
-        <!-- Project 3 -->
-        <div class="card">
-            <h5 class="card-title">BeatBlock AI</h5>
-            <p class="card-text">
-                A real-time object detection system for <a href="https://store.steampowered.com/app/3045200/Beatblock/" class="gamelink" target="_blank"><strong>BeatBlock</strong></a>, a rhythm game published by <a href="https://itch.io/profile/bubbletabby" class="gamelink" target="_blank"><strong>BubbleTabby</strong></a> that uses the YOLOv5 framework to identify in-game elements with low latency, enhancing gameplay analysis.
-            </p>
-            <a href="https://github.com/KillaMeep/beatblock-AI" target="_blank" class="btn">View Project</a>
-        </div>
-    </div>
-</section>
-
-
-
+    </section>
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2025 <a href="hidden.html" class="hidden-link">KillaMeep</a> | All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript for Dot Wave Animation -->
+    <!-- Enhanced JavaScript for Cosmic Effects -->
     <script>
-        // Get the dot matrix container
-        const dotMatrix = document.getElementById('dot-matrix');
+        // Card hover effects with mouse tracking
+        const cards = document.querySelectorAll('.card');
         
-        // Set the wave parameters
-        const rows = 40; // Adjust rows to fill the viewport
-        const cols = 60; // Match the CSS column count
-        // Create dots and append to the dot matrix
-        function createDots() {
-            for (let i = 0; i < rows * cols; i++) {
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
-                dotMatrix.appendChild(dot);
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                card.style.setProperty('--x', x + '%');
+                card.style.setProperty('--y', y + '%');
+            });
+            
+            // Add particle effect on hover
+            card.addEventListener('mouseenter', () => {
+                createParticles(card);
+            });
+        });
+        
+        function createParticles(element) {
+            const particles = 5;
+            for (let i = 0; i < particles; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 3px;
+                    height: 3px;
+                    background: radial-gradient(circle, #8a2be2, transparent);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    animation: particle 2s ease-out forwards;
+                    top: ${Math.random() * 100}%;
+                    left: ${Math.random() * 100}%;
+                    z-index: 10;
+                `;
+                
+                element.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 2000);
             }
         }
-
-
-
-
-        // Initialize dots and start animation
-        createDots();
+        
+        // Add particle keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes particle {
+                0% {
+                    opacity: 1;
+                    transform: scale(0) translateY(0);
+                }
+                50% {
+                    opacity: 0.8;
+                    transform: scale(1) translateY(-20px);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(0) translateY(-40px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Parallax effect for black hole
+        window.addEventListener('scroll', () => {
+            const blackHole = document.querySelector('.black-hole');
+            if (blackHole && window.innerWidth > 768) {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.3;
+                blackHole.style.transform = `translateY(${rate}px) rotate(${scrolled * 0.1}deg)`;
+            }
+        });
+        
+        // Responsive black hole positioning
+        function updateBlackHolePosition() {
+            const blackHole = document.querySelector('.black-hole');
+            if (blackHole && window.innerWidth > 1024) {
+                const viewportHeight = window.innerHeight;
+                const scrollTop = window.pageYOffset;
+                const documentHeight = document.documentElement.scrollHeight;
+                const scrollPercent = scrollTop / (documentHeight - viewportHeight);
+                
+                blackHole.style.top = (20 + scrollPercent * 30) + '%';
+            }
+        }
+        
+        window.addEventListener('scroll', updateBlackHolePosition);
+        window.addEventListener('resize', updateBlackHolePosition);
     </script>
-    <!-- Navbar Scrolling -->
-    <script src="navbarScroll.js"></script>
+    
+    <!-- Scripts -->
+    <script src="assets/js/navbar-scroll.js"></script>
 </body>
 </html>
