@@ -3,6 +3,7 @@
 @import url('./assets/css/backgrounds.css');
 @import url('./assets/css/components.css');
 @import url('./assets/css/layout.css');
+@import url('./assets/css/css-particles.css');
 
 /* Global Styles */
 body, html {
@@ -25,7 +26,7 @@ body, html {
         rgba(43, 43, 43, 0.95) 100%);
     backdrop-filter: blur(10px) saturate(180%);
     padding: 15px 20px;
-    z-index: 10;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
