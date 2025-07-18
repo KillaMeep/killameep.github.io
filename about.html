@@ -138,9 +138,18 @@
             max-width: 800px; /* Limit width for better readability */
             margin: 0 auto; /* Center the container */
             padding: 20px; /* Add some padding */
-            background: rgba(34, 34, 34, 0.9); /* Darker semi-transparent background for readability */
+            background: 
+                linear-gradient(135deg, 
+                    rgba(15, 15, 35, 0.95) 0%, 
+                    rgba(25, 25, 60, 0.9) 50%, 
+                    rgba(15, 15, 35, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 43, 226, 0.2);
             border-radius: 16px; /* More pronounced rounded corners */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.7),
+                0 0 20px rgba(138, 43, 226, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         /* Mobile-optimized animations */

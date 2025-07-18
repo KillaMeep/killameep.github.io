@@ -22,14 +22,20 @@
             text-decoration: none; /* No underline */
         }
         .footer-link {
-            color: #ffda79;
+            color: #e6e6ff;
             text-decoration: none;
         }
         body {
-            background-color: #2b2b2b; /* Set background to dark grey */
+            font-family: 'Poppins', sans-serif;
+            background: 
+                radial-gradient(ellipse at center, #0a0a2e 0%, #16213e 50%, #000000 100%),
+                radial-gradient(ellipse at 25% 75%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 25%, rgba(0, 191, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 20, 147, 0.1) 0%, transparent 50%);
             margin: 0; /* Remove default margin */
             min-height: 100vh; /* Ensure body takes full height */
             overflow: auto; /* Allow scrolling */
+            color: #ffffff;
         }
 
         #sky {
@@ -48,14 +54,36 @@
             max-width: 800px; /* Limit width for better readability */
             margin: 0 auto; /* Center the container */
             padding: 20px; /* Add some padding */
-            background: rgba(34, 34, 34, 0.9); /* Darker semi-transparent background for readability */
+            background: 
+                linear-gradient(135deg, 
+                    rgba(15, 15, 35, 0.95) 0%, 
+                    rgba(25, 25, 60, 0.9) 50%, 
+                    rgba(15, 15, 35, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 43, 226, 0.2);
             border-radius: 16px; /* More pronounced rounded corners */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.7),
+                0 0 20px rgba(138, 43, 226, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
             text-align: center; /* Center align text */
         }
 
         h2 {
-            color: #ffda79; /* Heading color */
+            color: #e6e6ff;
+            background: linear-gradient(45deg, rgba(138, 43, 226, 0.9), rgba(0, 191, 255, 0.9), rgba(255, 20, 147, 0.9));
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: prismaticShift 4s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+        }
+
+        @keyframes prismaticShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .card-container {
@@ -66,20 +94,52 @@
         }
 
         .card {
-            background: rgba(255, 218, 121, 0.2); /* Light background for cards */
-            border: 2px solid #ffda79; /* Border color */
-            border-radius: 10px; /* Rounded corners */
-            padding: 20px; /* Padding inside the card */
-            margin: 10px; /* Margin around each card */
-            width: 150px; /* Fixed width for cards */
-            text-align: center; /* Center text in cards */
-            transition: transform 0.3s, background 0.3s; /* Smooth transitions */
-            cursor: pointer; /* Pointer cursor for cards */
+            background: 
+                linear-gradient(135deg, 
+                    rgba(138, 43, 226, 0.15) 0%, 
+                    rgba(0, 191, 255, 0.1) 50%, 
+                    rgba(255, 20, 147, 0.15) 100%);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px;
+            width: 150px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(138, 43, 226, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(138, 43, 226, 0.05), 
+                transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card:hover {
-            transform: scale(1.05); /* Slight scale effect on hover */
-            background: rgba(255, 218, 121, 0.3); /* Darker background on hover */
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(138, 43, 226, 0.6);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(138, 43, 226, 0.3);
         }
 
         .icon {
@@ -101,6 +161,16 @@
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
     <!-- Starry Sky Animation -->
     <div id="root"></div>
 
@@ -111,27 +181,27 @@
         
         <div class="card-container fade-in">
             <div class="card" onclick="window.location.href='choose.html'">
-                <img class="icon" src="https://img.icons8.com/ios-filled/50/ffda79/quiz.png" alt="Quiz Icon"/>
+                <img class="icon" src="https://img.icons8.com/ios-filled/50/8a2be2/quiz.png" alt="Quiz Icon"/>
                 <div>A Very Important Quiz</div>
             </div>
             <div class="card" onclick="window.location.href='rick.html'">
-                <img class="icon" src="https://img.icons8.com/ios-filled/50/ffda79/music.png" alt="Music Icon"/>
+                <img class="icon" src="https://img.icons8.com/ios-filled/50/8a2be2/music.png" alt="Music Icon"/>
                 <div>A Forbidden Song</div>
             </div>
             <div class="card" onclick="window.location.href='nyan.html'">
-                <img class="icon" src="https://img.icons8.com/ios-filled/50/ffda79/cat.png" alt="Cat Icon"/>
+                <img class="icon" src="https://img.icons8.com/ios-filled/50/8a2be2/cat.png" alt="Cat Icon"/>
                 <div>An Ancient Tribute</div>
             </div>
             <div class="card" onclick="window.location.href='facts.html'">
-                <img class="icon" src="https://img.icons8.com/ios-filled/50/ffda79/brain.png" alt="Brain Icon"/>
+                <img class="icon" src="https://img.icons8.com/ios-filled/50/8a2be2/brain.png" alt="Brain Icon"/>
                 <div>A Useless Fact</div>
             </div>
             <div class="card" onclick="window.location.href='404.html'">
-                <img class="icon" src="https://img.icons8.com/ios-filled/50/ffda79/error.png" alt="404 Icon"/>
+                <img class="icon" src="https://img.icons8.com/ios-filled/50/8a2be2/error.png" alt="404 Icon"/>
                 <div>404 Page</div><p>(It looks cool)</p>
             </div>
             <div class="card" onclick="window.location.href='index.html'">
-                <img class="icon" src="https://img.icons8.com/ios-filled/50/ffda79/home.png" alt="Home Icon"/>
+                <img class="icon" src="https://img.icons8.com/ios-filled/50/8a2be2/home.png" alt="Home Icon"/>
                 <div>Go Back Home</div>
             </div>
         </div>
@@ -205,5 +275,8 @@
 
         ReactDOM.render(<StarrySky />, document.getElementById("root"));
     </script>
+
+    <!-- Active Navigation Script -->
+    <script src="assets/js/active-nav.js"></script>
 </body>
 </html>

@@ -373,7 +373,13 @@ body, html {
 .footer {
     text-align: center; /* Center footer content */
     padding: 20px; /* Add padding for footer content */
-    background-color: rgba(43, 43, 43, 0.5); /* More transparent background */
+    background: 
+        linear-gradient(135deg, 
+            rgba(15, 15, 35, 0.3) 0%, 
+            rgba(25, 25, 60, 0.2) 50%, 
+            rgba(15, 15, 35, 0.3) 100%);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(138, 43, 226, 0.1);
     position: relative; /* Keep footer above particles */
     z-index: 2; /* Ensure footer content is above particles */
 }
