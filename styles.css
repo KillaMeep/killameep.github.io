@@ -132,7 +132,7 @@ body, html {
     box-shadow: 
         0 8px 32px rgba(138, 43, 226, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transform: scaleY(1.01);
+    /* Removed transform to prevent layout shift */
 }
 
 /* Smooth navbar hide animation with liquid effect */
@@ -160,6 +160,8 @@ body, html {
     transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
     position: relative;
     animation: logoShimmer 4s ease-in-out infinite alternate;
+    /* Ensure proper text rendering */
+    -webkit-text-fill-color: transparent;
 }
 
 @keyframes logoShimmer {
@@ -179,8 +181,8 @@ body, html {
 
 .navbar .logo:hover {
     text-shadow: 0 0 30px rgba(138, 43, 226, 0.8);
-    transform: scale(1.08) translateY(-2px);
-    filter: drop-shadow(0 4px 8px rgba(138, 43, 226, 0.3));
+    transform: translateY(-1px); /* Reduced transform to prevent layout shift */
+    /* Removed filter that was causing blur */
 }
 
 /* Space-themed Navigation Links */
@@ -189,11 +191,13 @@ body, html {
     list-style: none;
     margin-left: 0;
     padding: 0;
-    gap: 25px;
+    gap: 20px; /* Reduced gap to prevent overlap */
 }
 
 .navbar .nav-links li {
     position: relative;
+    /* Prevent layout shifts during hover */
+    min-width: fit-content;
 }
 
 /* Liquid metal space-themed link styles - transparent */
@@ -233,6 +237,7 @@ body, html {
         transparent 100%);
     transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
     z-index: -1;
+    pointer-events: none; /* Prevent interference with hover */
 }
 
 /* Cosmic glow effect */
@@ -251,6 +256,7 @@ body, html {
     transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
     transform: translate(-50%, -50%);
     z-index: -1;
+    pointer-events: none; /* Prevent interference with hover */
 }
 
 /* Enhanced hover effects with liquid metal animation - transparent */
@@ -261,11 +267,11 @@ body, html {
         rgba(0, 191, 255, 0.1) 50%, 
         rgba(255, 20, 147, 0.15) 100%);
     border: 1px solid rgba(138, 43, 226, 0.3);
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-2px); /* Removed scale to prevent layout shift */
     box-shadow: 
-        0 8px 25px rgba(138, 43, 226, 0.15),
+        0 6px 20px rgba(138, 43, 226, 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
 .nav-links li a:hover::before {
