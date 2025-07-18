@@ -1,3 +1,9 @@
+/* Import modular stylesheets */
+@import url('./assets/css/animations.css');
+@import url('./assets/css/backgrounds.css');
+@import url('./assets/css/components.css');
+@import url('./assets/css/layout.css');
+
 /* Global Styles */
 body, html {
     margin: 0;
@@ -8,310 +14,149 @@ body, html {
     background-color: #2b2b2b; /* Background color */
 }
 
-/* Navbar Styles */
-
+/* Refined Navbar Styles with Subtle Animations */
 .navbar {
-    position: static;
+    position: sticky;
     top: 0;
     width: 100%;
-    background: none; /* Darker background */
-    padding: 15px 20px; /* Adjusted padding */
+    background: linear-gradient(135deg, 
+        rgba(43, 43, 43, 0.95) 0%, 
+        rgba(31, 31, 31, 0.98) 50%, 
+        rgba(43, 43, 43, 0.95) 100%);
+    backdrop-filter: blur(10px) saturate(180%);
+    padding: 15px 20px;
     z-index: 10;
-    display: flex; /* Use flexbox for alignment */
-    justify-content: space-between; /* Space out logo and links */
-    align-items: center; /* Center items vertically */
-    transition: transform 0.3s ease; /* Smooth background transition */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
-    position: sticky; /* Fixed at the top */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(255, 218, 121, 0.2);
+    /* Removed problematic clip-path and liquid morphing */
 }
-/* Add this class to hide the navbar */
+
+/* Subtle navbar hover state */
+.navbar:hover {
+    background: linear-gradient(135deg, 
+        rgba(43, 43, 43, 0.98) 0%, 
+        rgba(31, 31, 31, 1) 50%, 
+        rgba(43, 43, 43, 0.98) 100%);
+    border-bottom: 1px solid rgba(255, 218, 121, 0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Smooth navbar hide animation */
 .navbar.hidden {
-    transform: translateY(-100%); /* Move the navbar up */
+    transform: translateY(-100%);
+    opacity: 0.8;
 }
 
-.hidden-link:hover {
-    background: linear-gradient(
-        to right,
-        #6666ff,
-        #0099ff,
-        #00ff00,
-        #ff3399,
-        #6666ff
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: rainbow_animation 6s ease-in-out infinite;
-    background-size: 400% 100%;
-    transition: background 0.3s ease-in-out; /* Smooth transition when hovered */
-}
-
-.hidden-link {
-    color: #fff; /* Footer link color */
-    text-decoration: none; /* No underline */
-}
-
-@keyframes rainbow_animation {
-    0%,
-    100% {
-        background-position: 0 0;
-    }
-    50% {
-        background-position: 100% 0;
-    }
-}
-
-
+/* Refined logo with subtle glow */
 .navbar .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #ffda79; /* Logo color */
-    transition: color 0.3s ease; /* Smooth color transition */
+    font-size: 28px;
+    font-weight: 900;
+    color: #ffda79;
+    text-shadow: 0 0 10px rgba(255, 218, 121, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    /* Removed complex animations that were causing issues */
 }
 
-/* Navbar Links */
+.navbar .logo:hover {
+    text-shadow: 0 0 15px rgba(255, 218, 121, 0.5);
+    transform: scale(1.05);
+}
+
+/* Stable Navbar Links */
 .navbar .nav-links {
     display: flex;
     list-style: none;
-    margin-left: 0; /* Push links to the right */
-    padding: 0; /* Remove padding to avoid overflow */
+    margin-left: 0;
+    padding: 0;
+    gap: 30px;
 }
 
 .navbar .nav-links li {
-    margin-left: 20px; /* Space between links */
-    position: relative; /* For pseudo-element positioning */
+    position: relative;
 }
 
-/* Link Styles */
+/* Refined link styles with stable animations */
 .nav-links li a {
-    color: #fff; /* Default link color */
-    text-decoration: none; /* Remove underline from links */
-    padding: 5px 0; /* Add vertical padding */
-    transition: color 0.3s ease; /* Smooth color transition */
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    /* Removed problematic shimmer animations */
 }
 
-/* Change link color on hover */
+/* Clean hover effects */
 .nav-links li a:hover {
-    color: #ffda79; /* Change color on hover */
+    color: #ffda79;
+    background: rgba(255, 218, 121, 0.1);
+    box-shadow: 0 0 15px rgba(255, 218, 121, 0.2);
+    transform: translateY(-2px);
+    text-shadow: 0 0 8px rgba(255, 218, 121, 0.6);
 }
 
-/* Adding a pseudo-element for a nice underline effect */
+/* Simple underline effect */
 .nav-links li a::after {
     content: '';
-    display: block;
-    height: 2px; /* Height of the underline */
-    background: #ffda79; /* Underline color */
-    width: 0%; /* Start with no width */
-    transition: width 0.3s ease; /* Smooth transition */
     position: absolute;
-    left: 50%; /* Position the underline */
-    bottom: -5px; /* Position it below the text */
-    transform: translateX(-50%); /* Center it below the text */
+    bottom: -2px;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #ffda79, #ffd95c);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    border-radius: 1px;
 }
 
-/* Expand the underline on hover */
 .nav-links li a:hover::after {
-    width: 100%; /* Expand underline to full width on hover */
+    width: 80%;
 }
 
-/* Particle Background */
-#particles-js {
-    position: fixed; /* Position fixed to cover the entire view */
-    top: 0;
-    left: 0;
+/* Fixed Mobile Navigation */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 10px;
+        min-height: auto;
+        position: relative;
+    }
+    
+    .navbar .logo {
+        font-size: 24px;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+    
+    .navbar .nav-links {
+        gap: 15px;
+        margin: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-links li a {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Ensure navbar doesn't break layout */
+.navbar {
+    box-sizing: border-box;
+    min-height: 60px;
     width: 100%;
-    height: 100%; /* Occupy full height of the viewport */
-    z-index: 1; /* Ensure particles are behind the content */
+    overflow: hidden;
 }
-
-/* Section Styles */
-.section {
-    padding-top: 100px; /* Add space to ensure content is not covered by the fixed navbar */
-}
-
-/* Landing Section Styles */
-.landing-section {
-    position: relative; /* Position relative for stacking context */
-    height: calc(100vh - 60px); /* Full viewport height minus navbar height */
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
-    overflow: hidden; /* Hide overflow for the particles */
-    z-index: 2; /* Ensure it appears above particles */
-}
-
-.landing-content {
-    position: relative; /* Keep content above the particles */
-    z-index: 2; /* Ensure content is above the particles */
-}
-
-.landing-section h1 {
-    font-size: 4rem;
-}
-
-.landing-section p {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-
-.landing-section .btn {
-    padding: 10px 20px;
-    background-color: #ffda79; /* Button color */
-    color: #2b2b2b; /* Button text color */
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    text-decoration: none;
-    margin-top: 20px; /* Add some space above the button */
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
-}
-
-.landing-section .btn:hover {
-    background-color: #ffd95c; /* Darker button on hover */
-    transform: scale(1.05); /* Slight scale effect on hover */
-}
-
-/* Contact Section Styles */
-.contact-section {
-    padding: 100px 20px; /* Spacing for contact section */
-    text-align: center; /* Center text */
-    position: relative; /* For stacking context */
-    z-index: 2; /* Ensure above particles */
-}
-
-.contact-section h2 {
-    font-size: 36px;
-    color: #ffda79; /* Highlight color */
-    margin-bottom: 20px; /* Spacing below heading */
-}
-
-.contact-section p {
-    font-size: 18px; /* Font size for paragraph */
-    margin-bottom: 40px; /* Spacing below paragraph */
-    color: #ddd; /* Light gray text */
-}
-
-.contact-methods {
-    display: flex;
-    flex-direction: column; /* Stack vertically */
-    align-items: center; /* Center items */
-    gap: 20px; /* Space between cards */
-}
-
-.contact-card {
-    background: rgba(31, 31, 31, 0.8); /* Dark background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
-    padding: 20px; /* Padding for card */
-    width: 300px; /* Fixed width for cards */
-    transition: transform 0.3s; /* Animation on hover */
-}
-
-.contact-card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Deeper shadow on hover */
-}
-
-.contact-card h3 {
-    font-size: 24px; /* Heading size for card */
-    color: #ffda79; /* Highlight color */
-    margin-bottom: 10px; /* Spacing below heading */
-}
-
-.contact-card p {
-    font-size: 16px; /* Font size for paragraph */
-    color: #ccc; /* Light gray text */
-}
-
-.contact-card a {
-    color: #ffda79; /* Link color */
-    text-decoration: none; /* Remove underline */
-    transition: color 0.3s; /* Transition for color change */
-}
-
-.contact-card a:hover {
-    color: #ffd95c; /* Darker on hover */
-}
-
-/* About Section Styles */
-.about-section {
-    padding-top: 100px; /* Space for the fixed navbar */
-    padding-bottom: 50px; /* Space at the bottom */
-    background: linear-gradient(to bottom right, rgba(43, 43, 43, 0.8), rgba(31, 31, 31, 0.8)); /* Gradient background */
-    min-height: calc(100vh - 60px); /* Full height minus navbar */
-}
-
-.container {
-    max-width: 800px; /* Limit width for better readability */
-    margin: 0 auto; /* Center align */
-    padding: 20px; /* Add padding */
-    background: rgba(31, 31, 31, 0.9); /* Slightly transparent background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
-    animation: fadeIn 1s ease; /* Fade-in animation */
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Individual Fade-In Effect */
-.fade-in {
-    opacity: 0;
-    animation: fadeIn 1s forwards; /* Fade-in animation */
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px); /* Optional: add a small upward movement */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Individual Fade-In Effect */
-.fade-in-item {
-    opacity: 0; /* Start hidden */
-    animation: fadeIn 1s forwards; /* Apply the fade-in animation */
-}
-
-
-
-/* Delay each fade-in effect */
-.fade-in:nth-child(1) { animation-delay: 0.3s; }
-.fade-in:nth-child(2) { animation-delay: 0.6s; }
-.fade-in:nth-child(3) { animation-delay: 0.9s; }
-.fade-in:nth-child(4) { animation-delay: 1.2s; }
-.fade-in:nth-child(5) { animation-delay: 1.5s; }
-/* Delay each fade-in effect */
-.fade-in-item:nth-child(1) { animation-delay: 1.6s; }
-.fade-in-item:nth-child(2) { animation-delay: 1.8s; }
-.fade-in-item:nth-child(3) { animation-delay: 2.0s; }
-.fade-in-item:nth-child(4) { animation-delay: 2.2s; }
-.fade-in-item:nth-child(5) { animation-delay: 2.4s; }
-.fade-in-item:nth-child(6) { animation-delay: 2.6s; }
-.fade-in-item:nth-child(7) { animation-delay: 2.8s; }
-/* Back to the other elements */
-.fade-in:nth-child(6) { animation-delay: 3.0s; }
-.fade-in:nth-child(7) { animation-delay: 3.3s; }
-.fade-in:nth-child(8) { animation-delay: 3.6s; }
-.fade-in:nth-child(9) { animation-delay: 3.9s; }
-.fade-in:nth-child(10) { animation-delay: 4.0s; }
-.fade-in:nth-child(11) { animation-delay: 4.3s; }
 
 /* Footer Styles */
 .footer {
@@ -324,6 +169,97 @@ body, html {
 
 .footer-content {
     position: relative; /* Keep footer content above the particles */
+}
+
+/* Responsive Design for Enhanced Animations */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 15px;
+        animation: none; /* Disable liquid morph on mobile for performance */
+        clip-path: none;
+    }
+    
+    .navbar .logo {
+        font-size: 24px;
+        animation: neonPulse 3s ease-in-out infinite; /* Simpler animation on mobile */
+    }
+    
+    .nav-links li a {
+        padding: 6px 12px;
+        font-size: 14px;
+        animation: none; /* Disable holographic shimmer on mobile */
+    }
+    
+    .landing-section h1 {
+        font-size: 2.5rem;
+        animation: prismaticShift 6s ease-in-out infinite; /* Slower animation on mobile */
+    }
+    
+    h2 {
+        font-size: 28px;
+        animation: prismaticShift 6s ease-in-out infinite;
+    }
+    
+    .btn, .btn-refresh {
+        padding: 10px 18px;
+        font-size: 1rem;
+    }
+    
+    /* Reduce cyberpunk effects on mobile */
+    .cyber-scan-line {
+        display: none;
+    }
+    
+    .ambient-orb {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .card {
+        width: 90%;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar .nav-links {
+        gap: 15px;
+    }
+    
+    .nav-links li a {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+    
+    .landing-section h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    /* Disable complex animations on very small screens */
+    * {
+        animation-duration: 0.1s !important;
+    }
+    
+    .prismatic-text, .nav-links li a, .btn {
+        animation: none !important;
+    }
+}
+
+/* High-performance mode for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .cyber-scan-line, .ambient-orb {
+        display: none;
+    }
 }
 
 /* Media Queries for Mobile */
@@ -358,5 +294,33 @@ body, html {
 
     .contact-card {
         width: 90%; /* Make cards responsive */
+    }
+
+    .card {
+        width: 100%; /* Full width for cards on small screens */
+    }
+
+    .card-title {
+        font-size: 18px; /* Smaller title size */
+    }
+
+    .card-text {
+        font-size: 13px; /* Smaller text size */
+    }
+
+    .section {
+        padding: 30px 10px; /* Reduced padding for smaller screens */
+    }
+
+    .dot {
+        width: 2vw; /* Further increase dot size for very small screens */
+        height: 2vw; /* Further increase dot size for very small screens */
+        max-width: 5px; /* Cap size on small screens */
+        max-height: 5px; /* Cap size on small screens */
+    }
+
+    /* Adjust spacing for small screens */
+    #dot-matrix {
+        gap: 4vw; /* Increase gap between dots on smaller screens */
     }
 }
