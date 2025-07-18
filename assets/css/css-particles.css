@@ -1,0 +1,67 @@
+/* Ultra-lightweight CSS-only particle effects */
+.css-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.css-particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: cssParticleFloat 20s linear infinite;
+}
+
+.css-particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 25s; }
+.css-particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 22s; }
+.css-particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 28s; }
+.css-particle:nth-child(4) { left: 40%; animation-delay: 6s; animation-duration: 24s; }
+.css-particle:nth-child(5) { left: 50%; animation-delay: 8s; animation-duration: 26s; }
+.css-particle:nth-child(6) { left: 60%; animation-delay: 10s; animation-duration: 23s; }
+.css-particle:nth-child(7) { left: 70%; animation-delay: 12s; animation-duration: 27s; }
+.css-particle:nth-child(8) { left: 80%; animation-delay: 14s; animation-duration: 21s; }
+.css-particle:nth-child(9) { left: 90%; animation-delay: 16s; animation-duration: 25s; }
+.css-particle:nth-child(10) { left: 15%; animation-delay: 18s; animation-duration: 29s; }
+
+@keyframes cssParticleFloat {
+    0% {
+        transform: translateY(100vh) translateX(0px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-10vh) translateX(30px);
+        opacity: 0;
+    }
+}
+
+/* Ultra-performance mode - only for very low-end devices */
+@media (max-width: 768px) and (max-height: 1024px) {
+    .css-particle:nth-child(n+6) {
+        display: none; /* Hide extra particles on mobile */
+    }
+    
+    .css-particle {
+        animation-duration: 30s; /* Slower animations for less CPU usage */
+    }
+}
+
+/* Disable animations on very low-end devices */
+@media (prefers-reduced-motion: reduce) {
+    .css-particle {
+        animation: none;
+        opacity: 0.2;
+    }
+}
