@@ -106,12 +106,12 @@ h2::after {
     display: block;
     width: 60px;
     height: 4px;
-    background: linear-gradient(90deg, #ffda79, #ffd95c, #ffda79);
+    background: linear-gradient(90deg, rgba(138, 43, 226, 0.8), rgba(0, 191, 255, 0.9), rgba(255, 20, 147, 0.8));
     background-size: 200% 100%;
     margin: 15px auto;
     border-radius: 2px;
     animation: prismaticShift 3s ease-in-out infinite;
-    box-shadow: 0 0 10px rgba(255, 218, 121, 0.5);
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
 }
 
 h2::before {
@@ -123,7 +123,7 @@ h2::before {
     bottom: 0;
     background: linear-gradient(90deg, 
         transparent, 
-        rgba(255, 218, 121, 0.1), 
+        rgba(138, 43, 226, 0.1), 
         transparent);
     background-size: 200% 100%;
     animation: holographicShimmer 3s linear infinite;
@@ -132,14 +132,14 @@ h2::before {
 }
 
 h3 {
-    color: #ffda79;
-    background: linear-gradient(45deg, #ffda79, #ffd95c);
+    color: #e6e6ff;
+    background: linear-gradient(45deg, rgba(138, 43, 226, 0.9), rgba(0, 191, 255, 0.9), rgba(255, 20, 147, 0.9));
     background-size: 200% 200%;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     animation: prismaticShift 5s ease-in-out infinite;
-    text-shadow: 0 0 15px rgba(255, 218, 121, 0.3);
+    text-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
     font-weight: 600;
 }
 
