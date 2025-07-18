@@ -13,3 +13,4 @@ Disallow: /dogs.html
 Disallow: /hidden.html
 Disallow: /nyan.html
 Disallow: /choose.html
+Disalow: /cats.html
