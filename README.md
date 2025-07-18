@@ -1,15 +1,9 @@
 # KillaMeep Portfolio
 
-Personal portfolio website showcasing my work as a Software Developer, Process Automation Engineer, and AI Solutions Designer.
+Personal portfolio website showcasing my work as a Software Developer.
 
-Live at: [killameep.github.io](https://killameep.github.io)
+Live at: [killameep.com](https://killameep.com)
 
-## 🎮 Easter Eggs
-
-- Hidden page directory accessible through footer link
-- Rick roll page (rick.html)
-- Nyan cat tribute (nyan.html)
-- Interactive cat vs dog preference selector
 
 ## 📈 SEO Features
 
@@ -21,11 +15,8 @@ Live at: [killameep.github.io](https://killameep.github.io)
 
 ## 🔮 Future Enhancements
 
-- [ ] Add blog section
 - [ ] Implement dark/light theme toggle
-- [ ] Add more interactive projects
-- [ ] Include testimonials section
-- [ ] Add multi-language support
+- [ ] Add more projects
 
 ## 📄 License
 
@@ -36,8 +27,8 @@ This project is open source and available under the [MIT License](LICENSE).
 **KillaMeep**
 - GitHub: [@KillaMeep](https://github.com/KillaMeep)
 - Discord: @KillaMeep
-- Website: [killameep.github.io](https://killameep.github.io)
+- Website: [killameep.com](https://killameep.com)
 
 ---
 
-*Built with ❤️ and lots of ☕*
+*Built with ❤️*
