@@ -1,0 +1,623 @@
+/* Main Stylesheet - Space Portfolio Theme */
+/* Import modular stylesheets */
+@import url('./animations.css');
+@import url('./backgrounds.css');
+@import url('./components.css');
+@import url('./layout.css');
+@import url('./css-particles.css');
+
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background-color: #2b2b2b; /* Background color */
+}
+
+/* Space-Themed Liquid Metal Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: 
+        linear-gradient(135deg, 
+            rgba(15, 15, 35, 0.3) 0%, 
+            rgba(25, 25, 60, 0.4) 25%,
+            rgba(35, 35, 80, 0.3) 50%,
+            rgba(25, 25, 60, 0.4) 75%,
+            rgba(15, 15, 35, 0.3) 100%);
+    backdrop-filter: blur(20px) saturate(150%);
+    padding: 15px 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    box-sizing: border-box;
+    border-bottom: 1px solid transparent;
+    border-image: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(138, 43, 226, 0.3) 20%, 
+        rgba(0, 191, 255, 0.4) 40%, 
+        rgba(255, 20, 147, 0.3) 60%, 
+        rgba(138, 43, 226, 0.3) 80%, 
+        transparent 100%) 1;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Liquid metal flowing animation - more subtle */
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(138, 43, 226, 0.05) 25%, 
+        rgba(0, 191, 255, 0.08) 50%, 
+        rgba(255, 20, 147, 0.05) 75%, 
+        transparent 100%);
+    animation: liquidFlow 8s ease-in-out infinite;
+    z-index: -1;
+}
+
+/* Cosmic particles in navbar - more subtle */
+.navbar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.1), transparent),
+        radial-gradient(1px 1px at 30% 80%, rgba(138, 43, 226, 0.15), transparent),
+        radial-gradient(1px 1px at 70% 40%, rgba(0, 191, 255, 0.1), transparent),
+        radial-gradient(1px 1px at 90% 70%, rgba(255, 20, 147, 0.15), transparent);
+    animation: cosmicDrift 15s linear infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes liquidFlow {
+    0%, 100% { 
+        transform: translateX(-100%) skewX(0deg); 
+        opacity: 0; 
+    }
+    25% { 
+        transform: translateX(-50%) skewX(2deg); 
+        opacity: 0.8; 
+    }
+    50% { 
+        transform: translateX(0%) skewX(0deg); 
+        opacity: 1; 
+    }
+    75% { 
+        transform: translateX(50%) skewX(-2deg); 
+        opacity: 0.8; 
+    }
+}
+
+@keyframes cosmicDrift {
+    0% { transform: translateX(0px) translateY(0px); }
+    25% { transform: translateX(-5px) translateY(-2px); }
+    50% { transform: translateX(5px) translateY(2px); }
+    75% { transform: translateX(-3px) translateY(-1px); }
+    100% { transform: translateX(0px) translateY(0px); }
+}
+
+/* Enhanced navbar hover state with liquid metal effect - transparent */
+.navbar:hover {
+    background: 
+        linear-gradient(135deg, 
+            rgba(20, 20, 45, 0.4) 0%, 
+            rgba(35, 35, 75, 0.5) 25%,
+            rgba(45, 45, 95, 0.4) 50%,
+            rgba(35, 35, 75, 0.5) 75%,
+            rgba(20, 20, 45, 0.4) 100%);
+    border-image: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(138, 43, 226, 0.4) 20%, 
+        rgba(0, 191, 255, 0.6) 40%, 
+        rgba(255, 20, 147, 0.4) 60%, 
+        rgba(138, 43, 226, 0.4) 80%, 
+        transparent 100%) 1;
+    box-shadow: 
+        0 8px 32px rgba(138, 43, 226, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* Removed transform to prevent layout shift */
+}
+
+/* Smooth navbar hide animation with liquid effect */
+.navbar.hidden {
+    transform: translateY(-100%) scaleY(0.8);
+    opacity: 0.6;
+    filter: blur(2px);
+}
+
+/* Space-themed logo with liquid metal glow */
+.navbar .logo {
+    font-size: 28px;
+    font-weight: 900;
+    background: linear-gradient(45deg, 
+        #ffffff 0%, 
+        #8a2be2 25%, 
+        #00bfff 50%, 
+        #ff1493 75%, 
+        #ffffff 100%);
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    position: relative;
+    animation: logoShimmer 4s ease-in-out infinite alternate;
+    /* Ensure proper text rendering */
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes logoShimmer {
+    0% { 
+        background-position: 0% 50%; 
+        text-shadow: 0 0 20px rgba(138, 43, 226, 0.5); 
+    }
+    50% { 
+        background-position: 50% 50%; 
+        text-shadow: 0 0 25px rgba(0, 191, 255, 0.6); 
+    }
+    100% { 
+        background-position: 100% 50%; 
+        text-shadow: 0 0 20px rgba(255, 20, 147, 0.5); 
+    }
+}
+
+.navbar .logo:hover {
+    text-shadow: 0 0 30px rgba(138, 43, 226, 0.8);
+    transform: translateY(-1px); /* Reduced transform to prevent layout shift */
+    /* Removed filter that was causing blur */
+}
+
+/* Space-themed Navigation Links */
+.navbar .nav-links {
+    display: flex;
+    list-style: none;
+    margin-left: 0;
+    padding: 0;
+    gap: 20px; /* Reduced gap to prevent overlap */
+}
+
+.navbar .nav-links li {
+    position: relative;
+    /* Prevent layout shifts during hover */
+    min-width: fit-content;
+}
+
+/* Liquid metal space-themed link styles - transparent */
+.nav-links li a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    padding: 10px 18px !important;
+    border-radius: 25px !important;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1) !important;
+    position: relative !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.2px !important;
+    font-size: 14px !important;
+    background: linear-gradient(135deg, 
+        rgba(15, 15, 35, 0.2) 0%, 
+        rgba(25, 25, 60, 0.15) 50%, 
+        rgba(15, 15, 35, 0.2) 100%) !important;
+    border: 1px solid rgba(138, 43, 226, 0.15) !important;
+    overflow: hidden !important;
+    display: inline-block !important;
+    /* Removed backdrop-filter that was causing the blur capsule */
+}
+
+/* Liquid metal flow effect for links */
+.nav-links li a::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(138, 43, 226, 0.2) 25%, 
+        rgba(0, 191, 255, 0.3) 50%, 
+        rgba(255, 20, 147, 0.2) 75%, 
+        transparent 100%) !important;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1) !important;
+    z-index: -1 !important;
+    pointer-events: none !important; /* Prevent interference with hover */
+}
+
+/* Cosmic glow effect */
+.nav-links li a::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: radial-gradient(circle, 
+        rgba(138, 43, 226, 0.4) 0%, 
+        rgba(0, 191, 255, 0.3) 40%, 
+        transparent 70%) !important;
+    border-radius: 50% !important;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1) !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: -1 !important;
+    pointer-events: none !important; /* Prevent interference with hover */
+}
+
+/* Enhanced hover effects with liquid metal animation - transparent */
+.nav-links li a:hover {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, 
+        rgba(138, 43, 226, 0.15) 0%, 
+        rgba(0, 191, 255, 0.1) 50%, 
+        rgba(255, 20, 147, 0.15) 100%) !important;
+    border: 1px solid rgba(138, 43, 226, 0.3) !important;
+    transform: translateY(-2px) !important; /* Removed scale to prevent layout shift */
+    box-shadow: 
+        0 6px 20px rgba(138, 43, 226, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Active page indicator - space-themed */
+.nav-links li a.active {
+    background: linear-gradient(135deg, 
+        rgba(138, 43, 226, 0.25) 0%, 
+        rgba(0, 191, 255, 0.2) 50%, 
+        rgba(255, 20, 147, 0.25) 100%);
+    border: 1px solid rgba(138, 43, 226, 0.5);
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(138, 43, 226, 0.8);
+    box-shadow: 
+        0 4px 15px rgba(138, 43, 226, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 0 20px rgba(138, 43, 226, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Active page cosmic glow animation */
+.nav-links li a.active::before {
+    left: 0;
+    opacity: 0.8;
+    animation: activeGlow 3s ease-in-out infinite alternate;
+}
+
+.nav-links li a.active::after {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    animation: activePulse 2s ease-in-out infinite;
+}
+
+@keyframes activeGlow {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+@keyframes activePulse {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.8); }
+    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.nav-links li a:hover::before {
+    left: 0 !important;
+    animation: liquidPulse 1.5s ease-in-out infinite !important;
+}
+
+.nav-links li a:hover::after {
+    width: 120% !important;
+    height: 120% !important;
+    opacity: 1 !important;
+}
+
+@keyframes liquidPulse {
+    0%, 100% { opacity: 0.6; transform: scaleX(1); }
+    50% { opacity: 1; transform: scaleX(1.1); }
+}
+
+/* Fixed Mobile Navigation */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 10px;
+        min-height: auto;
+        position: relative;
+    }
+    
+    .navbar .logo {
+        font-size: 24px;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+    
+    .navbar .nav-links {
+        gap: 15px;
+        margin: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-links li a {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Ensure navbar doesn't break layout */
+.navbar {
+    box-sizing: border-box;
+    min-height: 60px;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Footer Styles */
+.footer {
+    text-align: center; /* Center footer content */
+    padding: 20px; /* Add padding for footer content */
+    background: 
+        linear-gradient(135deg, 
+            rgba(15, 15, 35, 0.3) 0%, 
+            rgba(25, 25, 60, 0.2) 50%, 
+            rgba(15, 15, 35, 0.3) 100%);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(138, 43, 226, 0.1);
+    position: relative; /* Keep footer above particles */
+    z-index: 2; /* Ensure footer content is above particles */
+}
+
+.footer-content {
+    position: relative; /* Keep footer content above the particles */
+}
+
+/* Responsive Design for Enhanced Animations */
+@media (max-width: 768px) {
+    /* Optimize liquid metal navbar for mobile */
+    .navbar {
+        padding: 10px 15px;
+        animation: none !important;
+        clip-path: none;
+        transform: none !important;
+    }
+    
+    .navbar::before,
+    .navbar::after {
+        animation: none !important;
+        opacity: 0.3 !important;
+    }
+    
+    .navbar:hover {
+        transform: none !important;
+    }
+    
+    .navbar .logo {
+        font-size: 24px;
+        animation: none !important;
+        background: #ffffff !important;
+        background-clip: unset !important;
+        -webkit-background-clip: unset !important;
+        color: #ffffff !important;
+        text-shadow: 0 0 10px rgba(138, 43, 226, 0.3) !important;
+    }
+    
+    .navbar .logo:hover {
+        transform: none !important;
+        filter: none !important;
+    }
+    
+    .nav-links li a {
+        padding: 6px 12px;
+        font-size: 14px;
+        animation: none !important;
+        background: rgba(15, 15, 35, 0.3) !important;
+        border: 1px solid rgba(138, 43, 226, 0.1) !important;
+        /* Removed backdrop-filter for mobile performance */
+    }
+    
+    .nav-links li a::before,
+    .nav-links li a::after {
+        display: none !important;
+    }
+    
+    .nav-links li a:hover {
+        transform: none !important;
+        animation: none !important;
+    }
+    
+    /* Optimize active state for mobile */
+    .nav-links li a.active {
+        background: rgba(138, 43, 226, 0.3) !important;
+        border: 1px solid rgba(138, 43, 226, 0.4) !important;
+        text-shadow: 0 0 8px rgba(138, 43, 226, 0.6) !important;
+        box-shadow: 0 2px 10px rgba(138, 43, 226, 0.2) !important;
+    }
+    
+    .nav-links li a.active::before,
+    .nav-links li a.active::after {
+        animation: none !important;
+        opacity: 0.3 !important;
+    }
+    
+    .landing-section h1 {
+        font-size: 2.5rem;
+        animation: prismaticShift 6s ease-in-out infinite; /* Slower animation on mobile */
+    }
+    
+    h2 {
+        font-size: 28px;
+        animation: prismaticShift 6s ease-in-out infinite;
+    }
+    
+    .btn, .btn-refresh {
+        padding: 10px 18px;
+        font-size: 1rem;
+    }
+    
+    /* Reduce cyberpunk effects on mobile */
+    .cyber-scan-line {
+        display: none;
+    }
+    
+    .ambient-orb {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .card {
+        width: 90%;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar .nav-links {
+        gap: 15px;
+    }
+    
+    .nav-links li a {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+    
+    .landing-section h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    /* Disable complex animations on very small screens */
+    * {
+        animation-duration: 0.1s !important;
+    }
+    
+    .prismatic-text, .nav-links li a, .btn {
+        animation: none !important;
+    }
+    
+    /* Further optimize navbar for very small screens */
+    .navbar::before,
+    .navbar::after {
+        display: none !important;
+    }
+    
+    .nav-links li a::before,
+    .nav-links li a::after {
+        display: none !important;
+    }
+}
+
+/* High-performance mode for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    /* Disable all navbar animations */
+    .navbar,
+    .navbar::before,
+    .navbar::after,
+    .navbar .logo,
+    .nav-links li a,
+    .nav-links li a::before,
+    .nav-links li a::after {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .navbar .logo {
+        background: #ffffff !important;
+        background-clip: unset !important;
+        -webkit-background-clip: unset !important;
+        color: #ffffff !important;
+    }
+    
+    .cyber-scan-line, .ambient-orb {
+        display: none;
+    }
+}
+
+/* Media Queries for Mobile */
+@media (max-width: 500px) {
+    .navbar {
+        padding: 10px 15px; /* Adjust padding for smaller screens */
+    }
+
+    .navbar .nav-links li {
+        margin-left: 10px; /* Reduce space between links */
+    }
+
+    .landing-section h1 {
+        font-size: 2.5rem; /* Reduce heading size */
+    }
+
+    .landing-section p {
+        font-size: 1rem; /* Reduce paragraph size */
+    }
+
+    .landing-section .btn {
+        padding: 8px 15px; /* Adjust button size */
+    }
+
+    .contact-section h2 {
+        font-size: 24px; /* Reduce heading size */
+    }
+
+    .contact-section p {
+        font-size: 16px; /* Reduce paragraph size */
+    }
+
+    .contact-card {
+        width: 90%; /* Make cards responsive */
+    }
+
+    .card {
+        width: 100%; /* Full width for cards on small screens */
+    }
+
+    .card-title {
+        font-size: 18px; /* Smaller title size */
+    }
+
+    .card-text {
+        font-size: 13px; /* Smaller text size */
+    }
+
+    .section {
+        padding: 30px 10px; /* Reduced padding for smaller screens */
+    }
+
+    .dot {
+        width: 2vw; /* Further increase dot size for very small screens */
+        height: 2vw; /* Further increase dot size for very small screens */
+        max-width: 5px; /* Cap size on small screens */
+        max-height: 5px; /* Cap size on small screens */
+    }
+
+    /* Adjust spacing for small screens */
+    #dot-matrix {
+        gap: 4vw; /* Increase gap between dots on smaller screens */
+    }
+}
