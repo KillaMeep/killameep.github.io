@@ -218,7 +218,7 @@ body, html {
         rgba(15, 15, 35, 0.2) 100%);
     border: 1px solid rgba(138, 43, 226, 0.15);
     overflow: hidden;
-    backdrop-filter: blur(10px);
+    /* Removed backdrop-filter that was causing the blur capsule */
 }
 
 /* Liquid metal flow effect for links */
@@ -381,7 +381,7 @@ body, html {
         animation: none !important;
         background: rgba(15, 15, 35, 0.3) !important;
         border: 1px solid rgba(138, 43, 226, 0.1) !important;
-        backdrop-filter: blur(8px) !important;
+        /* Removed backdrop-filter for mobile performance */
     }
     
     .nav-links li a::before,
