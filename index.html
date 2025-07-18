@@ -118,17 +118,6 @@
             0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.1; }
             50% { transform: translateY(-15px) rotate(180deg); opacity: 0.3; }
         }
-
-        /* Particles container with lower z-index */
-        #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
@@ -165,7 +154,6 @@
 
     <!-- Landing Section -->
     <header class="landing-section">
-        <div id="particles-js"></div> <!-- Particle Background inside the landing section -->
         <div class="landing-content">
             <h1 id="typing-effect">Hi, I'm <span class="highlight">KillaMeep</span></h1>
             <p id="role-effect" class="lead">> </p>
