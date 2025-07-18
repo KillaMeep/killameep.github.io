@@ -1,3 +1,10 @@
-# Disallow all web crawlers from accessing the site
+# Robots.txt for KillaMeep Portfolio
 User-agent: *
-Disallow: /
+Allow: /
+
+# Sitemap location (if you have one)
+# Sitemap: https://killameep.github.io/sitemap.xml
+
+# Block specific directories if needed
+# Disallow: /assets/config/
+# Disallow: /hidden.html
