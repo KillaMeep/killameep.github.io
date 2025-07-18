@@ -15,7 +15,7 @@ Live at: [killameep.com](https://killameep.com)
 
 **KillaMeep**
 - GitHub: [@KillaMeep](https://github.com/KillaMeep)
-- Discord: @KillaMeep
+- Discord: [@KillaMeep](https://discord.com/users/247075046659457024)
 - Website: [killameep.com](https://killameep.com)
 
 ---
