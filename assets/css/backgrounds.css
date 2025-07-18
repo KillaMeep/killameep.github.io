@@ -1,0 +1,159 @@
+/* Enhanced Background Effects with Cyberpunk Aesthetics */
+
+/* Particle Background with Enhanced Glow */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    filter: drop-shadow(0 0 5px rgba(255, 218, 121, 0.3));
+}
+
+/* Enhanced Starry Sky Backgrounds */
+#sky {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    z-index: 0;
+    filter: brightness(1.2) contrast(1.1);
+}
+
+#shootingstars {
+    margin: 0;
+    padding: 0;
+    width: 150vh;
+    height: 100vw;
+    position: fixed;
+    overflow: hidden;
+    transform: translatex(calc(50vw - 50%)) translatey(calc(50vh - 50%)) rotate(40deg);
+    z-index: 1;
+}
+
+.wish {
+    height: 2px;
+    width: 100px;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    background-color: white;
+    position: absolute;
+    background: linear-gradient(-20deg, 
+        rgba(255, 218, 121, 1), 
+        rgba(255, 218, 121, 0.8), 
+        rgba(0, 0, 255, 0));
+    filter: drop-shadow(0 0 8px rgba(255, 218, 121, 0.8));
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(255, 218, 121, 0.6);
+}
+
+/* Enhanced Dot Matrix Wave Background */
+#dot-matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(60, 1fr);
+    grid-template-rows: repeat(40, 1fr);
+    z-index: 1;
+    pointer-events: none;
+    gap: 2vw;
+}
+
+.dot {
+    width: .2vw;
+    height: .2vw;
+    max-width: 20px;
+    max-height: 20px;
+    background: radial-gradient(circle, #666666, #444444);
+    border-radius: 50%;
+    opacity: 0.4;
+    transform-origin: center center;
+    transition: all 0.3s ease;
+    animation: particleFloat 6s ease-in-out infinite;
+}
+
+.dot:hover {
+    background: radial-gradient(circle, #ffda79, #666666);
+    opacity: 1;
+    transform: scale(1.5);
+    box-shadow: 0 0 10px rgba(255, 218, 121, 0.6);
+}
+
+/* Cyberpunk Scan Lines */
+.cyber-scan-line {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 218, 121, 0.8), 
+        rgba(255, 218, 121, 1),
+        rgba(255, 218, 121, 0.8),
+        transparent);
+    box-shadow: 
+        0 0 10px rgba(255, 218, 121, 0.8),
+        0 0 20px rgba(255, 218, 121, 0.4);
+    animation: gridScan 8s linear infinite;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* Holographic Grid Overlay */
+.holo-grid::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 218, 121, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 218, 121, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: 0;
+    pointer-events: none;
+    animation: holographicShimmer 10s linear infinite;
+}
+
+/* Ambient Light Orbs */
+.ambient-orb {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+        rgba(255, 218, 121, 0.1) 0%, 
+        rgba(255, 218, 121, 0.05) 50%, 
+        transparent 100%);
+    filter: blur(20px);
+    animation: liquidWave 15s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.ambient-orb:nth-child(1) {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.ambient-orb:nth-child(2) {
+    top: 60%;
+    right: 15%;
+    animation-delay: 5s;
+}
+
+.ambient-orb:nth-child(3) {
+    bottom: 20%;
+    left: 70%;
+    animation-delay: 10s;
+}

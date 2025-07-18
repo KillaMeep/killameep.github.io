@@ -1,0 +1,186 @@
+/* Enhanced Layout Styles with Artsy Effects */
+
+/* Landing Section with Liquid Morphing */
+.landing-section {
+    position: relative;
+    height: calc(100vh - 60px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.landing-content {
+    position: relative;
+    z-index: 2;
+}
+
+.landing-section h1 {
+    font-size: 4rem;
+    background: linear-gradient(45deg, #ffda79, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+    background-size: 600% 600%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: prismaticShift 4s ease-in-out infinite;
+    text-shadow: 0 0 30px rgba(255, 218, 121, 0.5);
+    margin-bottom: 20px;
+}
+
+.landing-section h1 .highlight {
+    background: linear-gradient(45deg, #ffda79, #ffd95c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: neonPulse 2s ease-in-out infinite;
+}
+
+.landing-section p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 218, 121, 0.3);
+}
+
+/* Section Styles */
+.section {
+    padding: 60px 20px;
+    border-radius: 10px;
+    margin: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.section.about-section {
+    padding-top: 100px;
+    padding-bottom: 50px;
+    background: linear-gradient(to bottom right, rgba(43, 43, 43, 0.8), rgba(31, 31, 31, 0.8));
+    min-height: calc(100vh - 60px);
+}
+
+.section.contact-section {
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Grid Layouts */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Enhanced Typography with Cyberpunk Effects */
+h2 {
+    margin-bottom: 20px;
+    font-size: 36px;
+    background: linear-gradient(45deg, #ffda79, #ffd95c, #ffda79);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-align: center;
+    position: relative;
+    animation: prismaticShift 4s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(255, 218, 121, 0.4);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #ffda79, #ffd95c, #ffda79);
+    background-size: 200% 100%;
+    margin: 15px auto;
+    border-radius: 2px;
+    animation: prismaticShift 3s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(255, 218, 121, 0.5);
+}
+
+h2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 218, 121, 0.1), 
+        transparent);
+    background-size: 200% 100%;
+    animation: holographicShimmer 3s linear infinite;
+    border-radius: 4px;
+    z-index: -1;
+}
+
+h3 {
+    color: #ffda79;
+    background: linear-gradient(45deg, #ffda79, #ffd95c);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: prismaticShift 5s ease-in-out infinite;
+    text-shadow: 0 0 15px rgba(255, 218, 121, 0.3);
+    font-weight: 600;
+}
+
+.about-block {
+    color: #dee2ff;
+    text-shadow: 0 0 8px rgba(222, 226, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.about-block:hover {
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(222, 226, 255, 0.6);
+    transform: translateX(5px);
+}
+
+.text-block {
+    color: #efd3d7;
+    line-height: 1.8;
+    transition: all 0.3s ease;
+}
+
+.text-block:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(239, 211, 215, 0.5);
+}
+
+.skills-list {
+    color: #8e9aaf;
+    transition: all 0.3s ease;
+}
+
+.skills-list:hover {
+    color: #b4c6ef;
+    text-shadow: 0 0 8px rgba(180, 198, 239, 0.4);
+}
+
+/* Responsive Contact Methods */
+@media (min-width: 768px) {
+    .contact-methods {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}

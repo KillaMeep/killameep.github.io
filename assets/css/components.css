@@ -1,0 +1,265 @@
+/* Enhanced Component Styles with Artsy Animations */
+
+/* Cyberpunk Button Styles */
+.btn {
+    padding: 12px 24px;
+    background: linear-gradient(45deg, #ffda79, #ffd95c);
+    color: #2b2b2b;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 
+        0 4px 15px rgba(255, 218, 121, 0.3),
+        0 0 20px rgba(255, 218, 121, 0.1);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent);
+    transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #ffd95c, #ffda79);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 8px 25px rgba(255, 218, 121, 0.4),
+        0 0 30px rgba(255, 218, 121, 0.2);
+    text-shadow: 0 0 10px rgba(43, 43, 43, 0.5);
+}
+
+.btn:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* Enhanced refresh button with neon pulse */
+.btn-refresh {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #ffda79, #ff6b6b, #4ecdc4);
+    background-size: 300% 300%;
+    color: #2b2b2b;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    animation: prismaticShift 3s ease-in-out infinite;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 218, 121, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-refresh::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.1), 
+        rgba(255, 255, 255, 0.3), 
+        rgba(255, 255, 255, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn-refresh:hover::after {
+    opacity: 1;
+}
+
+.btn-refresh:hover {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 
+        0 8px 25px rgba(255, 218, 121, 0.5),
+        0 0 40px rgba(255, 218, 121, 0.3);
+    animation: neonPulse 1s ease-in-out infinite;
+}
+
+/* Futuristic Card Styles */
+.card {
+    background: linear-gradient(135deg, 
+        rgba(43, 43, 43, 0.95) 0%, 
+        rgba(31, 31, 31, 0.98) 50%, 
+        rgba(43, 43, 43, 0.95) 100%);
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+    border-radius: 12px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 218, 121, 0.1);
+    padding: 24px;
+    width: calc(33% - 20px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 3;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        transparent, 
+        rgba(255, 218, 121, 0.05), 
+        transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+    opacity: 1;
+    animation: holographicShimmer 2s linear infinite;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 16px 40px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(255, 218, 121, 0.2);
+    border: 1px solid rgba(255, 218, 121, 0.3);
+}
+
+.card-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ffda79;
+    background: linear-gradient(45deg, #ffda79, #ffd95c, #ffda79);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: prismaticShift 4s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(255, 218, 121, 0.3);
+}
+
+.card-text {
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+/* Contact Cards */
+.contact-card {
+    background: rgba(31, 31, 31, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+.contact-card h3 {
+    font-size: 24px;
+    color: #ffda79;
+    margin-bottom: 10px;
+}
+
+.contact-card p {
+    font-size: 16px;
+    color: #ccc;
+}
+
+.contact-card a {
+    color: #ffda79;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-card a:hover {
+    color: #ffd95c;
+}
+
+/* Container Styles */
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(31, 31, 31, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s ease;
+}
+
+/* Image Styles */
+.cat-image, .dog-image {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    margin: 20px 0;
+}
+
+/* Link Styles */
+.hidden-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hidden-link:hover {
+    background: linear-gradient(
+        to right,
+        #6666ff,
+        #0099ff,
+        #00ff00,
+        #ff3399,
+        #6666ff
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 6s ease-in-out infinite;
+    background-size: 400% 100%;
+    transition: background 0.3s ease-in-out;
+}
+
+.contact-link {
+    text-decoration: none;
+    color: #ffda79;
+}
+
+.gamelink {
+    text-decoration: none;
+    color: #ffda79;
+}
