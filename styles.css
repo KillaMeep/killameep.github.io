@@ -202,87 +202,129 @@ body, html {
 
 /* Liquid metal space-themed link styles - transparent */
 .nav-links li a {
-    color: #ffffff;
-    text-decoration: none;
-    padding: 10px 18px;
-    border-radius: 25px;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-    position: relative;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    font-size: 14px;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    padding: 10px 18px !important;
+    border-radius: 25px !important;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1) !important;
+    position: relative !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.2px !important;
+    font-size: 14px !important;
     background: linear-gradient(135deg, 
         rgba(15, 15, 35, 0.2) 0%, 
         rgba(25, 25, 60, 0.15) 50%, 
-        rgba(15, 15, 35, 0.2) 100%);
-    border: 1px solid rgba(138, 43, 226, 0.15);
-    overflow: hidden;
+        rgba(15, 15, 35, 0.2) 100%) !important;
+    border: 1px solid rgba(138, 43, 226, 0.15) !important;
+    overflow: hidden !important;
+    display: inline-block !important;
     /* Removed backdrop-filter that was causing the blur capsule */
 }
 
 /* Liquid metal flow effect for links */
 .nav-links li a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
     background: linear-gradient(90deg, 
         transparent 0%, 
         rgba(138, 43, 226, 0.2) 25%, 
         rgba(0, 191, 255, 0.3) 50%, 
         rgba(255, 20, 147, 0.2) 75%, 
-        transparent 100%);
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-    z-index: -1;
-    pointer-events: none; /* Prevent interference with hover */
+        transparent 100%) !important;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1) !important;
+    z-index: -1 !important;
+    pointer-events: none !important; /* Prevent interference with hover */
 }
 
 /* Cosmic glow effect */
 .nav-links li a::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 0 !important;
+    height: 0 !important;
     background: radial-gradient(circle, 
         rgba(138, 43, 226, 0.4) 0%, 
         rgba(0, 191, 255, 0.3) 40%, 
-        transparent 70%);
-    border-radius: 50%;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    pointer-events: none; /* Prevent interference with hover */
+        transparent 70%) !important;
+    border-radius: 50% !important;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1) !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: -1 !important;
+    pointer-events: none !important; /* Prevent interference with hover */
 }
 
 /* Enhanced hover effects with liquid metal animation - transparent */
 .nav-links li a:hover {
-    color: #ffffff;
+    color: #ffffff !important;
     background: linear-gradient(135deg, 
         rgba(138, 43, 226, 0.15) 0%, 
         rgba(0, 191, 255, 0.1) 50%, 
-        rgba(255, 20, 147, 0.15) 100%);
-    border: 1px solid rgba(138, 43, 226, 0.3);
-    transform: translateY(-2px); /* Removed scale to prevent layout shift */
+        rgba(255, 20, 147, 0.15) 100%) !important;
+    border: 1px solid rgba(138, 43, 226, 0.3) !important;
+    transform: translateY(-2px) !important; /* Removed scale to prevent layout shift */
     box-shadow: 
         0 6px 20px rgba(138, 43, 226, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Active page indicator - space-themed */
+.nav-links li a.active {
+    background: linear-gradient(135deg, 
+        rgba(138, 43, 226, 0.25) 0%, 
+        rgba(0, 191, 255, 0.2) 50%, 
+        rgba(255, 20, 147, 0.25) 100%);
+    border: 1px solid rgba(138, 43, 226, 0.5);
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(138, 43, 226, 0.8);
+    box-shadow: 
+        0 4px 15px rgba(138, 43, 226, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 0 20px rgba(138, 43, 226, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Active page cosmic glow animation */
+.nav-links li a.active::before {
+    left: 0;
+    opacity: 0.8;
+    animation: activeGlow 3s ease-in-out infinite alternate;
+}
+
+.nav-links li a.active::after {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    animation: activePulse 2s ease-in-out infinite;
+}
+
+@keyframes activeGlow {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+@keyframes activePulse {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.8); }
+    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
 }
 
 .nav-links li a:hover::before {
-    left: 0;
-    animation: liquidPulse 1.5s ease-in-out infinite;
+    left: 0 !important;
+    animation: liquidPulse 1.5s ease-in-out infinite !important;
 }
 
 .nav-links li a:hover::after {
-    width: 120%;
-    height: 120%;
-    opacity: 1;
+    width: 120% !important;
+    height: 120% !important;
+    opacity: 1 !important;
 }
 
 @keyframes liquidPulse {
@@ -392,6 +434,20 @@ body, html {
     .nav-links li a:hover {
         transform: none !important;
         animation: none !important;
+    }
+    
+    /* Optimize active state for mobile */
+    .nav-links li a.active {
+        background: rgba(138, 43, 226, 0.3) !important;
+        border: 1px solid rgba(138, 43, 226, 0.4) !important;
+        text-shadow: 0 0 8px rgba(138, 43, 226, 0.6) !important;
+        box-shadow: 0 2px 10px rgba(138, 43, 226, 0.2) !important;
+    }
+    
+    .nav-links li a.active::before,
+    .nav-links li a.active::after {
+        animation: none !important;
+        opacity: 0.3 !important;
     }
     
     .landing-section h1 {
