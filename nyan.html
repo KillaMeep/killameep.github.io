@@ -5,22 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nyan</title>
     <link rel="stylesheet" href="styles.css" />
-    <!-- particles.js container -->
-    <div id="particles-js"></div>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <style>
       /* ---- reset ---- */
       body {
         margin: 0;
         font: normal 75% Arial, Helvetica, sans-serif;
+        overflow: hidden;
       }
-      canvas {
-        display: block;
-        vertical-align: bottom;
-      }
-      /* ---- particles.js container ---- */
-      #particles-js {
+      
+      /* ---- nyan container ---- */
+      #nyan-container {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -30,75 +25,158 @@
         background-size: 60%;
         background-position: 0 50%;
       }
+
+      /* CSS-only star trail effect */
+      .nyan-stars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .nyan-star {
+        position: absolute;
+        color: #ffffff;
+        font-size: 8px;
+        opacity: 0.7;
+        animation: nyanTrail 3s linear infinite;
+      }
+
+      /* Create different star symbols */
+      .nyan-star:nth-child(odd) { 
+        font-size: 6px;
+        animation-duration: 2.5s;
+      }
+      .nyan-star:nth-child(3n) { 
+        font-size: 10px;
+        animation-duration: 3.5s;
+      }
+
+      /* Distribute stars across the screen */
+      .nyan-star:nth-child(1) { top: 10%; animation-delay: 0s; }
+      .nyan-star:nth-child(2) { top: 20%; animation-delay: 0.2s; }
+      .nyan-star:nth-child(3) { top: 30%; animation-delay: 0.4s; }
+      .nyan-star:nth-child(4) { top: 40%; animation-delay: 0.6s; }
+      .nyan-star:nth-child(5) { top: 50%; animation-delay: 0.8s; }
+      .nyan-star:nth-child(6) { top: 60%; animation-delay: 1.0s; }
+      .nyan-star:nth-child(7) { top: 70%; animation-delay: 1.2s; }
+      .nyan-star:nth-child(8) { top: 80%; animation-delay: 1.4s; }
+      .nyan-star:nth-child(9) { top: 15%; animation-delay: 1.6s; }
+      .nyan-star:nth-child(10) { top: 25%; animation-delay: 1.8s; }
+      .nyan-star:nth-child(11) { top: 35%; animation-delay: 2.0s; }
+      .nyan-star:nth-child(12) { top: 45%; animation-delay: 2.2s; }
+      .nyan-star:nth-child(13) { top: 55%; animation-delay: 2.4s; }
+      .nyan-star:nth-child(14) { top: 65%; animation-delay: 2.6s; }
+      .nyan-star:nth-child(15) { top: 75%; animation-delay: 2.8s; }
+
+      @keyframes nyanTrail {
+        0% {
+          left: 100%;
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        10% {
+          opacity: 0.7;
+          transform: scale(1);
+        }
+        90% {
+          opacity: 0.7;
+          transform: scale(1);
+        }
+        100% {
+          left: -50px;
+          opacity: 0;
+          transform: scale(0.5);
+        }
+      }
+
+      /* Additional sparkle effect */
+      .nyan-sparkle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #ffffff;
+        border-radius: 50%;
+        animation: sparkle 4s linear infinite;
+      }
+
+      .nyan-sparkle:nth-child(1) { top: 12%; animation-delay: 0.5s; }
+      .nyan-sparkle:nth-child(2) { top: 28%; animation-delay: 1.0s; }
+      .nyan-sparkle:nth-child(3) { top: 42%; animation-delay: 1.5s; }
+      .nyan-sparkle:nth-child(4) { top: 58%; animation-delay: 2.0s; }
+      .nyan-sparkle:nth-child(5) { top: 72%; animation-delay: 2.5s; }
+
+      @keyframes sparkle {
+        0% {
+          left: 100%;
+          opacity: 0;
+          transform: scale(0);
+        }
+        20% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        80% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          left: -10px;
+          opacity: 0;
+          transform: scale(0);
+        }
+      }
+
+      /* Performance optimizations for mobile */
+      @media (max-width: 768px) {
+        .nyan-star:nth-child(n+8) {
+          display: none;
+        }
+        .nyan-sparkle:nth-child(n+3) {
+          display: none;
+        }
+      }
+
+      /* Accessibility - respect reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .nyan-star, .nyan-sparkle {
+          animation: none;
+          opacity: 0.3;
+        }
+      }
     </style>
-    <script>
-      particlesJS("particles-js", {
-        particles: {
-          number: { value: 100, density: { enable: false, value_area: 800 } },
-          color: { value: "#ffffff" },
-          shape: {
-            type: "star",
-            stroke: { width: 0, color: "#000000" },
-            polygon: { nb_sides: 5 },
-            image: {
-              src: "http://wiki.lexisnexis.com/academic/images/f/fb/Itunes_podcast_icon_300.jpg",
-              width: 100,
-              height: 100,
-            },
-          },
-          opacity: {
-            value: 0.5,
-            random: false,
-            anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false },
-          },
-          size: {
-            value: 4,
-            random: true,
-            anim: { enable: false, speed: 40, size_min: 0.1, sync: false },
-          },
-          line_linked: {
-            enable: false,
-            distance: 150,
-            color: "#ffffff",
-            opacity: 0.4,
-            width: 1,
-          },
-          move: {
-            enable: true,
-            speed: 14,
-            direction: "left",
-            random: false,
-            straight: true,
-            out_mode: "out",
-            bounce: false,
-            attract: { enable: false, rotateX: 600, rotateY: 1200 },
-          },
-        },
-        interactivity: {
-          detect_on: "canvas",
-          events: {
-            onhover: { enable: false, mode: "grab" },
-            onclick: { enable: true, mode: "repulse" },
-            resize: true,
-          },
-          modes: {
-            grab: { distance: 200, line_linked: { opacity: 1 } },
-            bubble: {
-              distance: 400,
-              size: 40,
-              duration: 2,
-              opacity: 8,
-              speed: 3,
-            },
-            repulse: { distance: 200, duration: 0.4 },
-            push: { particles_nb: 4 },
-            remove: { particles_nb: 2 },
-          },
-        },
-        retina_detect: true,
-      });
-    </script>
 </head>
 <body>
+  <div id="nyan-container">
+    <!-- CSS-only star trail effect -->
+    <div class="nyan-stars">
+      <!-- Star symbols moving left to right -->
+      <div class="nyan-star">★</div>
+      <div class="nyan-star">✦</div>
+      <div class="nyan-star">⭐</div>
+      <div class="nyan-star">✨</div>
+      <div class="nyan-star">★</div>
+      <div class="nyan-star">✦</div>
+      <div class="nyan-star">⭐</div>
+      <div class="nyan-star">✨</div>
+      <div class="nyan-star">★</div>
+      <div class="nyan-star">✦</div>
+      <div class="nyan-star">⭐</div>
+      <div class="nyan-star">✨</div>
+      <div class="nyan-star">★</div>
+      <div class="nyan-star">✦</div>
+      <div class="nyan-star">⭐</div>
+      
+      <!-- Additional sparkle elements -->
+      <div class="nyan-sparkle"></div>
+      <div class="nyan-sparkle"></div>
+      <div class="nyan-sparkle"></div>
+      <div class="nyan-sparkle"></div>
+      <div class="nyan-sparkle"></div>
+    </div>
+  </div>
 </body>
 </html>
