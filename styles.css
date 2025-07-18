@@ -290,24 +290,6 @@ body, html {
     50% { opacity: 1; transform: scaleX(1.1); }
 }
 
-/* Simple underline effect */
-.nav-links li a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    width: 0%;
-    height: 2px;
-    background: linear-gradient(90deg, #ffda79, #ffd95c);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-    border-radius: 1px;
-}
-
-.nav-links li a:hover::after {
-    width: 80%;
-}
-
 /* Fixed Mobile Navigation */
 @media (max-width: 768px) {
     .navbar {
