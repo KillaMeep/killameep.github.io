@@ -94,7 +94,7 @@
             100% { opacity: 0.8; transform: scale(1.1) rotate(2deg); }
         }
 
-        /* Aurora Background Effects */
+        /* Realistic Fluid Aurora Background Effects */
         .aurora-background {
             position: fixed;
             top: 0;
@@ -108,69 +108,98 @@
 
         .aurora-wave {
             position: absolute;
-            width: 120%;
-            height: 200px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(138, 43, 226, 0.2) 25%, 
-                rgba(255, 105, 180, 0.25) 50%, 
-                rgba(0, 206, 209, 0.2) 75%, 
-                transparent 100%);
-            animation: auroraFlow 25s ease-in-out infinite;
-            border-radius: 50%;
-            filter: blur(15px);
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
         }
 
+        /* Aurora Curtain 1 - Green/Cyan */
         .aurora-wave:nth-child(1) {
-            top: 15%;
-            left: -10%;
-            animation-delay: 0s;
-            transform: rotate(8deg);
+            background: 
+                radial-gradient(ellipse 400px 1200px at 15% 30%, rgba(0, 255, 127, 0.2) 0%, transparent 70%),
+                radial-gradient(ellipse 300px 1000px at 25% 60%, rgba(0, 206, 209, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse 350px 1100px at 35% 20%, rgba(64, 224, 208, 0.1) 0%, transparent 65%);
+            filter: blur(12px);
+            animation: auroraFlow1 20s ease-in-out infinite;
         }
 
+        /* Aurora Curtain 2 - Purple/Pink */
         .aurora-wave:nth-child(2) {
-            top: 60%;
-            left: -10%;
+            background: 
+                radial-gradient(ellipse 350px 1300px at 55% 25%, rgba(138, 43, 226, 0.18) 0%, transparent 65%),
+                radial-gradient(ellipse 400px 1100px at 65% 55%, rgba(255, 105, 180, 0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 280px 900px at 75% 35%, rgba(186, 85, 211, 0.1) 0%, transparent 60%);
+            filter: blur(15px);
+            animation: auroraFlow2 25s ease-in-out infinite;
             animation-delay: 8s;
-            transform: rotate(-5deg);
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255, 105, 180, 0.18) 25%, 
-                rgba(0, 206, 209, 0.22) 50%, 
-                rgba(138, 43, 226, 0.18) 75%, 
-                transparent 100%);
         }
 
+        /* Aurora Curtain 3 - Blue/Violet */
         .aurora-wave:nth-child(3) {
-            top: 80%;
-            left: -10%;
-            animation-delay: 16s;
-            transform: rotate(3deg);
-            height: 150px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(0, 206, 209, 0.15) 25%, 
-                rgba(138, 43, 226, 0.18) 50%, 
-                rgba(255, 105, 180, 0.15) 75%, 
-                transparent 100%);
+            background: 
+                radial-gradient(ellipse 320px 1000px at 85% 40%, rgba(72, 61, 139, 0.15) 0%, transparent 68%),
+                radial-gradient(ellipse 380px 1200px at 95% 70%, rgba(106, 90, 205, 0.1) 0%, transparent 65%),
+                radial-gradient(ellipse 300px 950px at 105% 50%, rgba(123, 104, 238, 0.08) 0%, transparent 60%);
+            filter: blur(18px);
+            animation: auroraFlow3 30s ease-in-out infinite;
+            animation-delay: 15s;
         }
 
-        @keyframes auroraFlow {
-            0%, 100% { 
-                transform: translateX(-20px) scale(1) rotate(8deg); 
-                opacity: 0.4; 
+        @keyframes auroraFlow1 {
+            0%, 100% {
+                transform: translateX(-5%) translateY(-2%) skewX(1deg);
+                opacity: 0.6;
             }
-            25% { 
-                transform: translateX(10px) scale(1.05) rotate(10deg); 
-                opacity: 0.7; 
+            20% {
+                transform: translateX(0%) translateY(1%) skewX(-0.5deg);
+                opacity: 0.8;
             }
-            50% { 
-                transform: translateX(30px) scale(1.1) rotate(12deg); 
-                opacity: 0.8; 
+            40% {
+                transform: translateX(3%) translateY(-1%) skewX(0.8deg);
+                opacity: 0.7;
             }
-            75% { 
-                transform: translateX(15px) scale(1.05) rotate(9deg); 
-                opacity: 0.6; 
+            60% {
+                transform: translateX(1%) translateY(2%) skewX(-1.2deg);
+                opacity: 0.9;
+            }
+            80% {
+                transform: translateX(-2%) translateY(-0.5%) skewX(0.3deg);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes auroraFlow2 {
+            0%, 100% {
+                transform: translateX(2%) translateY(1%) skewX(-0.8deg);
+                opacity: 0.5;
+            }
+            25% {
+                transform: translateX(-3%) translateY(-1.5%) skewX(1.1deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateX(4%) translateY(0.8%) skewX(-0.6deg);
+                opacity: 0.8;
+            }
+            75% {
+                transform: translateX(-1%) translateY(-1%) skewX(0.9deg);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes auroraFlow3 {
+            0%, 100% {
+                transform: translateX(-1%) translateY(-1.2%) skewX(0.5deg);
+                opacity: 0.4;
+            }
+            30% {
+                transform: translateX(2%) translateY(1.8%) skewX(-1deg);
+                opacity: 0.7;
+            }
+            65% {
+                transform: translateX(-3%) translateY(-0.3%) skewX(0.7deg);
+                opacity: 0.6;
             }
         }
 
