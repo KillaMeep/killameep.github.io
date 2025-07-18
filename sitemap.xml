@@ -29,7 +29,6 @@
     <priority>0.7</priority>
   </url>
   
-  <!-- Content Pages -->
   <url>
     <loc>https://killameep.com/cats.html</loc>
     <lastmod>2025-07-18</lastmod>
@@ -37,43 +36,7 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://killameep.com/dogs.html</loc>
-    <lastmod>2025-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://killameep.com/facts.html</loc>
-    <lastmod>2025-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://killameep.com/choose.html</loc>
-    <lastmod>2025-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <!-- Easter Egg Pages -->
-  <url>
-    <loc>https://killameep.com/nyan.html</loc>
-    <lastmod>2025-07-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  
-  <url>
-    <loc>https://killameep.com/rick.html</loc>
-    <lastmod>2025-07-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  
-  <!-- Note: hidden.html and 404.html are intentionally excluded -->
-  <!-- hidden.html is meant to be hidden from search engines -->
-  <!-- 404.html is automatically discovered by search engines -->
+  <!-- Note: Hidden pages (404, rick, facts, dogs, hidden, nyan, choose) are excluded -->
+  <!-- These pages are disallowed in robots.txt to keep them private -->
+</urlset>
 </urlset>

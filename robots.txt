@@ -2,9 +2,14 @@
 User-agent: *
 Allow: /
 
-# Sitemap location (if you have one)
-# Sitemap: https://killameep.github.io/sitemap.xml
+# Sitemap location
+Sitemap: https://killameep.com/sitemap.xml
 
-# Block specific directories if needed
-# Disallow: /assets/config/
-# Disallow: /hidden.html
+# Disallow hidden/easter egg pages
+Disallow: /404.html
+Disallow: /rick.html
+Disallow: /facts.html
+Disallow: /dogs.html
+Disallow: /hidden.html
+Disallow: /nyan.html
+Disallow: /choose.html
