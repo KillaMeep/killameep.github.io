@@ -77,32 +77,8 @@
         <p>&copy; 2025 <a href="hidden.html" class="hidden-link">KillaMeep</a> | All rights reserved.</p>
     </footer>
 
-    <!-- Particle.js Initialization -->
-    <script>
-        function loadParticlesConfig() {
-            fetch('particlesjs-config.json')  // Fetch the configuration file
-                .then(response => response.json())
-                .then(config => {
-                    // Dynamically adjust particle number based on screen width
-                    const screenWidth = window.innerWidth;
-
-                    // Example logic: Adjust particle count based on screen size
-                    const particleCount = Math.max(100, Math.min(Math.floor(screenWidth / 5), 800)); // Adjust as needed
-                    config.particles.number.value = particleCount;  // Update the number of particles
-
-                    // Initialize particles.js with the modified config
-                    particlesJS('particles-js', config);
-                })
-                .catch(error => console.error('Error loading particles config:', error));
-        }
-
-        // Call the function to load config and initialize particles
-        loadParticlesConfig();
-
-        // Update particles on window resize
-        window.addEventListener('resize', loadParticlesConfig);
-    </script>
-    <!-- Navbar Scrolling -->
-    <script src="navbarScroll.js"></script>
+    <!-- Scripts -->
+    <script src="assets/js/particles-manager.js"></script>
+    <script src="assets/js/navbar-scroll.js"></script>
 </body>
 </html>
