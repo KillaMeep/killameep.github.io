@@ -25,10 +25,10 @@
             margin: 0;
             padding: 0;
             background: 
-                radial-gradient(ellipse at center, #0d1421 0%, #000000 100%),
-                radial-gradient(ellipse at 40% 30%, rgba(255, 69, 0, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 70%, rgba(255, 140, 0, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 20% 80%, rgba(255, 165, 0, 0.08) 0%, transparent 50%);
+                radial-gradient(ellipse at center, #1a0f3d 0%, #000000 100%),
+                radial-gradient(ellipse at 40% 30%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 70%, rgba(255, 105, 180, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 80%, rgba(0, 206, 209, 0.08) 0%, transparent 50%);
             color: #ffffff;
             position: relative;
             overflow-x: hidden;
@@ -62,7 +62,7 @@
             left: -10%;
             width: 120%;
             height: 3px;
-            background: linear-gradient(90deg, transparent 0%, rgba(255, 140, 0, 0.8) 20%, rgba(255, 69, 0, 0.6) 50%, transparent 100%);
+            background: linear-gradient(90deg, transparent 0%, rgba(138, 43, 226, 0.8) 20%, rgba(255, 105, 180, 0.6) 50%, transparent 100%);
             animation: cometTrail 8s linear infinite;
             transform: rotate(15deg);
         }
@@ -74,7 +74,7 @@
             left: -10%;
             width: 120%;
             height: 2px;
-            background: linear-gradient(90deg, transparent 0%, rgba(255, 165, 0, 0.6) 30%, rgba(255, 140, 0, 0.4) 60%, transparent 100%);
+            background: linear-gradient(90deg, transparent 0%, rgba(0, 206, 209, 0.6) 30%, rgba(255, 105, 180, 0.4) 60%, transparent 100%);
             animation: cometTrailReverse 12s linear infinite;
             transform: rotate(-10deg);
         }
@@ -116,32 +116,32 @@
         }
 
         .contact-card {
-            background: linear-gradient(135deg, rgba(255, 140, 0, 0.2), rgba(255, 69, 0, 0.1));
-            border: 1px solid rgba(255, 140, 0, 0.3);
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(255, 105, 180, 0.1));
+            border: 1px solid rgba(138, 43, 226, 0.3);
             border-radius: 15px;
             padding: 30px;
             width: 300px;
-            box-shadow: 0 8px 32px rgba(255, 69, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(138, 43, 226, 0.1);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
         .contact-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(255, 140, 0, 0.2);
-            border-color: rgba(255, 140, 0, 0.5);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.2);
+            border-color: rgba(138, 43, 226, 0.5);
         }
 
         .contact-card h3 {
-            color: #ffcc80;
+            color: #e1bee7;
             margin-bottom: 1rem;
-            text-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
         }
 
         /* Floating asteroids */
         .asteroid {
             position: absolute;
-            color: rgba(255, 165, 0, 0.3);
+            color: rgba(0, 206, 209, 0.3);
             font-size: 15px;
             animation: asteroidFloat 10s ease-in-out infinite;
             z-index: 5;
