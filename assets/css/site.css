@@ -697,46 +697,18 @@ a.card.choice {
     text-align: center;
 }
 .lost .terminal-line { overflow-wrap: anywhere; }
-.lost-digits {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.04em;
-    font-family: var(--font-mono);
-    font-size: clamp(104px, 24vw, 220px);
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: -0.04em;
-}
-.lost-digits > span:not(.planet-wrap) {
-    background: var(--accent-grad);
+.lost-code {
+    position: relative;
+    font-size: clamp(120px, 28vw, 260px);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.06em;
+    background: linear-gradient(100deg, #a78bfa 0%, #f472b6 25%, #67e8f9 50%, #f472b6 75%, #a78bfa 100%) 0 0 / 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-}
-.planet-wrap {
-    position: relative;
-    width: 1.05em;
-    height: 1.05em;
-    animation: bob 6s ease-in-out infinite;
-}
-.planet { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 40px rgba(167, 139, 250, 0.35)); }
-.orbit {
-    position: absolute;
-    inset: 4%;
-    border-radius: 50%;
-    animation: spin 9s linear infinite;
-}
-.moon {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 0.08em;
-    height: 0.08em;
-    margin-left: -0.04em;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #fff, #c4b5fd 60%, #7c3aed);
-    box-shadow: 0 0 12px rgba(196, 181, 253, 0.8);
+    filter: drop-shadow(0 0 36px rgba(192, 132, 252, 0.35));
+    animation: flow 8s linear infinite;
 }
 .lost-title { margin-top: 28px; font-size: clamp(28px, 4.5vw, 44px); }
 .lost .lede { margin-left: auto; margin-right: auto; }
@@ -745,8 +717,7 @@ a.card.choice {
 .lost-links a { color: var(--text-muted); text-decoration: none; transition: color 0.2s var(--ease); }
 .lost-links a:hover { color: var(--pink); }
 
-@keyframes bob { 50% { transform: translateY(-8px) rotate(2deg); } }
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes flow { to { background-position: -200% 0; } }
 
 /* ---------- Rick ---------- */
 
