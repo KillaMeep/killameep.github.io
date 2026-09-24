@@ -461,32 +461,35 @@ main:has(> .hero) { display: flex; flex-direction: column; }
 
 /* ---------- Project list ---------- */
 
-.project-list { display: grid; gap: 16px; }
-
-.project {
+.project-list {
     display: grid;
-    grid-template-columns: 56px 1fr auto;
-    gap: 8px 24px;
-    align-items: start;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.project { display: flex; flex-direction: column; }
+.project-featured { grid-column: 1 / -1; }
+.project-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
 }
 .project-index {
     font-family: var(--font-mono);
     font-size: 13px;
     color: var(--text-faint);
-    padding-top: 6px;
 }
-.project h3 { font-size: clamp(22px, 2.6vw, 28px); }
-.project p { margin-top: 10px; max-width: 62ch; color: var(--text-muted); }
-.project .tags { margin-top: 18px; }
-.project .link-arrow { padding-top: 6px; }
+.project h3 { font-size: clamp(20px, 2.2vw, 24px); }
+.project-featured h3 { font-size: clamp(22px, 2.6vw, 28px); }
+.project p { margin-top: 8px; max-width: 72ch; color: var(--text-muted); font-size: 15px; }
+.project .tags { margin-top: auto; padding-top: 16px; }
 /* Make the whole card clickable while keeping inner links usable */
 .project .stretched::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
 .project p a { position: relative; z-index: 1; }
 
 @media (max-width: 720px) {
-    .project { grid-template-columns: 1fr; }
-    .project-index { padding-top: 0; }
-    .project .link-arrow { padding-top: 10px; }
+    .project-list { grid-template-columns: 1fr; }
 }
 
 /* ---------- About ---------- */

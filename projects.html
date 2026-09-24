@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/site.css?v=2">
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -38,53 +38,38 @@
                 <p class="lede">Open-source tools, mostly about pixels: desktop apps, computer vision and a little OSINT. Everything lives on GitHub.</p>
             </header>
             <div class="project-list" style="margin-top: clamp(40px, 6vw, 64px)">
-                <article class="card glow project reveal" style="--d: 0.00s">
-                    <span class="project-index">01</span>
-                    <div>
-                        <h3>Waypoint</h3>
-                        <p>Free, open-source image geolocation. Give it one outdoor photo and it estimates where on Earth it was taken: a diffusion model makes coarse guesses, sun position rules out bad ones, and matches against real street-level imagery confirm the rest, all on an interactive map.</p>
-                        <ul class="tags" aria-label="Stack"><li class="tag">Electron</li><li class="tag">Python</li><li class="tag">PyTorch</li><li class="tag">OSINT</li><li class="tag">LightGlue</li></ul>
-                    </div>
-                    <a class="link-arrow stretched" href="https://github.com/KillaMeep/waypoint-osint" target="_blank" rel="noopener" aria-label="Waypoint on GitHub">source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+                <article class="card glow project project-featured reveal" style="--d: 0.00s">
+                    <div class="project-top"><span class="project-index">01</span><a class="link-arrow stretched" href="https://github.com/KillaMeep/waypoint-osint" target="_blank" rel="noopener" aria-label="Waypoint on GitHub">source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></div>
+                    <h3>Waypoint</h3>
+                    <p>Free, open-source image geolocation. Give it one outdoor photo and it estimates where on Earth it was taken: a diffusion model makes coarse guesses, sun position rules out bad ones, and matches against real street-level imagery confirm the rest, all on an interactive map.</p>
+                    <ul class="tags" aria-label="Stack"><li class="tag">Electron</li><li class="tag">Python</li><li class="tag">PyTorch</li><li class="tag">OSINT</li><li class="tag">LightGlue</li></ul>
                 </article>
                 <article class="card glow project reveal" style="--d: 0.08s">
-                    <span class="project-index">02</span>
-                    <div>
-                        <h3>Glyphify</h3>
-                        <p>A desktop app that turns images and videos into ASCII art. Color or grayscale, a pile of character sets (including braille and custom ones), live tuning, and export to TXT, HTML, PNG or animated GIF.</p>
-                        <ul class="tags" aria-label="Stack"><li class="tag">Electron</li><li class="tag">JavaScript</li><li class="tag">FFmpeg</li><li class="tag">Desktop app</li></ul>
-                    </div>
-                    <a class="link-arrow stretched" href="https://github.com/KillaMeep/Glyphify" target="_blank" rel="noopener" aria-label="Glyphify on GitHub">source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+                    <div class="project-top"><span class="project-index">02</span><a class="link-arrow stretched" href="https://github.com/KillaMeep/Glyphify" target="_blank" rel="noopener" aria-label="Glyphify on GitHub">source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></div>
+                    <h3>Glyphify</h3>
+                    <p>A desktop app that turns images and videos into ASCII art. Color or grayscale, a pile of character sets (including braille and custom ones), live tuning, and export to TXT, HTML, PNG or animated GIF.</p>
+                    <ul class="tags" aria-label="Stack"><li class="tag">Electron</li><li class="tag">JavaScript</li><li class="tag">FFmpeg</li><li class="tag">Desktop app</li></ul>
                 </article>
                 <article class="card glow project reveal" style="--d: 0.16s">
-                    <span class="project-index">03</span>
-                    <div>
-                        <h3>ASCII-gen</h3>
-                        <p>An open-source tool that converts images and video frames into ASCII art. It handles static images and animated GIFs, and runs on both Linux and Windows.</p>
-                        <ul class="tags" aria-label="Stack"><li class="tag">Python</li><li class="tag">Image processing</li><li class="tag">GIF + video</li><li class="tag">Cross-platform</li></ul>
-                    </div>
-                    <a class="link-arrow stretched" href="https://github.com/KillaMeep/ASCII-gen" target="_blank" rel="noopener" aria-label="ASCII-gen on GitHub">source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+                    <div class="project-top"><span class="project-index">03</span><a class="link-arrow stretched" href="https://github.com/KillaMeep/ASCII-gen" target="_blank" rel="noopener" aria-label="ASCII-gen on GitHub">source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></div>
+                    <h3>ASCII-gen</h3>
+                    <p>An open-source tool that converts images and video frames into ASCII art. It handles static images and animated GIFs, and runs on both Linux and Windows.</p>
+                    <ul class="tags" aria-label="Stack"><li class="tag">Python</li><li class="tag">Image processing</li><li class="tag">GIF + video</li><li class="tag">Cross-platform</li></ul>
                 </article>
                 <article class="card glow project reveal" style="--d: 0.24s">
-                    <span class="project-index">04</span>
-                    <div>
-                        <h3>StarNodeAnimator</h3>
-                        <p>Creates customizable star-field animations with OpenGL in Pygame. Tweak everything from a GUI, then export the result as an MP4.</p>
-                        <ul class="tags" aria-label="Stack"><li class="tag">Python</li><li class="tag">Pygame</li><li class="tag">OpenGL</li><li class="tag">MP4 export</li></ul>
-                    </div>
-                    <a class="link-arrow stretched" href="https://github.com/KillaMeep/StarNodeAnimator" target="_blank" rel="noopener" aria-label="StarNodeAnimator on GitHub">source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+                    <div class="project-top"><span class="project-index">04</span><a class="link-arrow stretched" href="https://github.com/KillaMeep/StarNodeAnimator" target="_blank" rel="noopener" aria-label="StarNodeAnimator on GitHub">source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></div>
+                    <h3>StarNodeAnimator</h3>
+                    <p>Creates customizable star-field animations with OpenGL in Pygame. Tweak everything from a GUI, then export the result as an MP4.</p>
+                    <ul class="tags" aria-label="Stack"><li class="tag">Python</li><li class="tag">Pygame</li><li class="tag">OpenGL</li><li class="tag">MP4 export</li></ul>
                 </article>
                 <article class="card glow project reveal" style="--d: 0.32s">
-                    <span class="project-index">05</span>
-                    <div>
-                        <h3>BeatBlock AI</h3>
-                        <p>Real-time object detection for <a class="inline-link" href="https://store.steampowered.com/app/3045200/Beatblock/" target="_blank" rel="noopener">BeatBlock</a>, a rhythm game by <a class="inline-link" href="https://itch.io/profile/bubbletabby" target="_blank" rel="noopener">BubbleTabby</a>. Built on YOLOv5 to spot in-game elements with low latency for gameplay analysis.</p>
-                        <ul class="tags" aria-label="Stack"><li class="tag">Python</li><li class="tag">YOLOv5</li><li class="tag">Computer vision</li><li class="tag">Real-time</li></ul>
-                    </div>
-                    <a class="link-arrow stretched" href="https://github.com/KillaMeep/beatblock-AI" target="_blank" rel="noopener" aria-label="BeatBlock AI on GitHub">source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+                    <div class="project-top"><span class="project-index">05</span><a class="link-arrow stretched" href="https://github.com/KillaMeep/beatblock-AI" target="_blank" rel="noopener" aria-label="BeatBlock AI on GitHub">source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></div>
+                    <h3>BeatBlock AI</h3>
+                    <p>Real-time object detection for <a class="inline-link" href="https://store.steampowered.com/app/3045200/Beatblock/" target="_blank" rel="noopener">BeatBlock</a>, a rhythm game by <a class="inline-link" href="https://itch.io/profile/bubbletabby" target="_blank" rel="noopener">BubbleTabby</a>. Built on YOLOv5 to spot in-game elements with low latency for gameplay analysis.</p>
+                    <ul class="tags" aria-label="Stack"><li class="tag">Python</li><li class="tag">YOLOv5</li><li class="tag">Computer vision</li><li class="tag">Real-time</li></ul>
                 </article>
             </div>
-            <div class="hero-actions reveal" style="margin-top: 32px">
+            <div class="hero-actions reveal" style="margin-top: 24px">
                 <a class="btn" href="https://github.com/KillaMeep?tab=repositories" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg> More on GitHub</a>
             </div>
         </div>
@@ -100,6 +85,6 @@
         </div>
     </footer>
 
-    <script src="assets/js/site.js"></script>
+    <script src="assets/js/site.js?v=2"></script>
 </body>
 </html>
