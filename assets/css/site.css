@@ -200,7 +200,6 @@ main { flex: 1; }
     height: 16px;
     margin-left: 4px;
     background: var(--pink);
-    animation: blink 1.1s steps(1) infinite;
 }
 
 .nav { display: flex; gap: 4px; }
@@ -255,9 +254,15 @@ main { flex: 1; }
 .site-footer a { text-decoration: none; transition: color 0.2s var(--ease); }
 .site-footer a:hover { color: var(--text); }
 .footer-links { display: flex; gap: 20px; }
-/* The name is the secret door to hidden.html: it looks like plain text */
-.secret-link { color: inherit; cursor: text; }
-.secret-link:hover { color: inherit !important; }
+/* The name is the door to hidden.html: an underline grows in on hover */
+.site-footer .secret-link {
+    color: var(--text-muted);
+    padding-bottom: 2px;
+    background: var(--accent-grad) no-repeat 0 100% / 0 1px;
+    transition: color 0.2s var(--ease), background-size 0.35s var(--ease);
+}
+.site-footer .secret-link:hover,
+.site-footer .secret-link:focus-visible { color: var(--pink); background-size: 100% 1px; }
 
 /* ---------- Type helpers ---------- */
 
@@ -688,18 +693,60 @@ a.card.choice {
     justify-content: center;
     min-height: calc(100vh - 68px);
     min-height: calc(100svh - 68px);
-    padding: 40px 0 80px;
+    padding: 40px var(--gutter) 80px;
     text-align: center;
 }
-.lost .code {
+.lost .terminal-line { overflow-wrap: anywhere; }
+.lost-digits {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.04em;
     font-family: var(--font-mono);
-    font-size: clamp(96px, 22vw, 220px);
+    font-size: clamp(104px, 24vw, 220px);
     font-weight: 600;
     line-height: 1;
-    letter-spacing: -0.06em;
+    letter-spacing: -0.04em;
 }
+.lost-digits > span:not(.planet-wrap) {
+    background: var(--accent-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.planet-wrap {
+    position: relative;
+    width: 1.05em;
+    height: 1.05em;
+    animation: bob 6s ease-in-out infinite;
+}
+.planet { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 40px rgba(167, 139, 250, 0.35)); }
+.orbit {
+    position: absolute;
+    inset: 4%;
+    border-radius: 50%;
+    animation: spin 9s linear infinite;
+}
+.moon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0.08em;
+    height: 0.08em;
+    margin-left: -0.04em;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff, #c4b5fd 60%, #7c3aed);
+    box-shadow: 0 0 12px rgba(196, 181, 253, 0.8);
+}
+.lost-title { margin-top: 28px; font-size: clamp(28px, 4.5vw, 44px); }
 .lost .lede { margin-left: auto; margin-right: auto; }
 .lost .hero-actions { justify-content: center; }
+.lost-links { margin-top: 28px; font-family: var(--font-mono); font-size: 13px; color: var(--text-faint); }
+.lost-links a { color: var(--text-muted); text-decoration: none; transition: color 0.2s var(--ease); }
+.lost-links a:hover { color: var(--pink); }
+
+@keyframes bob { 50% { transform: translateY(-8px) rotate(2deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
 
 /* ---------- Rick ---------- */
 
