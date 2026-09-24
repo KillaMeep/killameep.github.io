@@ -68,7 +68,29 @@
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     const palette = ['255,255,255', '221,214,254', '251,207,232', '207,250,254'];
-    let stars = [], shooters = [], w = 0, h = 0, dpr = 1, raf = 0, last = 0, nextShot = 0;
+    let shooters = [], count = 0, w = 0, h = 0, dpr = 1, raf = 0, last = 0, nextShot = 0;
+
+    // Fixed seed + wall-clock motion keep the starfield continuous across page loads.
+    let seed = 0x6b696c6c;
+    const rand = () => {
+        seed = (seed + 0x6d2b79f5) | 0;
+        let x = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+        x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x;
+        return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+    };
+    const stars = Array.from({ length: 260 }, () => {
+        const depth = rand();
+        return {
+            nx: rand(),
+            ny: rand(),
+            r: 0.35 + depth * depth * 1.25,
+            a: 0.25 + depth * 0.6,
+            tw: 0.4 + rand() * 1.6,
+            ph: rand() * Math.PI * 2,
+            v: 0.6 + depth * 3.2,
+            c: palette[rand() < 0.8 ? 0 : 1 + Math.floor(rand() * 3)]
+        };
+    });
 
     const resize = () => {
         dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -77,20 +99,7 @@
         canvas.width = w * dpr;
         canvas.height = h * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        const count = Math.round(Math.min(260, (w * h) / 5200));
-        stars = Array.from({ length: count }, () => {
-            const depth = Math.random();
-            return {
-                x: Math.random() * w,
-                y: Math.random() * h,
-                r: 0.35 + depth * depth * 1.25,
-                a: 0.25 + depth * 0.6,
-                tw: 0.4 + Math.random() * 1.6,
-                ph: Math.random() * Math.PI * 2,
-                v: 0.6 + depth * 3.2,
-                c: palette[Math.random() < 0.8 ? 0 : 1 + Math.floor(Math.random() * 3)]
-            };
-        });
+        count = Math.round(Math.min(stars.length, (w * h) / 5200));
     };
 
     const spawnShooter = () => {
@@ -111,15 +120,17 @@
         last = t;
         ctx.clearRect(0, 0, w, h);
         const scroll = window.scrollY * 0.04;
+        const now = reduceMotion ? 0 : Date.now() / 1000;
+        const span = w + 4;
 
-        for (const s of stars) {
-            s.x -= s.v * dt;
-            if (s.x < -2) s.x = w + 2;
-            const y = ((s.y - scroll * s.v) % h + h) % h;
-            const a = reduceMotion ? s.a : s.a * (0.65 + 0.35 * Math.sin(t / 1000 * s.tw + s.ph));
+        for (let i = 0; i < count; i++) {
+            const s = stars[i];
+            const x = ((s.nx * span - s.v * now) % span + span) % span - 2;
+            const y = ((s.ny * h - scroll * s.v) % h + h) % h;
+            const a = reduceMotion ? s.a : s.a * (0.65 + 0.35 * Math.sin(now * s.tw + s.ph));
             ctx.fillStyle = `rgba(${s.c},${a})`;
             ctx.beginPath();
-            ctx.arc(s.x, y, s.r, 0, Math.PI * 2);
+            ctx.arc(x, y, s.r, 0, Math.PI * 2);
             ctx.fill();
         }
 
