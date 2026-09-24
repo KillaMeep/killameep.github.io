@@ -1,375 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me | KillaMeep</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    
-    <!-- React and ReactDOM via CDN -->
-    <script src="https://unpkg.com/react@17/umd/react.production.min.js" defer></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" defer></script>
-    
-    <!-- Anime.js via CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
-    
-    <!-- Babel for JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js" defer></script>
-
-    <style>
-        /* Global box-sizing fix */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        
-        html {
-            overflow-x: hidden;
-        }
-        
-        .hidden-link {
-            color: #fff;
-            text-decoration: none;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: 
-                radial-gradient(ellipse at center, #0a0a2e 0%, #16213e 50%, #000000 100%),
-                radial-gradient(ellipse at 25% 75%, rgba(72, 61, 139, 0.2) 0%, transparent 50%),
-                radial-gradient(ellipse at 75% 25%, rgba(106, 90, 205, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(123, 104, 238, 0.1) 0%, transparent 50%);
-            color: #ffffff;
-            position: relative;
-            overflow-x: hidden;
-            overflow-y: auto;
-            min-height: 100vh;
-            width: 100%;
-        }
-
-        /* Galaxy Background with Spiral Arms */
-        .galaxy-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1;
-            pointer-events: none;
-            background: 
-                radial-gradient(1px 1px at 10px 20px, #ffffff, transparent),
-                radial-gradient(2px 2px at 30px 60px, #ffffff, transparent),
-                radial-gradient(1px 1px at 70px 10px, #ffffff, transparent),
-                radial-gradient(2px 2px at 110px 80px, #ffffff, transparent),
-                radial-gradient(1px 1px at 150px 40px, #ffffff, transparent),
-                radial-gradient(2px 2px at 190px 70px, #ffffff, transparent),
-                radial-gradient(1px 1px at 230px 20px, #ffffff, transparent),
-                radial-gradient(2px 2px at 270px 90px, #ffffff, transparent);
-            animation: galaxyRotation 100s linear infinite;
-        }
-
-        .galaxy-background::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300px;
-            height: 300px;
-            background: 
-                radial-gradient(ellipse at center, rgba(138, 43, 226, 0.4) 0%, rgba(72, 61, 139, 0.2) 30%, transparent 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: galaxyCore 20s ease-in-out infinite alternate;
-        }
-
-        @keyframes galaxyRotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes galaxyCore {
-            0% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-            100% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.2); }
-        }
-
-        /* Shooting stars effect */
-        #shootingstars {
-            margin: 0;
-            padding: 0;
-            width: 150vh;
-            height: 100vw;
-            position: fixed;
-            overflow: hidden;
-            transform: translatex(calc(50vw - 50%)) translatey(calc(50vh - 50%)) rotate(40deg);
-            z-index: 2;
-        }
-
-        .wish {
-            height: 2px;
-            width: 100px;
-            margin: 0;
-            opacity: 0;
-            padding: 0;
-            background-color: white;
-            position: absolute;
-            background: linear-gradient(-20deg, white, rgba(0, 0, 255, 0));
-            filter: drop-shadow(0 0 6px white);
-            overflow: hidden;
-        }
-
-        .contact-link {
-            text-decoration: none;
-            color: #ffda79;
-        }
-        .skills-list {
-            color: #8e9aaf;
-        }
-        .about-block {
-            color: #dee2ff;
-        }
-        .text-block {
-            color: #efd3d7;
-        }
-
-        .container {
-            position: relative; /* Ensures the container is above the sky */
-            z-index: 2; /* Raise the container above the stars */
-            max-width: 800px; /* Limit width for better readability */
-            margin: 0 auto; /* Center the container */
-            padding: 20px; /* Add some padding */
-            background: 
-                linear-gradient(135deg, 
-                    rgba(15, 15, 35, 0.95) 0%, 
-                    rgba(25, 25, 60, 0.9) 50%, 
-                    rgba(15, 15, 35, 0.95) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(138, 43, 226, 0.2);
-            border-radius: 16px; /* More pronounced rounded corners */
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.7),
-                0 0 20px rgba(138, 43, 226, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        /* Mobile-optimized animations */
-        @media (max-width: 768px) {
-            .galaxy-background {
-                animation: galaxyRotation 200s linear infinite !important; /* Slower rotation */
-                transform: scale(0.8) !important; /* Smaller scale for performance */
-                opacity: 0.2 !important;
-            }
-            
-            .galaxy-background::before {
-                animation: galaxyCore 40s ease-in-out infinite alternate !important; /* Slower core animation */
-                transform: translate(-50%, -50%) scale(0.8) !important;
-                opacity: 0.15 !important;
-            }
-            
-            #shootingstars {
-                opacity: 0.3 !important; /* Keep shooting stars but subtle */
-            }
-            
-            .wish {
-                animation: wish 4s linear infinite !important; /* Slower shooting star animation */
-                opacity: 0.4 !important;
-            }
-        }
-
-        /* Mobile optimizations for smaller screens */
-        @media (max-width: 480px) {
-            .galaxy-background {
-                animation: galaxyRotation 300s linear infinite !important; /* Very slow rotation */
-                transform: scale(0.6) !important; /* Even smaller scale */
-                opacity: 0.15 !important;
-            }
-            
-            .galaxy-background::before {
-                animation: galaxyCore 60s ease-in-out infinite alternate !important; /* Very slow core animation */
-                opacity: 0.1 !important;
-            }
-            
-            #shootingstars {
-                opacity: 0.2 !important; /* Keep but very subtle */
-            }
-            
-            .wish {
-                animation: wish 6s linear infinite !important; /* Very slow shooting stars */
-                opacity: 0.3 !important;
-            }
-        }
-
-        /* Accessibility - respect reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            .galaxy-background, .galaxy-background::before {
-                animation: none !important;
-            }
-            
-            #shootingstars, .wish {
-                animation: none !important;
-                opacity: 0.1 !important;
-            }
-        }
-    </style>
+    <title>About | KillaMeep</title>
+    <meta name="description" content="About KillaMeep: a developer focused on Python, machine learning and automation.">
+    <meta name="theme-color" content="#07060d">
+    <meta property="og:title" content="About | KillaMeep">
+    <meta property="og:description" content="About KillaMeep: a developer focused on Python, machine learning and automation.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a78bfa'/%3E%3Cstop offset='1' stop-color='%23f472b6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%2307060d'/%3E%3Cpath d='M16 5c.9 6.1 4.9 10.1 11 11-6.1.9-10.1 4.9-11 11-.9-6.1-4.9-10.1-11-11 6.1-.9 10.1-4.9 11-11Z' fill='url(%23g)'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-    <!-- Starry Sky Animation -->
-    <div id="root"></div>
-    
-    <!-- Galaxy Background -->
-    <div class="galaxy-background"></div>
-    
-    <!-- Shooting Stars Container -->
-    <div id="shootingstars"></div>
-    
-    <!-- Navbar -->
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="space" aria-hidden="true"><canvas></canvas></div>
 
-    <!-- About Container -->
-    <div class="container">
-        <h2 class="fade-in about-block">About Me</h2>
-        <p class="fade-in text-block">I'm a developer with a focus on Python and machine learning technologies. I work primarily with computer vision and AI frameworks like OpenCV, PyTorch, and TensorFlow, building tools that solve real-world problems through automation.</p>
-        <p class="fade-in text-block">Beyond Python, I develop across multiple languages including JavaScript, C#, and web technologies, which lets me tackle everything from backend systems to full-stack applications.</p>
-        
-        <h3 class="fade-in about-block">Technical Skills</h3>
-        <ul class="fade-in skills-list">
-            <li class="fade-in-item"><strong>Languages:</strong> JavaScript, C#, HTML, Lua, and <b>Python</b></li>
-            <li class="fade-in-item"><strong>Packages:</strong> OpenCV, PyTorch, TensorFlow, YOLO, Ultralytics, Scipy, and more.</li>
-            <li class="fade-in-item"><strong>Frameworks:</strong> Django, Flask</li>
-            <li class="fade-in-item"><strong>Tools:</strong> Git, Docker, Linux, Windows</li>
-            <li class="fade-in-item"><strong>Operating Systems:</strong> Windows, Linux</li>
-            <li class="fade-in-item"><strong>Automation:</strong> Proficient in Bash and Batch scripting for automation tasks</li>
-            <li class="fade-in-item"><strong>APIs:</strong> Experienced in building and using RESTful APIs</li>
-        </ul>
-        
-        <h3 class="fade-in about-block">Focus Areas</h3>
-        <p class="fade-in text-block">I specialize in automation engineering - creating systems that handle repetitive tasks and improve workflow efficiency. Most of my recent work involves building intelligent applications that can process data and adapt to different scenarios.</p>
-
-        <h3 class="fade-in about-block">Open Source Contribution</h3>
-        <p class="fade-in text-block">I contribute to open source projects regularly, both to give back to the developer community and to collaborate on interesting challenges. Working on open source has helped me grow as a developer and connect with people building cool stuff around the world.</p>
-        
-        <h3 class="fade-in about-block">Get in Touch</h3>
-        <div class="fade-in text-block">
-            <p>Interested in working together or just want to chat about a project? Feel free to reach out through the <a href="contact.html" class="contact-link">Contact</a> page.</p>
+    <header class="site-header">
+        <div class="wrap">
+            <a class="logo" href="index.html" aria-label="KillaMeep, home"><span class="tilde">~/</span>killameep<span class="cursor" aria-hidden="true"></span></a>
+            <nav class="nav" aria-label="Main">
+                <a href="index.html">home</a>
+                <a href="about.html" aria-current="page">about</a>
+                <a href="projects.html">projects</a>
+                <a href="contact.html">contact</a>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; <span id="copyright-year">2026</span> <a href="hidden.html" class="hidden-link">KillaMeep</a> | All rights reserved.</p>
+    <main id="main">
+        <div class="wrap page">
+            <header class="reveal">
+                <p class="eyebrow">about</p>
+                <h1 class="page-title">I make computers do<br>the <span class="grad-text">tedious parts</span>.</h1>
+            </header>
+
+            <section class="section about-grid" style="margin-top: clamp(56px, 8vw, 96px)">
+                <aside class="reveal"><h2>Who I am</h2></aside>
+                <div class="prose reveal" style="--d: .06s">
+                    <p>I'm a developer focused on <strong>Python and machine learning</strong>. Most of my time goes into computer vision and AI with frameworks like OpenCV, PyTorch and TensorFlow, building tools that solve real problems through automation.</p>
+                    <p>Beyond Python I work in Rust, JavaScript and C#, and I build <strong>desktop apps with Tauri and Electron</strong>. That lets me take an idea from a model or a script all the way to something people can download and run.</p>
+                </div>
+            </section>
+
+            <section class="section about-grid">
+                <aside class="reveal"><h2>What I work with</h2></aside>
+                <div class="skills">
+                    <div class="card reveal" style="--d: 0.00s">
+                        <h3>languages</h3>
+                        <ul class="tags"><li class="tag primary">Python</li><li class="tag">Rust</li><li class="tag">JavaScript</li><li class="tag">C#</li><li class="tag">HTML</li><li class="tag">Lua</li></ul>
+                    </div>
+                    <div class="card reveal" style="--d: 0.05s">
+                        <h3>ml + vision</h3>
+                        <ul class="tags"><li class="tag">OpenCV</li><li class="tag">PyTorch</li><li class="tag">TensorFlow</li><li class="tag">YOLO</li><li class="tag">Ultralytics</li><li class="tag">SciPy</li></ul>
+                    </div>
+                    <div class="card reveal" style="--d: 0.10s">
+                        <h3>desktop apps</h3>
+                        <ul class="tags"><li class="tag">Tauri</li><li class="tag">Electron</li></ul>
+                    </div>
+                    <div class="card reveal" style="--d: 0.15s">
+                        <h3>web</h3>
+                        <ul class="tags"><li class="tag">Django</li><li class="tag">Flask</li><li class="tag">REST APIs</li></ul>
+                    </div>
+                    <div class="card reveal" style="--d: 0.20s">
+                        <h3>tools</h3>
+                        <ul class="tags"><li class="tag">Git</li><li class="tag">Docker</li><li class="tag">Bash</li><li class="tag">Batch</li></ul>
+                    </div>
+                    <div class="card reveal" style="--d: 0.25s">
+                        <h3>platforms</h3>
+                        <ul class="tags"><li class="tag">Linux</li><li class="tag">Windows</li></ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section about-grid">
+                <aside class="reveal"><h2>What I focus on</h2></aside>
+                <ul class="focus-list reveal" style="--d: .06s">
+                    <li><span><strong>Automation engineering.</strong> Systems that take over repetitive tasks and make workflows faster.</span></li>
+                    <li><span><strong>Intelligent applications.</strong> Software that processes data and adapts to different scenarios.</span></li>
+                    <li><span><strong>Open source.</strong> I contribute regularly, to give back and to work on interesting problems with people building cool stuff around the world.</span></li>
+                </ul>
+            </section>
+
+            <section class="section about-grid">
+                <aside class="reveal"><h2>Say hi</h2></aside>
+                <div class="prose reveal" style="--d: .06s">
+                    <p>Want to work together, or just talk about a project? I'm easy to reach.</p>
+                    <div class="hero-actions" style="margin-top: 24px">
+                        <a class="btn btn-primary" href="contact.html">Contact me <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <p>&copy; <span data-year>2026</span> <a class="secret-link" href="hidden.html">KillaMeep</a></p>
+            <div class="footer-links">
+                <a href="https://github.com/KillaMeep" target="_blank" rel="noopener">github</a>
+                <a href="mailto:nathanrfeldt@gmail.com">email</a>
+            </div>
+        </div>
     </footer>
 
-    <script type="text/babel">
-        class StarrySky extends React.Component {
-            state = {
-                num: 60,
-                vw: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-                vh: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-            };
-
-            starryNight = () => {
-                anime({
-                    targets: ["#sky .star"],
-                    opacity: [
-                        { duration: 700, value: "0" },
-                        { duration: 700, value: "1" }
-                    ],
-                    easing: "linear",
-                    loop: true,
-                    delay: (el, i) => 50 * i
-                });
-            };
-
-            shootingStars = () => {
-                anime({
-                    targets: ["#shootingstars .wish"],
-                    easing: "linear",
-                    loop: true,
-                    delay: (el, i) => 1000 * i,
-                    opacity: [
-                        { duration: 700, value: "1" }
-                    ],
-                    width: [
-                        { value: "150px" },
-                        { value: "0px" }
-                    ],
-                    translateX: 350
-                });
-            };
-
-            randomRadius = () => {
-                return Math.random() * 0.7 + 0.6;
-            };
-
-            getRandomX = () => {
-                return Math.floor(Math.random() * Math.floor(this.state.vw)).toString();
-            };
-
-            getRandomY = () => {
-                return Math.floor(Math.random() * Math.floor(this.state.vh)).toString();
-            };
-
-            componentDidMount() {
-                this.starryNight();
-                this.shootingStars();
-            }
-
-            render() {
-                const { num } = this.state;
-                return (
-                    <div id="App">
-                        <svg id="sky">
-                            {[...Array(num)].map((x, y) => (
-                                <circle
-                                    cx={this.getRandomX()}
-                                    cy={this.getRandomY()}
-                                    r={this.randomRadius()}
-                                    stroke="none"
-                                    strokeWidth="0"
-                                    fill="white"
-                                    key={y}
-                                    className="star" // Ensure this class is used for the animation
-                                />
-                            ))}
-                        </svg>
-                        <div id="shootingstars">
-                            {[...Array(100)].map((x, y) => (
-                                <div
-                                    key={y}
-                                    className="wish"
-                                    style={{
-                                        left: `${this.getRandomY()}px`,
-                                        top: `${this.getRandomX()}px`
-                                    }}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                );
-            }
-        }
-
-        ReactDOM.render(<StarrySky />, document.getElementById("root"));
-
-        // Adjust body height for mobile
-        window.addEventListener('resize', () => {
-            document.body.style.height = `${window.innerHeight}px`;
-        });
-
-        // Initial call to set height on load
-        document.body.style.height = `${window.innerHeight}px`;
-    </script>
-<!-- Scripts -->
-<script src="assets/js/starry-sky.js"></script>
-<script src="assets/js/navbar-scroll.js"></script>
-<script src="assets/js/active-nav.js"></script>
-    <script src="assets/js/copyright-year.js"></script>
+    <script src="assets/js/site.js"></script>
 </body>
 </html>

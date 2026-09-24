@@ -1,81 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KillaMeep</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    
-    <style>
-        body {
-            background-color: #2b2b2b; /* Set background to dark grey */
-            margin: 0; /* Remove default margin */
-            overflow: hidden; /* Hide overflow for a cleaner look */
-            height: 100vh; /* Ensure body takes full height */
-            display: flex; /* Use flexbox for centering */
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            flex-direction: column; /* Stack elements vertically */
-            color: #ffda79; /* Text color */
-            font-family: Arial, sans-serif; /* Font family */
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 2.5rem; /* Increase font size */
-        }
-
-        .choice {
-            display: flex; /* Use flexbox for buttons */
-            justify-content: center; /* Center buttons */
-            gap: 20px; /* Space between buttons */
-        }
-
-        .btn {
-            padding: 15px 30px; /* Button padding */
-            background-color: #ffda79; /* Button color */
-            color: #2b2b2b; /* Button text color */
-            border: none;
-            border-radius: 10px; /* Rounded corners */
-            font-size: 1.5rem; /* Larger font size */
-            cursor: pointer; /* Pointer cursor */
-            transition: transform 0.3s; /* Smooth scaling effect */
-        }
-
-        .btn:hover {
-            transform: scale(1.1); /* Slightly scale up on hover */
-        }
-
-        .animation {
-            position: absolute;
-            opacity: 0; /* Start invisible */
-            transition: opacity 0.5s ease; /* Smooth fade-in effect */
-        }
-    </style>
+    <title>A Very Important Quiz | KillaMeep</title>
+    <meta name="description" content="Cats or dogs? Choose wisely.">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#07060d">
+    <meta property="og:title" content="A Very Important Quiz | KillaMeep">
+    <meta property="og:description" content="Cats or dogs? Choose wisely.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a78bfa'/%3E%3Cstop offset='1' stop-color='%23f472b6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%2307060d'/%3E%3Cpath d='M16 5c.9 6.1 4.9 10.1 11 11-6.1.9-10.1 4.9-11 11-.9-6.1-4.9-10.1-11-11 6.1-.9 10.1-4.9 11-11Z' fill='url(%23g)'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-    <h1>Do you prefer Cats or Dogs?</h1>
-    <div class="choice">
-        <button class="btn" onclick="selectPreference('cats')">🐱 Cats</button>
-        <button class="btn" onclick="selectPreference('dogs')">🐶 Dogs</button>
-    </div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="space" aria-hidden="true"><canvas></canvas></div>
 
-    <div id="animation" class="animation"></div>
+    <header class="site-header">
+        <div class="wrap">
+            <a class="logo" href="index.html" aria-label="KillaMeep, home"><span class="tilde">~/</span>killameep<span class="cursor" aria-hidden="true"></span></a>
+            <nav class="nav" aria-label="Main">
+                <a href="index.html">home</a>
+                <a href="about.html">about</a>
+                <a href="projects.html">projects</a>
+                <a href="contact.html">contact</a>
+            </nav>
+        </div>
+    </header>
 
-    <script>
-        const selectPreference = (preference) => {
-            const animation = document.getElementById('animation');
-            animation.style.opacity = '1'; // Make the animation visible
-            animation.innerHTML = ''; // Clear previous content
-            animation.style.transition = 'opacity 0.5s ease'; // Ensure smooth transition
-            animation.style.opacity = '0'; // Fade out immediately
+    <main id="main">
+        <div class="wrap page">
+            <header class="toy reveal">
+                <p class="eyebrow">question 1 of 1</p>
+                <h1 class="page-title">Cats or dogs?</h1>
+                <p class="lede">There is a right answer. There is also another answer.</p>
+            </header>
+            <div class="choose-grid">
+                <a class="card glow choice reveal" href="cats.html">
+                    <span class="emoji" aria-hidden="true">🐱</span>
+                    <span class="name">Cats</span>
+                    <span class="sub">aloof, correct</span>
+                </a>
+                <a class="card glow choice reveal" style="--d: .08s" href="dogs.html">
+                    <span class="emoji" aria-hidden="true">🐶</span>
+                    <span class="name">Dogs</span>
+                    <span class="sub">loyal, also correct</span>
+                </a>
+            </div>
+        </div>
+    </main>
 
-            // Redirect based on preference after a short delay for UX
-            setTimeout(() => {
-                window.location.href = preference === 'cats' ? 'cats.html' : 'dogs.html';
-            }, 300); // Redirect after a short delay
-        };
-    </script>
+    <footer class="site-footer">
+        <div class="wrap">
+            <p>&copy; <span data-year>2026</span> <a class="secret-link" href="hidden.html">KillaMeep</a></p>
+            <div class="footer-links">
+                <a href="https://github.com/KillaMeep" target="_blank" rel="noopener">github</a>
+                <a href="mailto:nathanrfeldt@gmail.com">email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/site.js"></script>
 </body>
 </html>

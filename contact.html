@@ -1,284 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | KillaMeep</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <style>
-        /* Global box-sizing fix */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        
-        html {
-            overflow-x: hidden;
-        }
-        
-        .hidden-link {
-            color: #fff;
-            text-decoration: none;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: 
-                radial-gradient(ellipse at center, #1a0f3d 0%, #000000 100%),
-                radial-gradient(ellipse at 40% 30%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 70%, rgba(255, 105, 180, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 20% 80%, rgba(0, 206, 209, 0.08) 0%, transparent 50%);
-            color: #ffffff;
-            position: relative;
-            overflow-x: hidden;
-            overflow-y: auto;
-            min-height: 100vh;
-            width: 100%;
-        }
-
-        /* Comet Trail Background */
-        .comet-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1;
-            pointer-events: none;
-            background: 
-                radial-gradient(1px 1px at 25px 35px, #ffffff, transparent),
-                radial-gradient(2px 2px at 65px 75px, #ffffff, transparent),
-                radial-gradient(1px 1px at 105px 25px, #ffffff, transparent),
-                radial-gradient(2px 2px at 145px 95px, #ffffff, transparent),
-                radial-gradient(1px 1px at 185px 55px, #ffffff, transparent),
-                radial-gradient(2px 2px at 225px 85px, #ffffff, transparent);
-        }
-
-        .comet-background::before {
-            content: '';
-            position: absolute;
-            top: 20%;
-            left: -10%;
-            width: 120%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent 0%, rgba(138, 43, 226, 0.8) 20%, rgba(255, 105, 180, 0.6) 50%, transparent 100%);
-            animation: cometTrail 8s linear infinite;
-            transform: rotate(15deg);
-        }
-
-        .comet-background::after {
-            content: '';
-            position: absolute;
-            top: 70%;
-            left: -10%;
-            width: 120%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent 0%, rgba(0, 206, 209, 0.6) 30%, rgba(255, 105, 180, 0.4) 60%, transparent 100%);
-            animation: cometTrailReverse 12s linear infinite;
-            transform: rotate(-10deg);
-        }
-
-        @keyframes cometTrail {
-            0% { opacity: 0; transform: translateX(-100%) rotate(15deg); }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { opacity: 0; transform: translateX(100%) rotate(15deg); }
-        }
-
-        @keyframes cometTrailReverse {
-            0% { opacity: 0; transform: translateX(-100%) rotate(-10deg); }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { opacity: 0; transform: translateX(100%) rotate(-10deg); }
-        }
-
-        /* Styling for contact section */
-        .contact-section {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            color: white;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .contact-methods {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 2rem;
-        }
-
-        .contact-card {
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(255, 105, 180, 0.1));
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 15px;
-            padding: 30px;
-            width: 300px;
-            box-shadow: 0 8px 32px rgba(138, 43, 226, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.2);
-            border-color: rgba(138, 43, 226, 0.5);
-        }
-
-        .contact-card h3 {
-            color: #e1bee7;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
-        }
-
-        /* Floating asteroids */
-        .asteroid {
-            position: absolute;
-            color: rgba(0, 206, 209, 0.3);
-            font-size: 15px;
-            animation: asteroidFloat 10s ease-in-out infinite;
-            z-index: 5;
-        }
-
-        .asteroid:nth-child(1) { top: 15%; left: 85%; animation-delay: 0s; }
-        .asteroid:nth-child(2) { top: 45%; left: 10%; animation-delay: 3s; }
-        .asteroid:nth-child(3) { top: 75%; left: 80%; animation-delay: 6s; }
-
-        @keyframes asteroidFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(360deg); }
-        }
-
-        /* Mobile-optimized animations */
-        @media (max-width: 768px) {
-            .comet-background {
-                animation: none !important; /* Keep this disabled for performance */
-                transform: none !important;
-                opacity: 0.2 !important;
-            }
-            
-            .comet-background::before,
-            .comet-background::after {
-                animation: cometTrail 20s linear infinite !important; /* Slower comet trails */
-                transform: rotate(15deg) !important;
-                opacity: 0.3 !important;
-            }
-            
-            .asteroid {
-                animation: asteroidFloat 15s ease-in-out infinite !important; /* Slower asteroid animation */
-                transform: rotate(0deg) !important;
-                opacity: 0.3 !important;
-            }
-            
-            .asteroid:nth-child(2) {
-                animation-delay: 5s !important;
-                opacity: 0.2 !important;
-            }
-            
-            .asteroid:nth-child(3) {
-                animation-delay: 10s !important;
-                opacity: 0.15 !important;
-            }
-            
-            .css-particles {
-                opacity: 0.1 !important; /* Keep particles but very subtle */
-            }
-        }
-
-        /* Mobile optimizations for smaller screens */
-        @media (max-width: 480px) {
-            .comet-background {
-                opacity: 0.1 !important; /* Keep visible but very subtle */
-            }
-            
-            .comet-background::before,
-            .comet-background::after {
-                animation: cometTrail 30s linear infinite !important; /* Very slow animation */
-                opacity: 0.2 !important;
-            }
-            
-            .asteroid {
-                animation: asteroidFloat 20s ease-in-out infinite !important; /* Very slow animation */
-                opacity: 0.2 !important;
-            }
-            
-            .asteroid:nth-child(n+3) {
-                opacity: 0.1 !important; /* Keep all asteroids but make them subtle */
-            }
-        }
-
-        /* Accessibility - respect reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            .comet-background, .comet-background::before, .comet-background::after {
-                animation: none !important;
-            }
-            
-            .asteroid {
-                animation: none !important;
-                opacity: 0.1 !important;
-            }
-        }
-    </style>
+    <meta name="description" content="Get in touch with KillaMeep by email or on GitHub.">
+    <meta name="theme-color" content="#07060d">
+    <meta property="og:title" content="Contact | KillaMeep">
+    <meta property="og:description" content="Get in touch with KillaMeep by email or on GitHub.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a78bfa'/%3E%3Cstop offset='1' stop-color='%23f472b6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%2307060d'/%3E%3Cpath d='M16 5c.9 6.1 4.9 10.1 11 11-6.1.9-10.1 4.9-11 11-.9-6.1-4.9-10.1-11-11 6.1-.9 10.1-4.9 11-11Z' fill='url(%23g)'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-    <!-- Comet Background -->
-    <div class="comet-background"></div>
-    
-    <!-- Floating Asteroids -->
-    <div class="asteroid">◆</div>
-    <div class="asteroid">◇</div>
-    <div class="asteroid">◈</div>
-    
-    <!-- Ultra-lightweight CSS particles -->
-    <div class="css-particles">
-        <div class="css-particle"></div>
-        <div class="css-particle"></div>
-        <div class="css-particle"></div>
-        <div class="css-particle"></div>
-        <div class="css-particle"></div>
-    </div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="space" aria-hidden="true"><canvas></canvas></div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <h2>Contact Me</h2>
-        <p>If you’d like to get in touch, feel free to reach out through any of the following platforms:</p>
-        <div class="contact-methods">
-            <div class="contact-card">
-                <h3>Email</h3>
-                <p>Reach me directly at <a href="mailto:nathanrfeldt@gmail.com">nathanrfeldt@gmail.com</a></p>
-            </div>
-            <div class="contact-card">
-                <h3>GitHub</h3>
-                <p>Check out my projects on GitHub: <a href="https://github.com/KillaMeep" target="_blank">github.com/KillaMeep</a></p>
-            </div>
-
+    <header class="site-header">
+        <div class="wrap">
+            <a class="logo" href="index.html" aria-label="KillaMeep, home"><span class="tilde">~/</span>killameep<span class="cursor" aria-hidden="true"></span></a>
+            <nav class="nav" aria-label="Main">
+                <a href="index.html">home</a>
+                <a href="about.html">about</a>
+                <a href="projects.html">projects</a>
+                <a href="contact.html" aria-current="page">contact</a>
+            </nav>
         </div>
-    </section>
+    </header>
 
-    <footer class="footer">
-        <p>&copy; <span id="copyright-year">2026</span> <a href="hidden.html" class="hidden-link">KillaMeep</a> | All rights reserved.</p>
+    <main id="main">
+        <div class="wrap page">
+            <header class="reveal">
+                <p class="eyebrow">contact</p>
+                <h1 class="page-title">Let's <span class="grad-text">talk</span>.</h1>
+                <p class="lede">Project idea, question, or just saying hi: email is the fastest way to reach me.</p>
+            </header>
+            <div class="contact-grid">
+                <div class="card glow contact-card reveal">
+                    <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                    <span class="label">email</span>
+                    <a class="value inline-link" href="mailto:nathanrfeldt@gmail.com">nathanrfeldt@gmail.com</a>
+                    <div class="row">
+                        <a class="btn btn-primary" href="mailto:nathanrfeldt@gmail.com">Write an email</a>
+                        <button class="btn" type="button" data-copy="nathanrfeldt@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg> <span>Copy</span></button>
+                    </div>
+                </div>
+                <div class="card glow contact-card reveal" style="--d: .08s">
+                    <span class="icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></span>
+                    <span class="label">github</span>
+                    <a class="value inline-link" href="https://github.com/KillaMeep" target="_blank" rel="noopener">github.com/KillaMeep</a>
+                    <div class="row">
+                        <a class="btn" href="https://github.com/KillaMeep" target="_blank" rel="noopener">View profile <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <p>&copy; <span data-year>2026</span> <a class="secret-link" href="hidden.html">KillaMeep</a></p>
+            <div class="footer-links">
+                <a href="https://github.com/KillaMeep" target="_blank" rel="noopener">github</a>
+                <a href="mailto:nathanrfeldt@gmail.com">email</a>
+            </div>
+        </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="assets/js/navbar-scroll.js"></script>
-    <script src="assets/js/active-nav.js"></script>
-    <script src="assets/js/copyright-year.js"></script>
+    <script src="assets/js/site.js"></script>
+    <script>
+        document.querySelectorAll('[data-copy]').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const label = btn.querySelector('span');
+                try {
+                    await navigator.clipboard.writeText(btn.dataset.copy);
+                    label.textContent = 'Copied';
+                } catch {
+                    label.textContent = 'Copy failed';
+                }
+                setTimeout(() => { label.textContent = 'Copy'; }, 1800);
+            });
+        });
+    </script>
 </body>
 </html>

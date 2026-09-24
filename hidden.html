@@ -1,283 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hidden Pages | KillaMeep</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-
-    <!-- React and ReactDOM via CDN -->
-    <script src="https://unpkg.com/react@17/umd/react.production.min.js" defer></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" defer></script>
-    
-    <!-- Anime.js via CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
-    
-    <!-- Babel for JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js" defer></script>
-
-    <style>
-        .hidden-link {
-            color: #fff; /* Footer link color */
-            text-decoration: none; /* No underline */
-        }
-        .footer-link {
-            color: #e6e6ff;
-            text-decoration: none;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: 
-                radial-gradient(ellipse at center, #0a0a2e 0%, #16213e 50%, #000000 100%),
-                radial-gradient(ellipse at 25% 75%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
-                radial-gradient(ellipse at 75% 25%, rgba(0, 191, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(255, 20, 147, 0.1) 0%, transparent 50%);
-            margin: 0; /* Remove default margin */
-            min-height: 100vh; /* Ensure body takes full height */
-            overflow: auto; /* Allow scrolling */
-            color: #ffffff;
-        }
-
-        #sky {
-            width: 100vw;
-            height: 100vh;
-            position: fixed;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-            z-index: 0; /* Make sure it's behind other content */
-        }
-
-        .container {
-            position: relative; /* Ensures the container is above the sky */
-            z-index: 2; /* Raise the container above other elements */
-            max-width: 800px; /* Limit width for better readability */
-            margin: 0 auto; /* Center the container */
-            padding: 20px; /* Add some padding */
-            background: 
-                linear-gradient(135deg, 
-                    rgba(15, 15, 35, 0.95) 0%, 
-                    rgba(25, 25, 60, 0.9) 50%, 
-                    rgba(15, 15, 35, 0.95) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(138, 43, 226, 0.2);
-            border-radius: 16px; /* More pronounced rounded corners */
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.7),
-                0 0 20px rgba(138, 43, 226, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            text-align: center; /* Center align text */
-        }
-
-        h2 {
-            color: #e6e6ff;
-            background: linear-gradient(45deg, rgba(138, 43, 226, 0.9), rgba(0, 191, 255, 0.9), rgba(255, 20, 147, 0.9));
-            background-size: 200% 200%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: prismaticShift 4s ease-in-out infinite;
-            text-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
-        }
-
-        @keyframes prismaticShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .card-container {
-            display: flex; /* Use flexbox for card layout */
-            flex-wrap: wrap; /* Allow cards to wrap */
-            justify-content: center; /* Center the cards */
-            margin-top: 20px; /* Space above the cards */
-        }
-
-        .card {
-            background: 
-                linear-gradient(135deg, 
-                    rgba(138, 43, 226, 0.15) 0%, 
-                    rgba(0, 191, 255, 0.1) 50%, 
-                    rgba(255, 20, 147, 0.15) 100%);
-            backdrop-filter: blur(8px);
-            border: 2px solid rgba(138, 43, 226, 0.4);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 10px;
-            width: 150px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            box-shadow: 
-                0 4px 15px rgba(0, 0, 0, 0.3),
-                0 0 20px rgba(138, 43, 226, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, 
-                transparent, 
-                rgba(138, 43, 226, 0.05), 
-                transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card:hover {
-            transform: translateY(-5px) scale(1.02);
-            border-color: rgba(138, 43, 226, 0.6);
-            box-shadow: 
-                0 8px 25px rgba(0, 0, 0, 0.4),
-                0 0 30px rgba(138, 43, 226, 0.3);
-        }
-
-        .icon {
-            width: 60px; /* Icon size */
-            height: 60px; /* Icon size */
-            margin-bottom: 10px; /* Space below the icon */
-        }
-
-        .hidden-links {
-            padding: 0; /* Remove default padding */
-        }
-
-        /* Footer Styles */
-        .footer {
-            margin-top: 30px; /* Add margin to position footer lower */
-            text-align: center; /* Center footer text */
-            color: #ffffff; /* Footer text color */
-        }
-    </style>
+    <meta name="description" content="You found the secret page directory.">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#07060d">
+    <meta property="og:title" content="Hidden Pages | KillaMeep">
+    <meta property="og:description" content="You found the secret page directory.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a78bfa'/%3E%3Cstop offset='1' stop-color='%23f472b6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%2307060d'/%3E%3Cpath d='M16 5c.9 6.1 4.9 10.1 11 11-6.1.9-10.1 4.9-11 11-.9-6.1-4.9-10.1-11-11 6.1-.9 10.1-4.9 11-11Z' fill='url(%23g)'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="space" aria-hidden="true"><canvas></canvas></div>
 
-    <!-- Starry Sky Animation -->
-    <div id="root"></div>
+    <header class="site-header">
+        <div class="wrap">
+            <a class="logo" href="index.html" aria-label="KillaMeep, home"><span class="tilde">~/</span>killameep<span class="cursor" aria-hidden="true"></span></a>
+            <nav class="nav" aria-label="Main">
+                <a href="index.html">home</a>
+                <a href="about.html">about</a>
+                <a href="projects.html">projects</a>
+                <a href="contact.html">contact</a>
+            </nav>
+        </div>
+    </header>
 
-    <!-- Hidden Pages Container -->
-    <div class="container">
-        <h2 class="fade-in">Hidden Pages</h2>
-        <p class="fade-in text-block">You found the secret page directory (: </p>
-        
-        <div class="card-container fade-in">
-            <div class="card" onclick="window.location.href='choose.html'">
-                <img class="icon" src="https://img.icons8.com/ios-filled/50/8a2be2/quiz.png" alt="Quiz Icon"/>
-                <div>A Very Important Quiz</div>
-            </div>
-            <div class="card" onclick="window.location.href='rick.html'">
-                <img class="icon" src="https://img.icons8.com/ios-filled/50/8a2be2/music.png" alt="Music Icon"/>
-                <div>A Forbidden Song</div>
-            </div>
-            <div class="card" onclick="window.location.href='nyan.html'">
-                <img class="icon" src="https://img.icons8.com/ios-filled/50/8a2be2/cat.png" alt="Cat Icon"/>
-                <div>An Ancient Tribute</div>
-            </div>
-            <div class="card" onclick="window.location.href='facts.html'">
-                <img class="icon" src="https://img.icons8.com/ios-filled/50/8a2be2/brain.png" alt="Brain Icon"/>
-                <div>A Useless Fact</div>
-            </div>
-            <div class="card" onclick="window.location.href='404.html'">
-                <img class="icon" src="https://img.icons8.com/ios-filled/50/8a2be2/error.png" alt="404 Icon"/>
-                <div>404 Page</div><p>(It looks cool)</p>
-            </div>
-            <div class="card" onclick="window.location.href='index.html'">
-                <img class="icon" src="https://img.icons8.com/ios-filled/50/8a2be2/home.png" alt="Home Icon"/>
-                <div>Go Back Home</div>
+    <main id="main">
+        <div class="wrap page">
+            <header class="reveal">
+                <p class="eyebrow">~/killameep/.hidden</p>
+                <h1 class="page-title">You found the <span class="grad-text">secret</span> directory.</h1>
+                <p class="lede">Nothing in here is useful. All of it is important.</p>
+            </header>
+            <div class="egg-grid">
+                <a class="card glow egg reveal" style="--d: 0.00s" href="choose.html">
+                    <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.2a2.9 2.9 0 0 1 5.6 1c0 1.9-2.8 2.6-2.8 4"/><path d="M12 17.5h.01"/></svg></span>
+                    <h2>A very important quiz</h2>
+                    <p>// choose wisely</p>
+                </a>
+                <a class="card glow egg reveal" style="--d: 0.05s" href="rick.html">
+                    <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+                    <h2>A forbidden song</h2>
+                    <p>// you have been warned</p>
+                </a>
+                <a class="card glow egg reveal" style="--d: 0.10s" href="nyan.html">
+                    <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V9l3-6 3 4h4l3-4 3 6v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/><path d="M9 13h.01M15 13h.01"/><path d="M10.5 16.5 12 17.5l1.5-1"/></svg></span>
+                    <h2>An ancient tribute</h2>
+                    <p>// est. 2011</p>
+                </a>
+                <a class="card glow egg reveal" style="--d: 0.15s" href="facts.html">
+                    <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5a3 3 0 0 0-5.8-1A3 3 0 0 0 3.5 8a3.5 3.5 0 0 0 .6 6A3.5 3.5 0 0 0 9 19a3 3 0 0 0 3 2V5Z"/><path d="M12 5a3 3 0 0 1 5.8-1A3 3 0 0 1 20.5 8a3.5 3.5 0 0 1-.6 6A3.5 3.5 0 0 1 15 19a3 3 0 0 1-3 2"/></svg></span>
+                    <h2>A useless fact</h2>
+                    <p>// 18+, oddly enough</p>
+                </a>
+                <a class="card glow egg reveal" style="--d: 0.20s" href="404.html">
+                    <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M4.6 15.9C2.4 17.9 1.5 19.8 2.3 20.6c1.2 1.2 5.8-1.3 10.2-5.7s6.9-9 5.7-10.2c-.8-.8-2.7 0-4.7 2.2"/></svg></span>
+                    <h2>The 404 page</h2>
+                    <p>// it looks cool</p>
+                </a>
             </div>
         </div>
-        
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; <span id="copyright-year">2026</span> <a href="hidden.html" class="hidden-link">KillaMeep</a> | All rights reserved.</p>
-        <p>Icons by <a href="https://icons8.com" class="footer-link">Icons8</a></p>
+    <footer class="site-footer">
+        <div class="wrap">
+            <p>&copy; <span data-year>2026</span> <a class="secret-link" href="hidden.html">KillaMeep</a></p>
+            <div class="footer-links">
+                <a href="https://github.com/KillaMeep" target="_blank" rel="noopener">github</a>
+                <a href="mailto:nathanrfeldt@gmail.com">email</a>
+            </div>
+        </div>
     </footer>
 
-    <script type="text/babel">
-        class StarrySky extends React.Component {
-            state = {
-                num: 60,
-                vw: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-                vh: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-            };
-
-            starryNight = () => {
-                anime({
-                    targets: ["#sky .star"],
-                    opacity: [
-                        { duration: 700, value: "0" },
-                        { duration: 700, value: "1" }
-                    ],
-                    easing: "linear",
-                    loop: true,
-                    delay: (el, i) => 50 * i
-                });
-            };
-
-            randomRadius = () => {
-                return Math.random() * 0.7 + 0.6;
-            };
-
-            getRandomX = () => {
-                return Math.floor(Math.random() * Math.floor(this.state.vw)).toString();
-            };
-
-            getRandomY = () => {
-                return Math.floor(Math.random() * Math.floor(this.state.vh)).toString();
-            };
-
-            componentDidMount() {
-                this.starryNight();
-            }
-
-            render() {
-                const { num } = this.state;
-                return (
-                    <div id="App">
-                        <svg id="sky">
-                            {[...Array(num)].map((x, y) => (
-                                <circle
-                                    cx={this.getRandomX()}
-                                    cy={this.getRandomY()}
-                                    r={this.randomRadius()}
-                                    stroke="none"
-                                    strokeWidth="0"
-                                    fill="white"
-                                    key={y}
-                                    className="star" // Ensure this class is used for the animation
-                                />
-                            ))}
-                        </svg>
-                    </div>
-                );
-            }
-        }
-
-        ReactDOM.render(<StarrySky />, document.getElementById("root"));
-    </script>
-
-    <!-- Active Navigation Script -->
-    <script src="assets/js/active-nav.js"></script>
-    <script src="assets/js/copyright-year.js"></script>
+    <script src="assets/js/site.js"></script>
 </body>
 </html>

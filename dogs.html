@@ -1,286 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cute Dogs | KillaMeep</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    
-    <!-- React and ReactDOM via CDN -->
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-
-    <!-- Anime.js via CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
-    <!-- Babel for JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <style>
-        /* Global box-sizing fix */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        
-        html {
-            overflow-x: hidden;
-        }
-        
-        .hidden-link {
-            color: #fff;
-            text-decoration: none;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: 
-                radial-gradient(ellipse at center, #1e1e3f 0%, #000000 100%),
-                radial-gradient(ellipse at 25% 25%, rgba(255, 99, 71, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 75% 75%, rgba(255, 215, 0, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(30, 144, 255, 0.08) 0%, transparent 50%);
-            color: #ffffff;
-            position: relative;
-            overflow-x: hidden;
-            overflow-y: auto;
-            min-height: 100vh;
-            width: 100%;
-        }
-
-        /* Planetary System Background */
-        .planetary-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .planet {
-            position: absolute;
-            border-radius: 50%;
-            animation: planetOrbit 30s linear infinite;
-        }
-
-        .planet1 {
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle at 30% 30%, #ff6347, #ff4500);
-            top: 20%;
-            left: 80%;
-            animation-duration: 25s;
-        }
-
-        .planet2 {
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle at 30% 30%, #ffd700, #ff8c00);
-            top: 70%;
-            left: 10%;
-            animation-duration: 40s;
-            animation-direction: reverse;
-        }
-
-        .planet3 {
-            width: 25px;
-            height: 25px;
-            background: radial-gradient(circle at 30% 30%, #1e90ff, #4169e1);
-            top: 50%;
-            left: 85%;
-            animation-duration: 20s;
-        }
-
-        .orbit-ring {
-            position: absolute;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: ringRotate 50s linear infinite;
-        }
-
-        .orbit1 {
-            width: 200px;
-            height: 200px;
-            top: calc(20% - 100px);
-            left: calc(80% - 100px);
-        }
-
-        .orbit2 {
-            width: 300px;
-            height: 300px;
-            top: calc(70% - 150px);
-            left: calc(10% - 150px);
-        }
-
-        @keyframes planetOrbit {
-            0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
-        }
-
-        @keyframes ringRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .container {
-            position: relative;
-            z-index: 10;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(255, 99, 71, 0.1), rgba(255, 215, 0, 0.1));
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(255, 99, 71, 0.15);
-            backdrop-filter: blur(10px);
-            text-align: center;
-            margin-top: 100px;
-            margin-bottom: 50px;
-        }
-
-        h2, h3 {
-            color: #ffeb99;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        }
-
-        .dog-image {
-            max-width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(255, 99, 71, 0.3);
-            border: 2px solid rgba(255, 215, 0, 0.4);
-            transition: all 0.3s ease;
-            margin: 20px 0; /* Spacing around images */
-        }
-
-        .btn-refresh {
-            padding: 10px 20px;
-            background-color: #ffda79; /* Button color */
-            color: #2b2b2b; /* Button text color */
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
-        }
-
-        .btn-refresh:hover {
-            background-color: #ffd95c; /* Darker button on hover */
-            transform: scale(1.05); /* Slight scale effect on hover */
-        }
-
-        /* Mobile-optimized animations */
-        @media (max-width: 768px) {
-            .planet {
-                animation: planetOrbit 40s linear infinite !important; /* Slower animation */
-                opacity: 0.2 !important;
-            }
-            
-            .planet:nth-child(n+6) {
-                opacity: 0.1 !important; /* Keep more planets but subtle */
-            }
-            
-            .orbit-ring {
-                animation: orbitGlow 30s ease-in-out infinite alternate !important; /* Slower animation */
-                opacity: 0.15 !important;
-            }
-            
-            .orbit-ring:nth-child(n+3) {
-                opacity: 0.08 !important; /* Keep more rings but subtle */
-            }
-            
-            .btn-refresh:hover {
-                transform: scale(1.02) !important; /* Subtle hover effect */
-            }
-        }
-
-        /* Mobile optimizations for smaller screens */
-        @media (max-width: 480px) {
-            .planet {
-                animation: planetOrbit 60s linear infinite !important; /* Very slow animation */
-                opacity: 0.15 !important;
-            }
-            
-            .planet:nth-child(n+4) {
-                opacity: 0.08 !important; /* Keep fewer planets but visible */
-            }
-            
-            .orbit-ring {
-                animation: orbitGlow 45s ease-in-out infinite alternate !important; /* Very slow animation */
-                opacity: 0.1 !important;
-            }
-            
-            .orbit-ring:nth-child(n+2) {
-                opacity: 0.05 !important; /* Keep fewer rings but visible */
-            }
-        }
-
-        /* Accessibility - respect reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            .planet, .orbit-ring {
-                animation: none !important;
-                opacity: 0.1 !important;
-            }
-            
-            .btn-refresh {
-                transition: none !important;
-            }
-        }
-    </style>
+    <meta name="description" content="A fresh random dog, every click.">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#07060d">
+    <meta property="og:title" content="Cute Dogs | KillaMeep">
+    <meta property="og:description" content="A fresh random dog, every click.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a78bfa'/%3E%3Cstop offset='1' stop-color='%23f472b6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%2307060d'/%3E%3Cpath d='M16 5c.9 6.1 4.9 10.1 11 11-6.1.9-10.1 4.9-11 11-.9-6.1-4.9-10.1-11-11 6.1-.9 10.1-4.9 11-11Z' fill='url(%23g)'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-    <!-- Planetary Background -->
-    <div class="planetary-background">
-        <div class="orbit-ring orbit1"></div>
-        <div class="orbit-ring orbit2"></div>
-        <div class="planet planet1"></div>
-        <div class="planet planet2"></div>
-        <div class="planet planet3"></div>
-    </div>
-    
-    <!-- Navbar -->
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="space" aria-hidden="true"><canvas></canvas></div>
 
-    <!-- Dogs Container -->
-    <div class="container">
-        <h2 class="fade-in">Cute Dogs</h2>
-        <p class="fade-in text-block">Click the button below to fetch a random dog image!</p>
-        <img id="dogImage" class="dog-image fade-in" src="" alt="Random Dog" />
-        <br />
-        <button class="btn-refresh fade-in" onclick="fetchDogImage()">Get New Dog</button>
-    </div>
+    <header class="site-header">
+        <div class="wrap">
+            <a class="logo" href="index.html" aria-label="KillaMeep, home"><span class="tilde">~/</span>killameep<span class="cursor" aria-hidden="true"></span></a>
+            <nav class="nav" aria-label="Main">
+                <a href="index.html">home</a>
+                <a href="about.html">about</a>
+                <a href="projects.html">projects</a>
+                <a href="contact.html">contact</a>
+            </nav>
+        </div>
+    </header>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; <span id="copyright-year">2026</span> <a href="hidden.html" class="hidden-link">KillaMeep</a> | All rights reserved.</p>
+    <main id="main">
+        <div class="wrap page">
+            <section class="toy">
+                <header class="reveal">
+                    <p class="eyebrow">you chose wisely</p>
+                    <h1 class="page-title">Cute <span class="grad-text">dogs</span>.</h1>
+                    <p class="lede">A fresh random dog, every click.</p>
+                </header>
+                <div class="card toy-stage reveal is-loading" style="--d: .08s" id="stage" aria-live="polite" aria-busy="true">
+                    <img id="pet" alt="A random dog" width="600" height="400">
+                </div>
+                <p class="status" id="status"></p>
+                <div class="toy-actions reveal" style="--d: .12s">
+                    <button class="btn btn-primary" type="button" id="next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg> New dog</button>
+                    <a class="btn" href="choose.html">Change my answer</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <p>&copy; <span data-year>2026</span> <a class="secret-link" href="hidden.html">KillaMeep</a></p>
+            <div class="footer-links">
+                <a href="https://github.com/KillaMeep" target="_blank" rel="noopener">github</a>
+                <a href="mailto:nathanrfeldt@gmail.com">email</a>
+            </div>
+        </div>
     </footer>
 
-    <script type="text/babel">
-        const fetchDogImage = () => {
-            fetch('https://dog.ceo/api/breeds/image/random')
-                .then(response => response.json())
-                .then(data => {
-                    const dogImage = document.getElementById('dogImage');
-                    dogImage.src = data.message; // Set the dog image source
-                })
-                .catch(error => console.error('Error fetching dog image:', error));
+    <script src="assets/js/site.js"></script>
+    <script>
+        const stage = document.getElementById('stage');
+        const img = document.getElementById('pet');
+        const next = document.getElementById('next');
+        const status = document.getElementById('status');
+        const setLoading = (on) => {
+            stage.classList.toggle('is-loading', on);
+            stage.setAttribute('aria-busy', on);
+            next.disabled = on;
         };
-
-        // Fetch a dog image on page load
-        window.onload = fetchDogImage;
+        img.addEventListener('load', () => setLoading(false));
+        img.addEventListener('error', () => { setLoading(false); status.textContent = 'That one got lost in space. Try again.'; });
+        const fetchPet = async () => {
+            setLoading(true);
+            status.textContent = '';
+            try {
+                const res = await fetch('https://dog.ceo/api/breeds/image/random');
+                const data = await res.json();
+                img.src = data.message;
+            } catch {
+                setLoading(false);
+                status.textContent = 'Could not reach the API. Try again in a moment.';
+            }
+        };
+        next.addEventListener('click', fetchPet);
+        fetchPet();
     </script>
-    <!-- Scripts -->
-    <script src="assets/js/api-utils.js"></script>
-    <script src="assets/js/starry-sky.js"></script>
-    <script src="assets/js/active-nav.js"></script>
-    <script src="assets/js/copyright-year.js"></script>
 </body>
 </html>

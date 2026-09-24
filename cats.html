@@ -1,272 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cute Cats | KillaMeep</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    
-    <!-- React and ReactDOM via CDN -->
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-
-    <!-- Anime.js via CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
-    <!-- Babel for JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <style>
-        /* Global box-sizing fix */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        
-        html {
-            overflow-x: hidden;
-        }
-        
-        .hidden-link {
-            color: #fff;
-            text-decoration: none;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: 
-                radial-gradient(ellipse at center, #0f1419 0%, #000000 100%),
-                radial-gradient(ellipse at 30% 40%, rgba(65, 105, 225, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 60%, rgba(138, 43, 226, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-            color: #ffffff;
-            position: relative;
-            overflow-x: hidden;
-            overflow-y: auto;
-            min-height: 100vh;
-            width: 100%;
-        }
-
-        /* Constellation Background */
-        .constellation-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #ffffff;
-            border-radius: 50%;
-            animation: twinkle 3s ease-in-out infinite alternate;
-        }
-
-        .star:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
-        .star:nth-child(2) { top: 25%; left: 25%; animation-delay: 0.5s; }
-        .star:nth-child(3) { top: 30%; left: 35%; animation-delay: 1s; }
-        .star:nth-child(4) { top: 60%; left: 70%; animation-delay: 1.5s; }
-        .star:nth-child(5) { top: 65%; left: 80%; animation-delay: 2s; }
-        .star:nth-child(6) { top: 70%; left: 90%; animation-delay: 2.5s; }
-        .star:nth-child(7) { top: 80%; left: 20%; animation-delay: 3s; }
-        .star:nth-child(8) { top: 85%; left: 30%; animation-delay: 3.5s; }
-
-        .constellation-line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(138, 43, 226, 0.4), rgba(65, 105, 225, 0.4));
-            animation: lineGlow 4s ease-in-out infinite alternate;
-        }
-
-        .line1 { top: 22.5%; left: 15%; width: 12%; transform: rotate(45deg); }
-        .line2 { top: 27.5%; left: 25%; width: 14%; transform: rotate(-30deg); }
-        .line3 { top: 62.5%; left: 70%; width: 15%; transform: rotate(30deg); }
-        .line4 { top: 67.5%; left: 80%; width: 12%; transform: rotate(-45deg); }
-        .line5 { top: 82.5%; left: 20%; width: 13%; transform: rotate(60deg); }
-
-        @keyframes twinkle {
-            0% { opacity: 0.3; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.5); }
-        }
-
-        @keyframes lineGlow {
-            0% { opacity: 0.2; }
-            100% { opacity: 0.8; }
-        }
-
-        .container {
-            position: relative;
-            z-index: 10;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(65, 105, 225, 0.1), rgba(138, 43, 226, 0.1));
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(138, 43, 226, 0.15);
-            backdrop-filter: blur(10px);
-            text-align: center;
-            margin-top: 100px;
-            margin-bottom: 50px;
-        }
-
-        h2, h3 {
-            color: #e6e6ff;
-            text-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
-        }
-
-        .cat-image {
-            max-width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
-            border: 2px solid rgba(138, 43, 226, 0.4);
-            transition: all 0.3s ease;
-            margin: 20px 0; /* Spacing around images */
-        }
-
-        .btn-refresh {
-            padding: 10px 20px;
-            background-color: #ffda79; /* Button color */
-            color: #2b2b2b; /* Button text color */
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
-        }
-
-        .btn-refresh:hover {
-            background-color: #ffd95c; /* Darker button on hover */
-            transform: scale(1.05); /* Slight scale effect on hover */
-        }
-
-        /* Mobile-optimized animations */
-        @media (max-width: 768px) {
-            .star {
-                animation: twinkle 4s ease-in-out infinite alternate !important; /* Slower animation */
-                opacity: 0.2 !important;
-            }
-            
-            .star:nth-child(n+8) {
-                opacity: 0.1 !important; /* Keep more stars but very subtle */
-            }
-            
-            .constellation-line {
-                animation: lineGlow 6s ease-in-out infinite alternate !important; /* Slower animation */
-                opacity: 0.15 !important;
-            }
-            
-            .constellation-line:nth-child(n+15) {
-                opacity: 0.08 !important; /* Keep more lines but subtle */
-            }
-            
-            .btn-refresh:hover {
-                transform: scale(1.02) !important; /* Subtle hover effect */
-            }
-        }
-
-        /* Mobile optimizations for smaller screens */
-        @media (max-width: 480px) {
-            .star {
-                animation: twinkle 6s ease-in-out infinite alternate !important; /* Very slow animation */
-                opacity: 0.15 !important;
-            }
-            
-            .star:nth-child(n+6) {
-                opacity: 0.08 !important; /* Keep fewer stars but visible */
-            }
-            
-            .constellation-line {
-                animation: lineGlow 8s ease-in-out infinite alternate !important; /* Very slow animation */
-                opacity: 0.1 !important;
-            }
-            
-            .constellation-line:nth-child(n+10) {
-                opacity: 0.05 !important; /* Keep fewer lines but visible */
-            }
-        }
-
-        /* Accessibility - respect reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            .star, .constellation-line {
-                animation: none !important;
-                opacity: 0.1 !important;
-            }
-            
-            .btn-refresh {
-                transition: none !important;
-            }
-        }
-    </style>
+    <meta name="description" content="A fresh random cat, every click.">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#07060d">
+    <meta property="og:title" content="Cute Cats | KillaMeep">
+    <meta property="og:description" content="A fresh random cat, every click.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a78bfa'/%3E%3Cstop offset='1' stop-color='%23f472b6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%2307060d'/%3E%3Cpath d='M16 5c.9 6.1 4.9 10.1 11 11-6.1.9-10.1 4.9-11 11-.9-6.1-4.9-10.1-11-11 6.1-.9 10.1-4.9 11-11Z' fill='url(%23g)'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-        
-    <!-- Constellation Background -->
-    <div class="constellation-background">
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="constellation-line line1"></div>
-        <div class="constellation-line line2"></div>
-        <div class="constellation-line line3"></div>
-        <div class="constellation-line line4"></div>
-        <div class="constellation-line line5"></div>
-    </div>
-    
-    <!-- Navbar -->
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="space" aria-hidden="true"><canvas></canvas></div>
 
-    <!-- Cats Container -->
-    <div class="container">
-        <h2 class="fade-in">Cute Cats</h2>
-        <p class="fade-in text-block">Click the button below to fetch a random cat image!</p>
-        <img id="catImage" class="cat-image fade-in" src="" alt="Random Cat" />
-        <br />
-        <button class="btn-refresh fade-in" onclick="fetchCatImage()">Get New Cat</button>
-    </div>
+    <header class="site-header">
+        <div class="wrap">
+            <a class="logo" href="index.html" aria-label="KillaMeep, home"><span class="tilde">~/</span>killameep<span class="cursor" aria-hidden="true"></span></a>
+            <nav class="nav" aria-label="Main">
+                <a href="index.html">home</a>
+                <a href="about.html">about</a>
+                <a href="projects.html">projects</a>
+                <a href="contact.html">contact</a>
+            </nav>
+        </div>
+    </header>
 
-    <!-- Footer -->
+    <main id="main">
+        <div class="wrap page">
+            <section class="toy">
+                <header class="reveal">
+                    <p class="eyebrow">you chose wisely</p>
+                    <h1 class="page-title">Cute <span class="grad-text">cats</span>.</h1>
+                    <p class="lede">A fresh random cat, every click.</p>
+                </header>
+                <div class="card toy-stage reveal is-loading" style="--d: .08s" id="stage" aria-live="polite" aria-busy="true">
+                    <img id="pet" alt="A random cat" width="600" height="400">
+                </div>
+                <p class="status" id="status"></p>
+                <div class="toy-actions reveal" style="--d: .12s">
+                    <button class="btn btn-primary" type="button" id="next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg> New cat</button>
+                    <a class="btn" href="choose.html">Change my answer</a>
+                </div>
+            </section>
+        </div>
+    </main>
 
-    <footer class="footer">
-        <p>&copy; <span id="copyright-year">2026</span> <a href="hidden.html" class="hidden-link">KillaMeep</a> | All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="wrap">
+            <p>&copy; <span data-year>2026</span> <a class="secret-link" href="hidden.html">KillaMeep</a></p>
+            <div class="footer-links">
+                <a href="https://github.com/KillaMeep" target="_blank" rel="noopener">github</a>
+                <a href="mailto:nathanrfeldt@gmail.com">email</a>
+            </div>
+        </div>
     </footer>
 
-    <script type="text/babel">
-        const fetchCatImage = () => {
-            fetch('https://api.thecatapi.com/v1/images/search')
-                .then(response => response.json())
-                .then(data => {
-                    const catImage = document.getElementById('catImage');
-                    catImage.src = data[0].url; // Set the cat image source
-                })
-                .catch(error => console.error('Error fetching cat image:', error));
+    <script src="assets/js/site.js"></script>
+    <script>
+        const stage = document.getElementById('stage');
+        const img = document.getElementById('pet');
+        const next = document.getElementById('next');
+        const status = document.getElementById('status');
+        const setLoading = (on) => {
+            stage.classList.toggle('is-loading', on);
+            stage.setAttribute('aria-busy', on);
+            next.disabled = on;
         };
-
-        // Fetch a cat image on page load
-        window.onload = fetchCatImage;
+        img.addEventListener('load', () => setLoading(false));
+        img.addEventListener('error', () => { setLoading(false); status.textContent = 'That one got lost in space. Try again.'; });
+        const fetchPet = async () => {
+            setLoading(true);
+            status.textContent = '';
+            try {
+                const res = await fetch('https://api.thecatapi.com/v1/images/search');
+                const data = await res.json();
+                img.src = data[0].url;
+            } catch {
+                setLoading(false);
+                status.textContent = 'Could not reach the API. Try again in a moment.';
+            }
+        };
+        next.addEventListener('click', fetchPet);
+        fetchPet();
     </script>
-    <!-- Scripts -->
-    <script src="assets/js/api-utils.js"></script>
-    <script src="assets/js/starry-sky.js"></script>
-    <script src="assets/js/active-nav.js"></script>
-    <script src="assets/js/copyright-year.js"></script>
 </body>
 </html>

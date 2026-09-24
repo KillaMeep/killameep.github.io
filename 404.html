@@ -1,317 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
-
-    <!-- React and ReactDOM via CDN -->
-    <script src="https://unpkg.com/react@17/umd/react.production.min.js" defer></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" defer></script>
-    
-    <!-- Anime.js via CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
-    
-    <!-- Babel for JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js" defer></script>
-
-
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: 
-                radial-gradient(ellipse at center, #0a0a2e 0%, #16213e 50%, #000000 100%),
-                radial-gradient(ellipse at 25% 75%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
-                radial-gradient(ellipse at 75% 25%, rgba(0, 191, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(255, 20, 147, 0.1) 0%, transparent 50%);
-            overflow: hidden;
-            font-family: 'Poppins', sans-serif;
-            position: relative;
-            height: 100vh;
-            color: white;
-        }
-
-        #sky {
-            width: 100vw;
-            height: 100vh;
-            position: fixed;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
-
-        #shootingstars {
-            margin: 0;
-            padding: 0;
-            width: 150vh;
-            height: 100vw;
-            position: fixed;
-            overflow: hidden;
-            transform: translatex(calc(50vw - 50%)) translatey(calc(50vh - 50%)) rotate(120deg);
-        }
-
-        .wish {
-            height: 2px;
-            width: 100px;
-            opacity: 0;
-            background-color: white;
-            position: absolute;
-            background: linear-gradient(-20deg, rgba(138, 43, 226, 1), rgba(0, 191, 255, 0.8), rgba(255, 20, 147, 0));
-            filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.8));
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(138, 43, 226, 0.6);
-        }
-
-        .not-found {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 1;
-        }
-
-        .title {
-            font-size: 5rem;
-            letter-spacing: 0.5rem;
-            background: linear-gradient(45deg, rgba(138, 43, 226, 0.9), rgba(0, 191, 255, 0.9), rgba(255, 20, 147, 0.9));
-            background-size: 200% 200%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: prismaticShift 4s ease-in-out infinite;
-            text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-        }
-
-        @keyframes prismaticShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .message {
-            font-size: 1.5rem;
-            margin-top: 20px;
-            opacity: 0;
-            color: #e6e6ff;
-            text-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
-        }
-
-        .button {
-            background: linear-gradient(45deg, rgba(138, 43, 226, 0.8), rgba(0, 191, 255, 0.8), rgba(255, 20, 147, 0.8));
-            background-size: 200% 200%;
-            color: #ffffff;
-            border: 1px solid rgba(138, 43, 226, 0.5);
-            border-radius: 25px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 30px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-            box-shadow: 
-                0 4px 15px rgba(138, 43, 226, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .button:hover {
-            background-position: 200% 200%;
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 
-                0 8px 25px rgba(138, 43, 226, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-        }
-
-        .button:hover::before {
-            left: 100%;
-        }
-
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-            .title {
-                font-size: 3.5rem;
-                animation: prismaticShift 6s ease-in-out infinite;
-            }
-            
-            .message {
-                font-size: 1.2rem;
-            }
-            
-            .button {
-                padding: 12px 25px;
-                font-size: 1rem;
-            }
-            
-            #shootingstars .wish {
-                animation-duration: 4s;
-                opacity: 0.6;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .title {
-                font-size: 2.5rem;
-                letter-spacing: 0.3rem;
-            }
-            
-            .message {
-                font-size: 1rem;
-                margin-top: 15px;
-            }
-            
-            .button {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-                margin-top: 20px;
-            }
-        }
-    </style>
+    <title>404 | KillaMeep</title>
+    <meta name="description" content="This page drifted out of orbit.">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#07060d">
+    <meta property="og:title" content="404 | KillaMeep">
+    <meta property="og:description" content="This page drifted out of orbit.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a78bfa'/%3E%3Cstop offset='1' stop-color='%23f472b6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%2307060d'/%3E%3Cpath d='M16 5c.9 6.1 4.9 10.1 11 11-6.1.9-10.1 4.9-11 11-.9-6.1-4.9-10.1-11-11 6.1-.9 10.1-4.9 11-11Z' fill='url(%23g)'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
-    <div id="root"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="space" aria-hidden="true"><canvas></canvas></div>
 
-    <script type="text/babel">
-        class StarrySky extends React.Component {
-            state = {
-                num: 60,
-                vw: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-                vh: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-            };
+    <header class="site-header">
+        <div class="wrap">
+            <a class="logo" href="/index.html" aria-label="KillaMeep, home"><span class="tilde">~/</span>killameep<span class="cursor" aria-hidden="true"></span></a>
+            <nav class="nav" aria-label="Main">
+                <a href="/index.html">home</a>
+                <a href="/about.html">about</a>
+                <a href="/projects.html">projects</a>
+                <a href="/contact.html">contact</a>
+            </nav>
+        </div>
+    </header>
 
-            starryNight = () => {
-                anime({
-                    targets: ["#sky .star"],
-                    opacity: [
-                        { duration: 700, value: "0" },
-                        { duration: 700, value: "1" }
-                    ],
-                    easing: "linear",
-                    loop: true,
-                    delay: (el, i) => 50 * i
-                });
-            };
+    <main id="main">
+        <section class="lost wrap">
+            <p class="terminal-line reveal"><span class="prompt">$</span> cd ./this-page<br>no such file or directory</p>
+            <h1 class="code grad-text reveal" style="--d: .06s">404</h1>
+            <p class="lede reveal" style="--d: .12s">This page drifted out of orbit. Let's get you back somewhere with gravity.</p>
+            <div class="hero-actions reveal" style="--d: .18s">
+                <a class="btn btn-primary" href="/index.html">Take me home</a>
+                <button class="btn" type="button" onclick="history.back()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 6-6 6 6 6"/></svg> Go back</button>
+            </div>
+        </section>
+    </main>
 
-            shootingStars = () => {
-                anime({
-                    targets: ["#shootingstars .wish"],
-                    easing: "linear",
-                    loop: true,
-                    delay: (el, i) => 1000 * i,
-                    opacity: [
-                        { duration: 700, value: "1" }
-                    ],
-                    width: [
-                        { value: "150px" },
-                        { value: "0px" }
-                    ],
-                    translateX: 350
-                });
-            };
+    <footer class="site-footer">
+        <div class="wrap">
+            <p>&copy; <span data-year>2026</span> <a class="secret-link" href="/hidden.html">KillaMeep</a></p>
+            <div class="footer-links">
+                <a href="https://github.com/KillaMeep" target="_blank" rel="noopener">github</a>
+                <a href="mailto:nathanrfeldt@gmail.com">email</a>
+            </div>
+        </div>
+    </footer>
 
-            randomRadius = () => {
-                return Math.random() * 0.7 + 0.6;
-            };
-
-            getRandomX = () => {
-                return Math.floor(Math.random() * Math.floor(this.state.vw)).toString();
-            };
-
-            getRandomY = () => {
-                return Math.floor(Math.random() * Math.floor(this.state.vh)).toString();
-            };
-
-            componentDidMount() {
-                this.starryNight();
-                this.shootingStars();
-                this.animateText();
-            }
-
-            animateText = () => {
-                anime({
-                    targets: '.title',
-                    translateY: [-50, 0],
-                    opacity: [0, 1],
-                    duration: 1000,
-                    easing: 'easeOutExpo',
-                });
-
-                anime({
-                    targets: '.message',
-                    translateY: [50, 0],
-                    opacity: [0, 1],
-                    duration: 1000,
-                    easing: 'easeOutExpo',
-                    delay: 500,
-                });
-
-                anime({
-                    targets: '.button',
-                    translateY: [50, 0],
-                    opacity: [0, 1],
-                    duration: 1000,
-                    easing: 'easeOutExpo',
-                    delay: 1000,
-                });
-            };
-
-            render() {
-                const { num } = this.state;
-                return (
-                    <div id="App">
-                        <svg id="sky">
-                            {[...Array(num)].map((x, y) => (
-                                <circle
-                                    cx={this.getRandomX()}
-                                    cy={this.getRandomY()}
-                                    r={this.randomRadius()}
-                                    stroke="none"
-                                    strokeWidth="0"
-                                    fill="white"
-                                    key={y}
-                                    className="star"
-                                />
-                            ))}
-                        </svg>
-                        <div id="shootingstars">
-                            {[...Array(60)].map((x, y) => (
-                                <div
-                                    key={y}
-                                    className="wish"
-                                    style={{
-                                        left: `${this.getRandomY()}px`,
-                                        top: `${this.getRandomX()}px`
-                                    }}
-                                />
-                            ))}
-                        </div>
-                        <div className="not-found">
-                            <h1 className="title">404</h1>
-                            <p className="message">Oops! Page Not Found.</p>
-                            <button className="button" onClick={() => window.history.back()}>Go Back</button>
-                        </div>
-                    </div>
-                );
-            }
-        }
-
-        ReactDOM.render(<StarrySky />, document.getElementById("root"));
-    </script>
+    <script src="/assets/js/site.js"></script>
 </body>
 </html>

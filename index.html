@@ -1,538 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KillaMeep</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <style>
-        /* Global box-sizing fix */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        
-        html {
-            overflow-x: hidden;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: 
-                radial-gradient(ellipse at center, #1a0f3d 0%, #000000 100%),
-                radial-gradient(ellipse at 30% 70%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 30%, rgba(255, 105, 180, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(0, 206, 209, 0.08) 0%, transparent 50%);
-            color: #ffffff;
-            position: relative;
-            overflow-x: hidden;
-            overflow-y: auto;
-            min-height: 100vh;
-            width: 100%;
-        }
-
-        /* Enhanced Nebula Background with multiple layers */
-        .nebula-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1;
-            pointer-events: none;
-            background: 
-                radial-gradient(1px 1px at 15px 25px, rgba(255, 255, 255, 0.6), transparent),
-                radial-gradient(1px 1px at 45px 65px, rgba(255, 255, 255, 0.4), transparent),
-                radial-gradient(2px 2px at 85px 15px, rgba(255, 255, 255, 0.7), transparent),
-                radial-gradient(1px 1px at 125px 85px, rgba(255, 255, 255, 0.5), transparent),
-                radial-gradient(2px 2px at 165px 45px, rgba(255, 255, 255, 0.6), transparent),
-                radial-gradient(1px 1px at 205px 25px, rgba(255, 255, 255, 0.4), transparent),
-                radial-gradient(2px 2px at 245px 75px, rgba(255, 255, 255, 0.5), transparent),
-                radial-gradient(1px 1px at 285px 45px, rgba(255, 255, 255, 0.3), transparent);
-            animation: nebulaDrift 60s linear infinite;
-        }
-
-        .nebula-background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 25% 25%, rgba(138, 43, 226, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 75% 75%, rgba(255, 105, 180, 0.12) 0%, transparent 35%),
-                radial-gradient(circle at 50% 80%, rgba(0, 206, 209, 0.1) 0%, transparent 30%),
-                radial-gradient(circle at 20% 60%, rgba(138, 43, 226, 0.08) 0%, transparent 25%);
-            animation: nebulaGlow 20s ease-in-out infinite alternate;
-        }
-
-        .nebula-background::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 80% 20%, rgba(255, 105, 180, 0.1) 0%, transparent 30%),
-                radial-gradient(circle at 30% 90%, rgba(0, 206, 209, 0.08) 0%, transparent 25%);
-            animation: nebulaGlow 25s ease-in-out infinite alternate-reverse;
-        }
-
-        @keyframes nebulaDrift {
-            0% { transform: translateX(0px) translateY(0px) rotate(0deg); }
-            25% { transform: translateX(-8px) translateY(-5px) rotate(0.5deg); }
-            50% { transform: translateX(5px) translateY(-8px) rotate(-0.5deg); }
-            75% { transform: translateX(-5px) translateY(5px) rotate(0.3deg); }
-            100% { transform: translateX(0px) translateY(0px) rotate(0deg); }
-        }
-
-        @keyframes nebulaGlow {
-            0% { opacity: 0.4; transform: scale(1) rotate(0deg); }
-            100% { opacity: 0.8; transform: scale(1.1) rotate(2deg); }
-        }
-
-        /* Realistic Fluid Aurora Background Effects */
-        .aurora-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 2;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .aurora-wave {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-
-        /* Aurora Curtain 1 - Green/Cyan */
-        .aurora-wave:nth-child(1) {
-            background: 
-                radial-gradient(ellipse 400px 1200px at 15% 30%, rgba(0, 255, 127, 0.2) 0%, transparent 70%),
-                radial-gradient(ellipse 300px 1000px at 25% 60%, rgba(0, 206, 209, 0.15) 0%, transparent 60%),
-                radial-gradient(ellipse 350px 1100px at 35% 20%, rgba(64, 224, 208, 0.1) 0%, transparent 65%);
-            filter: blur(12px);
-            animation: auroraFlow1 20s ease-in-out infinite;
-        }
-
-        /* Aurora Curtain 2 - Purple/Pink */
-        .aurora-wave:nth-child(2) {
-            background: 
-                radial-gradient(ellipse 350px 1300px at 55% 25%, rgba(138, 43, 226, 0.18) 0%, transparent 65%),
-                radial-gradient(ellipse 400px 1100px at 65% 55%, rgba(255, 105, 180, 0.12) 0%, transparent 70%),
-                radial-gradient(ellipse 280px 900px at 75% 35%, rgba(186, 85, 211, 0.1) 0%, transparent 60%);
-            filter: blur(15px);
-            animation: auroraFlow2 25s ease-in-out infinite;
-            animation-delay: 8s;
-        }
-
-        /* Aurora Curtain 3 - Blue/Violet */
-        .aurora-wave:nth-child(3) {
-            background: 
-                radial-gradient(ellipse 320px 1000px at 85% 40%, rgba(72, 61, 139, 0.15) 0%, transparent 68%),
-                radial-gradient(ellipse 380px 1200px at 95% 70%, rgba(106, 90, 205, 0.1) 0%, transparent 65%),
-                radial-gradient(ellipse 300px 950px at 105% 50%, rgba(123, 104, 238, 0.08) 0%, transparent 60%);
-            filter: blur(18px);
-            animation: auroraFlow3 30s ease-in-out infinite;
-            animation-delay: 15s;
-        }
-
-        @keyframes auroraFlow1 {
-            0%, 100% {
-                transform: translateX(-5%) translateY(-2%) skewX(1deg);
-                opacity: 0.6;
-            }
-            20% {
-                transform: translateX(0%) translateY(1%) skewX(-0.5deg);
-                opacity: 0.8;
-            }
-            40% {
-                transform: translateX(3%) translateY(-1%) skewX(0.8deg);
-                opacity: 0.7;
-            }
-            60% {
-                transform: translateX(1%) translateY(2%) skewX(-1.2deg);
-                opacity: 0.9;
-            }
-            80% {
-                transform: translateX(-2%) translateY(-0.5%) skewX(0.3deg);
-                opacity: 0.5;
-            }
-        }
-
-        @keyframes auroraFlow2 {
-            0%, 100% {
-                transform: translateX(2%) translateY(1%) skewX(-0.8deg);
-                opacity: 0.5;
-            }
-            25% {
-                transform: translateX(-3%) translateY(-1.5%) skewX(1.1deg);
-                opacity: 0.7;
-            }
-            50% {
-                transform: translateX(4%) translateY(0.8%) skewX(-0.6deg);
-                opacity: 0.8;
-            }
-            75% {
-                transform: translateX(-1%) translateY(-1%) skewX(0.9deg);
-                opacity: 0.6;
-            }
-        }
-
-        @keyframes auroraFlow3 {
-            0%, 100% {
-                transform: translateX(-1%) translateY(-1.2%) skewX(0.5deg);
-                opacity: 0.4;
-            }
-            30% {
-                transform: translateX(2%) translateY(1.8%) skewX(-1deg);
-                opacity: 0.7;
-            }
-            65% {
-                transform: translateX(-3%) translateY(-0.3%) skewX(0.7deg);
-                opacity: 0.6;
-            }
-        }
-
-        /* Cosmic dust particles */
-        .cosmic-dust {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .dust-particle {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: dustFloat 30s linear infinite;
-        }
-
-        .dust-particle:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .dust-particle:nth-child(2) { left: 20%; animation-delay: 3s; }
-        .dust-particle:nth-child(3) { left: 30%; animation-delay: 6s; }
-        .dust-particle:nth-child(4) { left: 40%; animation-delay: 9s; }
-        .dust-particle:nth-child(5) { left: 50%; animation-delay: 12s; }
-        .dust-particle:nth-child(6) { left: 60%; animation-delay: 15s; }
-        .dust-particle:nth-child(7) { left: 70%; animation-delay: 18s; }
-        .dust-particle:nth-child(8) { left: 80%; animation-delay: 21s; }
-        .dust-particle:nth-child(9) { left: 90%; animation-delay: 24s; }
-        .dust-particle:nth-child(10) { left: 15%; animation-delay: 27s; }
-
-        @keyframes dustFloat {
-            0% {
-                transform: translateY(100vh) translateX(0px);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-50px) translateX(20px);
-                opacity: 0;
-            }
-        }
-
-        .landing-section {
-            position: relative;
-            z-index: 100;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .landing-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-        }
-
-        .landing-content .lead {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #e6e6ff;
-            text-shadow: 0 0 10px rgba(0, 206, 209, 0.3);
-        }
-
-        .btn {
-            background: linear-gradient(45deg, rgba(138, 43, 226, 0.8), rgba(255, 105, 180, 0.8));
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
-            position: relative;
-            z-index: 100;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 30px rgba(138, 43, 226, 0.5);
-        }
-
-        /* Enhanced floating elements with more variety */
-        .floating-element {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.15);
-            font-size: 20px;
-            animation: float 8s ease-in-out infinite;
-            z-index: 2;
-        }
-
-        .floating-element:nth-child(1) { 
-            top: 15%; left: 8%; animation-delay: 0s; 
-            color: rgba(138, 43, 226, 0.2);
-        }
-        .floating-element:nth-child(2) { 
-            top: 60%; right: 12%; animation-delay: 3s; 
-            color: rgba(255, 105, 180, 0.2);
-        }
-        .floating-element:nth-child(3) { 
-            top: 75%; left: 15%; animation-delay: 6s; 
-            color: rgba(0, 206, 209, 0.2);
-        }
-        .floating-element:nth-child(4) { 
-            top: 30%; right: 25%; animation-delay: 9s; 
-            color: rgba(138, 43, 226, 0.15);
-        }
-        .floating-element:nth-child(5) { 
-            top: 85%; right: 35%; animation-delay: 12s; 
-            color: rgba(255, 105, 180, 0.15);
-        }
-
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg) scale(1); 
-                opacity: 0.1; 
-            }
-            25% { 
-                transform: translateY(-8px) rotate(45deg) scale(1.1); 
-                opacity: 0.3; 
-            }
-            50% { 
-                transform: translateY(-15px) rotate(90deg) scale(1.2); 
-                opacity: 0.4; 
-            }
-            75% { 
-                transform: translateY(-8px) rotate(135deg) scale(1.1); 
-                opacity: 0.3; 
-            }
-        }
-
-        /* Mobile-optimized animations */
-        @media (max-width: 768px) {
-            /* Optimize aurora animations for mobile */
-            .aurora-wave {
-                animation: auroraFlow1 40s ease-in-out infinite !important; /* Slower animation */
-                filter: blur(6px) !important;
-                opacity: 0.2 !important;
-                transform: scale(0.8) !important;
-            }
-            
-            .aurora-wave:nth-child(2) {
-                animation: auroraFlow2 50s ease-in-out infinite !important;
-                animation-delay: 16s !important;
-                opacity: 0.15 !important;
-            }
-            
-            .aurora-wave:nth-child(3) {
-                animation: auroraFlow3 60s ease-in-out infinite !important;
-                animation-delay: 30s !important;
-                opacity: 0.1 !important;
-            }
-            
-            .nebula-background {
-                animation: nebulaDrift 120s linear infinite !important; /* Slower animation */
-                transform: scale(0.9) !important;
-            }
-            
-            .nebula-background::before,
-            .nebula-background::after {
-                animation: nebulaGlow 50s ease-in-out infinite alternate !important; /* Slower animation */
-                transform: scale(0.8) !important;
-                opacity: 0.15 !important;
-            }
-            
-            .dust-particle {
-                animation: dustFloat 20s ease-in-out infinite !important; /* Slower animation */
-                opacity: 0.08 !important;
-            }
-            
-            .dust-particle:nth-child(n+6) {
-                opacity: 0.04 !important; /* Keep more particles but very subtle */
-            }
-            
-            .floating-element {
-                animation: float 16s ease-in-out infinite !important; /* Slower animation */
-                transform: scale(0.8) !important;
-                opacity: 0.1 !important;
-            }
-            
-            .floating-element:nth-child(n+5) {
-                opacity: 0.05 !important; /* Keep more elements but subtle */
-            }
-            
-            /* Keep CSS particles on mobile but optimize */
-            .css-particles {
-                opacity: 0.05 !important;
-            }
-        }
-
-        /* Mobile optimizations for smaller screens */
-        @media (max-width: 480px) {
-            .aurora-wave {
-                animation: auroraFlow1 60s ease-in-out infinite !important; /* Very slow animation */
-                opacity: 0.1 !important;
-                transform: scale(0.6) !important;
-            }
-            
-            .aurora-wave:nth-child(2) {
-                animation: auroraFlow2 80s ease-in-out infinite !important;
-                opacity: 0.08 !important;
-            }
-            
-            .aurora-wave:nth-child(3) {
-                animation: auroraFlow3 100s ease-in-out infinite !important;
-                opacity: 0.05 !important;
-            }
-            
-            .dust-particle {
-                animation: dustFloat 30s ease-in-out infinite !important; /* Very slow animation */
-                opacity: 0.05 !important;
-            }
-            
-            .dust-particle:nth-child(n+4) {
-                opacity: 0.02 !important; /* Keep but very subtle */
-            }
-            
-            .floating-element {
-                animation: float 25s ease-in-out infinite !important; /* Very slow animation */
-                opacity: 0.06 !important;
-                transform: scale(0.6) !important;
-            }
-            
-            .floating-element:nth-child(n+3) {
-                opacity: 0.03 !important; /* Keep but very subtle */
-            }
-            
-            .nebula-background::before,
-            .nebula-background::after {
-                animation: nebulaGlow 80s ease-in-out infinite alternate !important; /* Very slow animation */
-                opacity: 0.08 !important;
-                transform: scale(0.6) !important;
-            }
-        }
-
-        /* Accessibility - respect reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            .aurora-wave, .dust-particle, .floating-element {
-                animation: none;
-                opacity: 0.1;
-            }
-            .nebula-background, .nebula-background::before, .nebula-background::after {
-                animation: none;
-            }
-        }
-    </style>
+    <title>KillaMeep | Software Developer</title>
+    <meta name="description" content="KillaMeep builds Python, computer vision and automation tools.">
+    <meta name="theme-color" content="#07060d">
+    <meta property="og:title" content="KillaMeep | Software Developer">
+    <meta property="og:description" content="KillaMeep builds Python, computer vision and automation tools.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a78bfa'/%3E%3Cstop offset='1' stop-color='%23f472b6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%2307060d'/%3E%3Cpath d='M16 5c.9 6.1 4.9 10.1 11 11-6.1.9-10.1 4.9-11 11-.9-6.1-4.9-10.1-11-11 6.1-.9 10.1-4.9 11-11Z' fill='url(%23g)'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-    <!-- Enhanced Nebula Background -->
-    <div class="nebula-background"></div>
-    
-    <!-- Aurora Effects -->
-    <div class="aurora-background">
-        <div class="aurora-wave"></div>
-        <div class="aurora-wave"></div>
-        <div class="aurora-wave"></div>
-    </div>
-    
-    <!-- Cosmic Dust -->
-    <div class="cosmic-dust">
-        <div class="dust-particle"></div>
-        <div class="dust-particle"></div>
-        <div class="dust-particle"></div>
-        <div class="dust-particle"></div>
-        <div class="dust-particle"></div>
-        <div class="dust-particle"></div>
-        <div class="dust-particle"></div>
-        <div class="dust-particle"></div>
-        <div class="dust-particle"></div>
-        <div class="dust-particle"></div>
-    </div>
-    
-    <!-- Ultra-lightweight CSS particles -->
-    <div class="css-particles">
-        <div class="css-particle"></div>
-        <div class="css-particle"></div>
-        <div class="css-particle"></div>
-        <div class="css-particle"></div>
-        <div class="css-particle"></div>
-        <div class="css-particle"></div>
-        <div class="css-particle"></div>
-        <div class="css-particle"></div>
-        <div class="css-particle"></div>
-        <div class="css-particle"></div>
-    </div>
-    
-    <!-- Enhanced Floating Elements -->
-    <div class="floating-element">✦</div>
-    <div class="floating-element">⋆</div>
-    <div class="floating-element">✧</div>
-    <div class="floating-element">✨</div>
-    <div class="floating-element">⭐</div>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="space" aria-hidden="true"><canvas></canvas></div>
 
-    <!-- Landing Section -->
-    <header class="landing-section">
-        <div class="landing-content">
-            <h1 id="typing-effect">Hi, I'm <span class="highlight">KillaMeep</span></h1>
-            <p id="role-effect" class="lead">> </p>
+    <header class="site-header">
+        <div class="wrap">
+            <a class="logo" href="index.html" aria-label="KillaMeep, home"><span class="tilde">~/</span>killameep<span class="cursor" aria-hidden="true"></span></a>
+            <nav class="nav" aria-label="Main">
+                <a href="index.html" aria-current="page">home</a>
+                <a href="about.html">about</a>
+                <a href="projects.html">projects</a>
+                <a href="contact.html">contact</a>
+            </nav>
         </div>
-        <br><br>
-        <a href="about.html" class="btn">Explore More</a> <!-- Button is placed after landing content to be below -->
     </header>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; <span id="copyright-year">2026</span> <a href="hidden.html" class="hidden-link">KillaMeep</a> | All rights reserved.</p>
+
+    <main id="main">
+        <section class="hero wrap">
+            <p class="terminal-line reveal"><span class="prompt">$</span> whoami</p>
+            <h1 class="hero-title reveal" style="--d: .06s"><span class="hi">Hi, I'm</span><span class="grad-text">KillaMeep</span>.</h1>
+            <p class="role reveal" style="--d: .12s" aria-label="Software developer, process automation engineer, AI solutions designer"><span class="prompt" aria-hidden="true">&gt;</span><span data-roles="Software Developer|Process Automation Engineer|AI Solutions Designer" aria-hidden="true">Software Developer</span><span class="caret" aria-hidden="true"></span></p>
+            <p class="lede reveal" style="--d: .18s">I build tools that see, sort and automate: computer vision and machine learning in Python, desktop apps with Electron and Tauri, and the glue code that makes boring work disappear.</p>
+            <div class="hero-actions reveal" style="--d: .24s">
+                <a class="btn btn-primary" href="projects.html">See my projects <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+                <a class="btn" href="contact.html">Get in touch</a>
+            </div>
+            <a class="scroll-hint reveal" style="--d: .4s" href="#work"><span></span>selected work</a>
+        </section>
+
+        <section id="work" class="wrap section page" style="padding-top: 0">
+            <div class="section-head reveal">
+                <h2>Selected work</h2>
+                <a class="link-arrow" href="projects.html">all projects <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+            </div>
+            <div class="project-list">
+                <article class="card glow project reveal" style="--d: 0.00s">
+                    <span class="project-index">01</span>
+                    <div>
+                        <h3>Waypoint</h3>
+                        <p>Free, open-source image geolocation. Give it one outdoor photo and it estimates where on Earth it was taken: a diffusion model makes coarse guesses, sun position rules out bad ones, and matches against real street-level imagery confirm the rest, all on an interactive map.</p>
+                        <ul class="tags" aria-label="Stack"><li class="tag">Electron</li><li class="tag">Python</li><li class="tag">PyTorch</li><li class="tag">OSINT</li><li class="tag">LightGlue</li></ul>
+                    </div>
+                    <a class="link-arrow stretched" href="https://github.com/KillaMeep/waypoint-osint" target="_blank" rel="noopener" aria-label="Waypoint on GitHub">source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+                </article>
+                <article class="card glow project reveal" style="--d: 0.08s">
+                    <span class="project-index">02</span>
+                    <div>
+                        <h3>Glyphify</h3>
+                        <p>A desktop app that turns images and videos into ASCII art. Color or grayscale, a pile of character sets (including braille and custom ones), live tuning, and export to TXT, HTML, PNG or animated GIF.</p>
+                        <ul class="tags" aria-label="Stack"><li class="tag">Electron</li><li class="tag">JavaScript</li><li class="tag">FFmpeg</li><li class="tag">Desktop app</li></ul>
+                    </div>
+                    <a class="link-arrow stretched" href="https://github.com/KillaMeep/Glyphify" target="_blank" rel="noopener" aria-label="Glyphify on GitHub">source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+                </article>
+                <article class="card glow project reveal" style="--d: 0.16s">
+                    <span class="project-index">03</span>
+                    <div>
+                        <h3>ASCII-gen</h3>
+                        <p>An open-source tool that converts images and video frames into ASCII art. It handles static images and animated GIFs, and runs on both Linux and Windows.</p>
+                        <ul class="tags" aria-label="Stack"><li class="tag">Python</li><li class="tag">Image processing</li><li class="tag">GIF + video</li><li class="tag">Cross-platform</li></ul>
+                    </div>
+                    <a class="link-arrow stretched" href="https://github.com/KillaMeep/ASCII-gen" target="_blank" rel="noopener" aria-label="ASCII-gen on GitHub">source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <p>&copy; <span data-year>2026</span> <a class="secret-link" href="hidden.html">KillaMeep</a></p>
+            <div class="footer-links">
+                <a href="https://github.com/KillaMeep" target="_blank" rel="noopener">github</a>
+                <a href="mailto:nathanrfeldt@gmail.com">email</a>
+            </div>
+        </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="assets/js/typing-animation.js"></script>
-    <script src="assets/js/navbar-scroll.js"></script>
-    <script src="assets/js/active-nav.js"></script>
-    <script src="assets/js/copyright-year.js"></script>
+    <script src="assets/js/site.js"></script>
 </body>
 </html>
