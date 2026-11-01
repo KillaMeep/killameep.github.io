@@ -10,9 +10,8 @@
     <meta property="og:title" content="404 | KillaMeep">
     <meta property="og:description" content="This page drifted out of orbit.">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a78bfa'/%3E%3Cstop offset='1' stop-color='%23f472b6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%2307060d'/%3E%3Cpath d='M16 5c.9 6.1 4.9 10.1 11 11-6.1.9-10.1 4.9-11 11-.9-6.1-4.9-10.1-11-11 6.1-.9 10.1-4.9 11-11Z' fill='url(%23g)'/%3E%3C/svg%3E">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
     <style>
 /* ==========================================================================
    KillaMeep - site styles
@@ -46,6 +45,23 @@
     --max: 1080px;
     --gutter: clamp(16px, 4vw, 40px);
     --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------- Fonts (self-hosted, latin subset, variable weight) ---------- */
+
+@font-face {
+    font-family: "Space Grotesk";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/assets/fonts/space-grotesk-latin.woff2") format("woff2");
+}
+@font-face {
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-weight: 100 800;
+    font-display: swap;
+    src: url("/assets/fonts/jetbrains-mono-latin.woff2") format("woff2");
 }
 
 /* ---------- Base ---------- */
@@ -754,6 +770,14 @@ a.card.choice {
 }
 .reveal.is-in { opacity: 1; transform: none; }
 .no-js .reveal { opacity: 1; transform: none; }
+/* Content already on screen at load stays visible (good for FCP/LCP) and only slides in. */
+.reveal.in-view {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: rise 0.7s var(--ease) var(--d, 0s) both;
+}
+@keyframes rise { from { transform: translateY(14px); } }
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -837,7 +861,11 @@ a.card.choice {
                 }
             });
         }, { rootMargin: '0px 0px -8% 0px' });
-        reveals.forEach(el => io.observe(el));
+        const vh = window.innerHeight;
+        reveals.forEach(el => {
+            if (el.getBoundingClientRect().top < vh) el.classList.add('in-view');
+            else io.observe(el);
+        });
     } else {
         reveals.forEach(el => el.classList.add('is-in'));
     }

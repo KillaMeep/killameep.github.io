@@ -28,7 +28,11 @@
                 }
             });
         }, { rootMargin: '0px 0px -8% 0px' });
-        reveals.forEach(el => io.observe(el));
+        const vh = window.innerHeight;
+        reveals.forEach(el => {
+            if (el.getBoundingClientRect().top < vh) el.classList.add('in-view');
+            else io.observe(el);
+        });
     } else {
         reveals.forEach(el => el.classList.add('is-in'));
     }

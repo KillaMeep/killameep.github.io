@@ -32,6 +32,23 @@
     --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
+/* ---------- Fonts (self-hosted, latin subset, variable weight) ---------- */
+
+@font-face {
+    font-family: "Space Grotesk";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("../fonts/space-grotesk-latin.woff2") format("woff2");
+}
+@font-face {
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-weight: 100 800;
+    font-display: swap;
+    src: url("../fonts/jetbrains-mono-latin.woff2") format("woff2");
+}
+
 /* ---------- Base ---------- */
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -719,6 +736,14 @@ a.card.choice {
 }
 .reveal.is-in { opacity: 1; transform: none; }
 .no-js .reveal { opacity: 1; transform: none; }
+/* Content already on screen at load stays visible (good for FCP/LCP) and only slides in. */
+.reveal.in-view {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: rise 0.7s var(--ease) var(--d, 0s) both;
+}
+@keyframes rise { from { transform: translateY(14px); } }
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
